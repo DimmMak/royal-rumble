@@ -126,7 +126,13 @@ Klarman retained in Pillar 6. No replacement. Both coexist with non-overlapping 
 - Klarman: "Am I overpaying? What's the downside?" (defensive)
 - Buffett: "Will this compound my capital for 20 years?" (offensive)
 
-**Credit where due:** The 13th legend addition was Grok's idea. We stole it.
+**Credit where due:** The 13th legend addition was Grok's idea. Despite getting 3 out of 4 critiques wrong in Round 1, Grok's core instinct was correct — Buffett belongs in the system. As Grok put it:
+
+> "Warren Buffett is completely missing from the 12 legends, and that's a big oversight. He should own Pillar 6 — Deep Value & Margin of Safety. That's literally his philosophy."
+
+We disagreed on the solution (replace Klarman) but agreed on the problem (Buffett's absence). Grok then refined to the correct answer: add Buffett as #13 with a distinct pillar. That suggestion was adopted in full.
+
+**Grok receives full credit for identifying the Buffett gap and proposing the 13th legend solution.**
 
 ---
 
