@@ -30,10 +30,13 @@ Before running the legends, gather data with EXACTLY 3 web searches run IN PARAL
 **Search 3 — Macro & Credit:**
 `Fed interest rates M2 money supply credit spreads yield curve corporate debt defaults [current month year]`
 
-**Search 4 — Commodities & Trend:**
-`[TICKER] 200 day moving average trend commodity input costs dollar DXY supply chain [current year]`
+**Search 4 — Technical Analysis & Trend:**
+`[TICKER] 200 day moving average 50 day MA RSI ADX support resistance fibonacci levels technical analysis [current year]`
 
-Run all 4 simultaneously. Do NOT run additional searches unless a critical data point is completely missing.
+**Search 5 — Commodities, Options Flow & Positioning:**
+`[TICKER] max pain open interest put call ratio commodity input costs dollar DXY [current year]`
+
+Run all 5 simultaneously. Do NOT run additional searches unless a critical data point is completely missing.
 
 ---
 
@@ -217,4 +220,4 @@ COMMANDS:
 
 5. **Read RUMBLE-ENGINE.md ONCE per rumble** — it contains all frameworks. Do NOT read individual legend SKILL.md files. The consolidated file is the source of truth.
 
-6. **4 searches max** — run them in parallel at rumble start. Do not add more unless a critical data point is completely absent.
+6. **5 searches max** — run them in parallel at rumble start. Do not add more unless a critical data point is completely absent.
