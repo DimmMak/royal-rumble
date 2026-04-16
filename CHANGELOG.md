@@ -2,6 +2,32 @@
 
 ---
 
+## [2026-04-15] — v3.3 — Mechanical Judge Rubric (Grok suggestion #2)
+
+**Trigger:** Grok suggested making the Judge "dumber and stricter" — a fixed mechanical rubric instead of subjective 1-10 scoring. This was her best suggestion. Implemented with modifications.
+
+### What Changed
+
+**Replaced subjective 1-10 score with fixed 100-point rubric:**
+- Pillar Discipline (30 pts) — did they stay in their lane?
+- Evidence Citation (25 pts) — did they cite specific numbers?
+- Logical Consistency (20 pts) — does the reasoning follow?
+- Format Compliance (15 pts) — did they fill all required fields?
+- Flip Condition Quality (10 pts) — is it specific and testable?
+- Max 95, mandatory one-sentence explanation per deduction.
+
+**Removed conviction modifier (1-10) entirely:**
+- Old formula: `stance x weight x (conviction/10)` — hidden weight suppression
+- New formula: `stance x weight` — clean, no dampening
+- The 5-point stance scale (STRONG BULL to STRONG BEAR) already captures conviction through stance intensity. Having both was double-counting.
+- Conviction field removed from all 13 legend output templates.
+
+**Key principle:** The rubric scores DISCIPLINE, not agreement. Klarman saying BEAR on a growth stock with perfect framework execution gets 90+. The Judge's opinion about whether BEAR is correct is irrelevant to the rubric score.
+
+**Credit:** Grok proposed the mechanical rubric concept. We modified the criteria (replaced "Original Insight" with "Flip Condition Quality", adjusted evidence definition) and removed the conviction modifier as a consequence of making the rubric work cleanly.
+
+---
+
 ## [2026-04-15] — v3.2 — Weight Restoration & Anti-Drift Guardrails
 
 **Trigger:** Realized that between v1.0 and v3.1, we had introduced compounding bias through three layers of untested weight changes — while simultaneously warning about the exact same failure mode in a hypothetical Implementer agent. We became the Implementer.
@@ -226,4 +252,5 @@ The PERMANENT DNA of each legend's framework was never touched. The weights — 
 | v2.1 | 13 | 13 | +Buffett (from Grok collab), debate documented |
 | v3.0 | 13 | 13 | 7 Judge optimizations: 5-point scale, ABSTAIN, dual verdicts, conflict map, flip conditions, conviction modifier, sector weights |
 | v3.1 | 13 | 13 | TA tightened: specific price levels, RSI, Fibonacci, ATR stops, Key Levels table |
-| **v3.2** | **13** | **8** | **Weight restoration: v1.0 weights for original 8, new 5 become advisory. Anti-drift guardrails. The session where we caught ourselves becoming the Implementer.** |
+| v3.2 | 13 | 8 | Weight restoration: v1.0 weights for original 8, new 5 become advisory. Anti-drift guardrails. |
+| **v3.3** | **13** | **8** | **Mechanical Judge rubric (/100), conviction modifier removed, formula simplified to stance x weight. The Judge is now a robot with a clipboard.** |

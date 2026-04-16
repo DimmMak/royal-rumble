@@ -74,25 +74,25 @@ Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simon
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 VOTING LEGENDS (v1.0 weights — determine the score):
-| Legend | Wt | Stance | Conv | Thesis | Flip If |
-|---|---|---|---|---|---|
-| ⚡ Druck | 20% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 👑 Tom Lee | 15% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🚀 Cathie | 15% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| ⚖️ Dalio | 15% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🏛️ Klarman | 10% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 📐 Simons | 10% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🌀 Soros | 10% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🎯 Vol Desk | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| Legend | Wt | Stance | Thesis | Flip If |
+|---|---|---|---|---|
+| ⚡ Druck | 20% | [stance] | [**bold key insight**] | [flip condition] |
+| 👑 Tom Lee | 15% | [stance] | [**bold key insight**] | [flip condition] |
+| 🚀 Cathie | 15% | [stance] | [**bold key insight**] | [flip condition] |
+| ⚖️ Dalio | 15% | [stance] | [**bold key insight**] | [flip condition] |
+| 🏛️ Klarman | 10% | [stance] | [**bold key insight**] | [flip condition] |
+| 📐 Simons | 10% | [stance] | [**bold key insight**] | [flip condition] |
+| 🌀 Soros | 10% | [stance] | [**bold key insight**] | [flip condition] |
+| 🎯 Vol Desk | 5% | [stance] | [**bold key insight**] | [flip condition] |
 
 ADVISORY LEGENDS (shown for context — do NOT affect score):
-| Legend | Stance | Conv | Thesis | Agrees? |
-|---|---|---|---|---|
-| 📚 Marks | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
-| 📈 Trend | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
-| 🏔️ Buffett | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
-| 🔱 Ackman | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
-| 🌍 Rogers | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
+| Legend | Stance | Thesis | Agrees? |
+|---|---|---|---|
+| 📚 Marks | [stance] | [**bold key insight**] | [yes/no] |
+| 📈 Trend | [stance] | [**bold key insight**] | [yes/no] |
+| 🏔️ Buffett | [stance] | [**bold key insight**] | [yes/no] |
+| 🔱 Ackman | [stance] | [**bold key insight**] | [yes/no] |
+| 🌍 Rogers | [stance] | [**bold key insight**] | [yes/no] |
 
 ADVISORY DISSENT: [X/5 disagree — flag if 3+]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -100,7 +100,6 @@ ADVISORY DISSENT: [X/5 disagree — flag if 3+]
 
 **Field rules:**
 - **Stance:** STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-- **Conv:** Conviction 1-10 (how confident is this legend in their call?)
 - **Thesis:** ONE thing that drives their stance. **Bold** the key phrase.
 - **Flip If / Agrees?:** Voting legends show flip condition. Advisory legends show if they agree with the combined verdict.
 

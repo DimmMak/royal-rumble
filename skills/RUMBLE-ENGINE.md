@@ -38,8 +38,7 @@ STOCK IMPACT:
 SEASONAL NOTE: [one line if relevant]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 LIQUIDITY VERDICT: [one punchy sentence]
 ```
 
@@ -83,8 +82,7 @@ WHY THE BEARS ARE WRONG:
 - **5-year view:** [where this goes if thesis plays out]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 INNOVATION VERDICT: [one punchy sentence]
 ```
 
@@ -143,8 +141,7 @@ SIZING IMPLICATION:
 - **What would change my mind:** [specific price level or catalyst]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 TIMING VERDICT: [one punchy sentence]
 ```
 
@@ -194,8 +191,7 @@ PORTFOLIO CONSTRUCTION:
 - **Warning:** [concentration, factor crowding, etc. — if applicable]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 RISK VERDICT: [one punchy sentence]
 ```
 
@@ -239,8 +235,7 @@ RED FLAGS:
 - [What the market is underpricing on the downside]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 VALUE VERDICT: [one punchy sentence]
 ```
 
@@ -299,8 +294,7 @@ FACTOR & FLOW:
 - **3-month probability:** [X% probability of continued outperformance]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 QUANT VERDICT: [one punchy sentence]
 ```
 
@@ -348,8 +342,7 @@ NARRATIVE FLIP:
 - **How close are we:** [early warning signs present? or no cracks yet?]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 NARRATIVE VERDICT: [one punchy sentence]
 ```
 
@@ -417,8 +410,7 @@ STRATEGY RECOMMENDATION:
 - **Avoid:** [what NOT to do in this environment]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 VOL VERDICT: [one punchy sentence]
 ```
 
@@ -470,8 +462,7 @@ PENDULUM POSITION:
 - **Risk perception:** [is risk being ignored (dangerous) or overweighted (opportunity)?]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 CREDIT VERDICT: [one punchy sentence]
 ```
 
@@ -548,8 +539,7 @@ STOPS & SIGNAL:
 - **Trend-break stop (200-day MA):** [$X]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 TREND VERDICT: [one punchy sentence]
 ```
 
@@ -605,8 +595,7 @@ VALUE GAP:
 - **What needs to change:** [the one thing that closes the gap]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 ACTIVIST VERDICT: [one punchy sentence]
 ```
 
@@ -660,8 +649,7 @@ MACRO OVERLAY:
 - **What Wall Street is ignoring:** [the physical-world factor nobody is pricing in]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 GLOBAL VERDICT: [one punchy sentence]
 ```
 
@@ -721,8 +709,7 @@ PRICE vs VALUE:
 - **Would I hold this for 20 years?** [yes/no — and why]
 
 PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-CONVICTION: [1-10 — how confident in this call?]
-FLIP CONDITION: [what specific event or data point would change your stance?]
+FLIP CONDITION: [what specific, testable event would change your stance?]
 COMPOUNDING VERDICT: [one punchy sentence]
 ```
 
@@ -812,9 +799,45 @@ If any VOTING legend declared ABSTAIN:
 
 ---
 
-## STEP 2 — SCORE EACH LEGEND (1-10)
+## STEP 2 — SCORE EACH LEGEND (FIXED RUBRIC — /100)
 
-Score ALL 13 legends (voting + advisory). 10=perfect, 7-9=strong, 4-6=adequate, 1-3=weak/off-lane.
+Score ALL 13 legends (voting + advisory) using this EXACT rubric. Never modify it. Never add criteria.
+
+```
+RUBRIC (5 criteria, 100 points total):
+
+1. PILLAR DISCIPLINE (30 pts)
+   30 = Stays strictly inside assigned pillar
+   15 = Minor drift (1-2 comments outside their lane)
+    0 = Ignores pillar, argues from another legend's domain
+
+2. EVIDENCE CITATION (25 pts)
+   25 = Cites specific numbers from search data (prices, ratios, percentages)
+   10 = References general knowledge without specific data points
+    0 = Makes claims with no supporting evidence
+
+3. LOGICAL CONSISTENCY (20 pts)
+   20 = Reasoning follows directly from framework, no contradictions
+   10 = Minor contradiction or logical leap
+    0 = Major contradiction, circular reasoning, or conclusion doesn't follow from evidence
+
+4. FORMAT COMPLIANCE (15 pts)
+   15 = All required output fields filled with specific data
+    7 = Most fields filled, some vague or missing
+    0 = Output format ignored or mostly empty
+
+5. FLIP CONDITION QUALITY (10 pts)
+   10 = Specific, testable, time-bound condition stated
+    5 = Vague condition ("if things get worse")
+    0 = No flip condition or untestable statement
+
+MAXIMUM SCORE: 95 (no perfect scores — no analysis is perfect)
+MINIMUM SCORE: 0
+
+MANDATORY: Write one sentence explaining every point deduction.
+```
+
+The rubric scores DISCIPLINE and EVIDENCE — not whether the conclusion is "right." Klarman saying BEAR on a growth stock with perfect framework execution gets 90+. The Judge's opinion about the stock is irrelevant to the rubric.
 
 ---
 
@@ -833,19 +856,21 @@ Score ALL 13 legends (voting + advisory). 10=perfect, 7-9=strong, 4-6=adequate, 
 
 ## STEP 4 — CALCULATE WEIGHTED SCORES
 
-**COMBINED SCORE (voting legends only):**
-`combined_score = sum(stance_value x weight x (conviction/10))` for the 8 voting legends only.
+**Formula: `stance_value x weight` — nothing else. No conviction modifier. No dampening. Each legend's vote counts at full weight.**
 
-The conviction modifier means a BULL with 9/10 conviction contributes 90% of their weight, while a BULL with 3/10 conviction contributes only 30%.
+The 5-point stance scale (STRONG BULL to STRONG BEAR) already captures conviction through stance intensity. Having a separate conviction modifier on top was double-counting and created a hidden channel for weight suppression. Removed in v3.3.
+
+**COMBINED SCORE (voting legends only):**
+`combined_score = sum(stance_value x weight)` for the 8 voting legends only.
 
 **SHORT-TERM SCORE (0-6 months) — voting SHORT legends only:**
-`short_score = sum(stance_value x weight x (conviction/10))` for Druck, Tom Lee, Simons, Soros, Vol Desk. Renormalize their weights to sum to 100%.
+`short_score = sum(stance_value x weight)` for Druck, Tom Lee, Simons, Soros, Vol Desk. Renormalize their weights to sum to 100%.
 
 **LONG-TERM SCORE (1-5 years) — voting LONG legends only:**
-`long_score = sum(stance_value x weight x (conviction/10))` for Cathie, Dalio, Klarman. Renormalize their weights to sum to 100%.
+`long_score = sum(stance_value x weight)` for Cathie, Dalio, Klarman. Renormalize their weights to sum to 100%.
 
 **ADVISORY SIGNAL (reported separately, does NOT affect scores):**
-List each advisory legend's stance and conviction. Note if advisory legends agree or disagree with the voting verdict. Flag if 3+ advisory legends disagree with the combined verdict — this is a warning signal worth investigating.
+List each advisory legend's stance. Note if advisory legends agree or disagree with the voting verdict. Flag if 3+ advisory legends disagree with the combined verdict — this is a warning signal worth investigating.
 
 ---
 
@@ -953,27 +978,32 @@ SECTOR ADJUSTMENTS: [list any weight adjustments applied, or "none — v1.0 base
 MINIMUM WEIGHT FLOOR: [any legends hit the 50% floor? list them, or "none"]
 
 VOTING LEGENDS (determine the score):
-| Legend | Weight | Stance | Conv | Verdict |
+| Legend | Weight | Stance | Rubric | Verdict |
 |---|---|---|---|---|
-| Druckenmiller | 20% | [stance] | [X/10] | [one-sentence] |
-| Tom Lee | 15% | [stance] | [X/10] | [one-sentence] |
-| Cathie Wood | 15% | [stance] | [X/10] | [one-sentence] |
-| Dalio | 15% | [stance] | [X/10] | [one-sentence] |
-| Klarman | 10% | [stance] | [X/10] | [one-sentence] |
-| Simons | 10% | [stance] | [X/10] | [one-sentence] |
-| Soros | 10% | [stance] | [X/10] | [one-sentence] |
-| Vol Desk | 5% | [stance] | [X/10] | [one-sentence] |
+| Druckenmiller | 20% | [stance] | [X/100] | [one-sentence] |
+| Tom Lee | 15% | [stance] | [X/100] | [one-sentence] |
+| Cathie Wood | 15% | [stance] | [X/100] | [one-sentence] |
+| Dalio | 15% | [stance] | [X/100] | [one-sentence] |
+| Klarman | 10% | [stance] | [X/100] | [one-sentence] |
+| Simons | 10% | [stance] | [X/100] | [one-sentence] |
+| Soros | 10% | [stance] | [X/100] | [one-sentence] |
+| Vol Desk | 5% | [stance] | [X/100] | [one-sentence] |
 
 ADVISORY LEGENDS (shown for context, do NOT affect score):
-| Legend | Stance | Conv | Verdict | Agrees with combined? |
+| Legend | Stance | Rubric | Verdict | Agrees? |
 |---|---|---|---|---|
-| Howard Marks | [stance] | [X/10] | [one-sentence] | [yes/no] |
-| Trend Follower | [stance] | [X/10] | [one-sentence] | [yes/no] |
-| Buffett | [stance] | [X/10] | [one-sentence] | [yes/no] |
-| Ackman | [stance] | [X/10] | [one-sentence] | [yes/no] |
-| Rogers | [stance] | [X/10] | [one-sentence] | [yes/no] |
+| Howard Marks | [stance] | [X/100] | [one-sentence] | [yes/no] |
+| Trend Follower | [stance] | [X/100] | [one-sentence] | [yes/no] |
+| Buffett | [stance] | [X/100] | [one-sentence] | [yes/no] |
+| Ackman | [stance] | [X/100] | [one-sentence] | [yes/no] |
+| Rogers | [stance] | [X/100] | [one-sentence] | [yes/no] |
 
 ADVISORY DISSENT: [X/5 advisory legends disagree with combined verdict — flag if 3+]
+
+━━━ RUBRIC AUDIT (deductions explained) ━━━
+[For each legend that scored below 85, list the specific deductions:]
+[Legend]: [X/100] — [deduction 1 reason]. [deduction 2 reason].
+[Only list legends with notable deductions — don't explain perfect/near-perfect scores]
 
 ━━━ COMBINED VERDICT ━━━
 WEIGHTED SCORE: [+X.XX]
