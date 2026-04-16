@@ -1071,14 +1071,23 @@ analysis in the entire rumble. Do not minimize, qualify, or follow with
 ---
 
 ## Stage 2 — Re-Scoring After Defend Rounds
-- PARTIALLY REVISED -> move stance halfway (e.g., BULL -> between BULL and NEUTRAL = +0.25)
-- CONCEDED -> fully flip stance
-- Recalculate ALL three weighted scores (combined, short, long)
-- Reapply override rules and sector adjustments
+
+**Stance changes:**
+- PARTIALLY REVISED -> move stance halfway (e.g., BULL +0.5 -> +0.25)
+- CONCEDED -> fully flip stance (e.g., BULL +0.5 -> BEAR -0.5)
+
+**Process:**
+1. Update the defending legend's stance value
+2. Re-run the rubric on their defense output (they get a new /100 score)
+3. Recalculate ALL three weighted scores using `stance x weight` (no conviction modifier)
+4. Reapply override rules and sector adjustments
+5. Note: advisory legends can be challenged too — their stance change is informational only (doesn't affect scores)
+
 ```
 ⚖️ UPDATED VERDICT — POST-DEBATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 REVISED STANCES: [who changed, why]
+RUBRIC RE-SCORE: [legend]: [old/100] -> [new/100] — [deductions if any]
 ORIGINAL COMBINED SCORE: [X.XX]
 UPDATED COMBINED SCORE: [X.XX]
 SHORT-TERM CHANGE: [X.XX -> X.XX]
