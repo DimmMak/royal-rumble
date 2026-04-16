@@ -209,9 +209,121 @@ COMMANDS:
   .challenge klarman [your argument]    → Stage 2 challenge
   .verdict                              → Re-show last verdict
   .log                                  → Rumble history
+  .test                                 → Run full test suite (5 tickers)
+  .test NVDA                            → Test one ticker and audit
+  .test quick                           → Quick test (2 tickers)
   .help                                 → This screen
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+---
+
+## STAGE 3 — THE TEST SUITE
+
+**Trigger:** `.test` or `.test [TICKER]` or `.test quick`
+
+**Test tickers (chosen to stress different pillars):**
+| Ticker | Why It's In The Test Set |
+|---|---|
+| NVDA | High-growth tech — stresses Klarman (always BEAR?), Buffett (circle of competence?) |
+| JPM | Financials + debt — stresses Marks (credit), Cathie (no innovation angle) |
+| XOM | Commodity producer — stresses Rogers (his moment), Cathie (no platform play) |
+| TSLA | Polarizing — stresses everyone. Max disagreement expected. |
+| BRK.B | Value compounder — stresses Trend (boring price action), Vol Desk (low vol) |
+
+**`.test quick`** runs only NVDA + TSLA (most different from each other, maximum stress).
+
+**Execution sequence:**
+
+1. For each test ticker, run a FULL `.rumble` (all 13 legends + Judge)
+
+2. After EACH rumble, run the **AUTOMATED AUDIT** — a fixed checklist of pass/fail checks:
+
+```
+TEST AUDIT — [TICKER]
+━━━━━━━━━━━━━━━━━━━━
+
+COMPLETENESS:
+[ ] All 8 voting legends produced output
+[ ] All 5 advisory legends produced output
+[ ] Scorecard generated with all 13 rows
+[ ] Judge produced full verdict (all 12 steps)
+
+PILLAR DISCIPLINE:
+[ ] Tom Lee did NOT comment on valuation or company fundamentals
+[ ] Cathie did NOT comment on timing or macro
+[ ] Druckenmiller did NOT comment on long-term innovation thesis
+[ ] Klarman did NOT comment on timing or momentum
+[ ] Simons did NOT reference narrative or company story
+[ ] Soros did NOT comment on valuation math
+[ ] Vol Desk did NOT give a directional opinion (NEUTRAL default unless skew signal)
+[ ] Trend Follower did NOT reference fundamentals
+[ ] Buffett did NOT comment on macro or timing
+[ ] Marks did NOT comment on innovation or growth thesis
+[ ] Ackman did NOT comment on macro or liquidity
+[ ] Rogers did NOT comment on valuation or technical analysis
+
+MATH VERIFICATION:
+[ ] Voting weights sum to 100% (after any sector adjustments)
+[ ] Weighted score matches the formula: sum(stance_value x weight)
+[ ] Conviction level matches the score-to-level mapping table
+[ ] Position sizing matches conviction level (with at most one adjustment)
+[ ] Minimum weight floor not violated (no voting legend below 50% of base)
+[ ] Short-term score uses only SHORT legends (renormalized to 100%)
+[ ] Long-term score uses only LONG legends (renormalized to 100%)
+
+FORMAT COMPLIANCE:
+[ ] Every voting legend stated a FLIP CONDITION
+[ ] Every advisory legend has an AGREES? column (yes/no)
+[ ] Rubric score given for all 13 legends (/100)
+[ ] Deductions explained for any legend scoring below 85
+[ ] Contrarian anchor present — strongest bear case shown at full weight
+[ ] Conflict map identifies at least 1 disagreement pair
+[ ] Key Levels table has specific $ prices (not placeholders)
+[ ] Bull case has 2 arguments, bear case has 2 arguments
+
+ADVISORY SYSTEM:
+[ ] Advisory legends do NOT appear in the weighted score calculation
+[ ] Advisory dissent flagged if 3+ disagree with combined verdict
+[ ] No advisory legend given a voting weight
+
+RUBRIC INTEGRITY:
+[ ] No legend scored above 95
+[ ] Rubric criteria match the 5-item fixed rubric (not modified or expanded)
+[ ] Point deductions explained in one sentence each
+```
+
+3. After all tickers, output the **TEST REPORT:**
+
+```
+📋 TEST REPORT
+━━━━━━━━━━━━━━━━━━━━
+
+| Ticker | Completeness | Discipline | Math | Format | Advisory | Rubric | TOTAL |
+|---|---|---|---|---|---|---|---|
+| NVDA | [X/4] | [X/12] | [X/7] | [X/8] | [X/3] | [X/2] | [X/36] |
+| JPM  | [X/4] | [X/12] | [X/7] | [X/8] | [X/3] | [X/2] | [X/36] |
+| XOM  | [X/4] | [X/12] | [X/7] | [X/8] | [X/3] | [X/2] | [X/36] |
+| TSLA | [X/4] | [X/12] | [X/7] | [X/8] | [X/3] | [X/2] | [X/36] |
+| BRK.B| [X/4] | [X/12] | [X/7] | [X/8] | [X/3] | [X/2] | [X/36] |
+
+FAILURES (list every check that failed):
+- [TICKER]: [which check failed] — [one sentence why]
+
+PATTERNS (across all tickers):
+- [Any legend that repeatedly fails the same check?]
+- [Any check that fails on every ticker?]
+- [Any ticker that fails significantly more than others?]
+
+SYSTEM HEALTH: [X/180 total checks passed] — [HEALTHY / NEEDS ATTENTION / CRITICAL]
+  HEALTHY = 160+ (90%+)
+  NEEDS ATTENTION = 130-159 (72-89%)
+  CRITICAL = below 130 (<72%)
+```
+
+4. Log to `notes/test-log.md`
+
+**CRITICAL: The test suite NEVER modifies skill files. It only reports. The user decides what to fix.**
 
 ---
 
@@ -219,7 +331,7 @@ COMMANDS:
 
 1. **Each legend stays in their lane** — Tom Lee does not comment on valuation. Klarman does not comment on timing. The Trend Follower does not comment on fundamentals. The judge enforces this.
 
-2. **Druckenmiller has the highest weight (18%)** — if he is bearish on TIMING, the conviction drops one full level regardless of what others say. He is the timing master.
+2. **Druckenmiller has the highest weight (20%)** — if he is bearish on TIMING, the conviction drops one full level regardless of what others say. He is the timing master.
 
 3. **Stage 2 is optional** — the user chooses if and who to challenge. They can challenge multiple legends sequentially.
 
