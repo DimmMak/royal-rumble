@@ -118,7 +118,58 @@ Conviction: [result]
 Weighted Score: [score]
 ```
 
-8. Close with:
+8. Log prediction to data/predictions.json — append a new entry to the "rumbles" array:
+```json
+{
+  "ticker": "[TICKER]",
+  "date": "[YYYY-MM-DD]",
+  "price": [closing price at time of rumble],
+  "combined_score": [+X.XX],
+  "short_term_score": [+X.XX],
+  "long_term_score": [+X.XX],
+  "verdict": "[STRONG BUY/BUY/HOLD/SELL/STRONG SELL]",
+  "position_size": "[Full/Half/Quarter/Starter/Pass]",
+  "voting_stances": {
+    "druckenmiller": {"stance": "[stance]", "value": [+/-X.X]},
+    "tom_lee": {"stance": "[stance]", "value": [+/-X.X]},
+    "cathie_wood": {"stance": "[stance]", "value": [+/-X.X]},
+    "dalio": {"stance": "[stance]", "value": [+/-X.X]},
+    "klarman": {"stance": "[stance]", "value": [+/-X.X]},
+    "simons": {"stance": "[stance]", "value": [+/-X.X]},
+    "soros": {"stance": "[stance]", "value": [+/-X.X]},
+    "vol_desk": {"stance": "[stance]", "value": [+/-X.X]}
+  },
+  "advisory_stances": {
+    "marks": {"stance": "[stance]"},
+    "trend": {"stance": "[stance]"},
+    "buffett": {"stance": "[stance]"},
+    "ackman": {"stance": "[stance]"},
+    "rogers": {"stance": "[stance]"}
+  },
+  "flip_conditions": {
+    "druckenmiller": "[one line]",
+    "tom_lee": "[one line]",
+    "cathie_wood": "[one line]",
+    "dalio": "[one line]",
+    "klarman": "[one line]",
+    "simons": "[one line]",
+    "soros": "[one line]",
+    "vol_desk": "[one line]"
+  },
+  "key_levels": {
+    "major_resistance": [price],
+    "first_support": [price],
+    "two_hundred_day_ma": [price],
+    "klarman_buy_price": [price],
+    "stop_loss": [price]
+  },
+  "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+  "checks_completed": {}
+}
+```
+**CRITICAL:** This must be logged on EVERY rumble. No exceptions. This is the data that feeds the future accuracy tracker. A rumble without a prediction log is wasted data.
+
+9. Close with:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RUMBLE COMPLETE — [TICKER]
