@@ -1,18 +1,18 @@
 # Royal Rumble Hedge Fund System
 
-12 legendary investors. Each a domain expert. Each arguing from their exact framework. One Judge synthesizes a weighted championship verdict. You can argue back.
+13 legendary investors. Each a domain expert. Each arguing from their exact framework. One Judge synthesizes a weighted championship verdict. You can argue back.
 
 ---
 
 ## The Concept
 
-Standard stock analysis asks one person one question. This system asks 12 of the greatest investors in history one question each — in their specific domain of expertise. Tom Lee never touches valuation. Klarman never touches timing. The Trend Follower never touches fundamentals. Druckenmiller never touches innovation. Each stays in their lane. The Judge weighs them.
+Standard stock analysis asks one person one question. This system asks 13 of the greatest investors in history one question each — in their specific domain of expertise. Tom Lee never touches valuation. Klarman never touches timing. The Trend Follower never touches fundamentals. Druckenmiller never touches innovation. Each stays in their lane. The Judge weighs them.
 
 **The result:** A verdict that captures liquidity, macro timing, innovation potential, risk construction, deep value, quant signals, sentiment positioning, options structure, credit risk, price trend, activist catalysts, and commodity/currency exposure — simultaneously.
 
 ---
 
-## The 12 Legends
+## The 13 Legends
 
 | Legend | Pillar | Weight | Core Framework |
 |---|---|---|---|
@@ -28,9 +28,10 @@ Standard stock analysis asks one person one question. This system asks 12 of the
 | 📚 **Howard Marks** | Credit & Risk Cycles | 8% | Second-level thinking, credit cycle, pendulum, lending standards |
 | 📈 **Trend Follower** | Pure Price Trend | 7% | 200-day MA, breakout systems, trend strength — no fundamentals |
 | 🔱 **Bill Ackman** | Activist & Catalyst | 5% | ROIC, sum-of-parts, identifiable catalyst, management quality |
-| 🌍 **Jim Rogers** | Global Macro & Commodities | 3% | Commodity supercycles, EM demand, dollar direction, supply/demand |
+| 🏔️ **Warren Buffett** | Owner Earnings & Compounding | 5% | Circle of competence, moat durability, owner earnings, ROIC, capital allocation |
+| 🌍 **Jim Rogers** | Global Macro & Commodities | 5% | Commodity supercycles, EM demand, dollar direction, supply/demand |
 
-**Druckenmiller carries the highest weight (18%)** — timing is the #1 reason good ideas lose money.
+**Druckenmiller carries the highest weight (17%)** — timing is the #1 reason good ideas lose money.
 
 ---
 

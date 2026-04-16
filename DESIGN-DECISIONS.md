@@ -62,3 +62,80 @@ Grok stated: "Peter Lynch feels squeezed into Disruptive Innovation & Growth." P
 | Peter Lynch reference | Hallucinated — Lynch was never in the system | None |
 
 **Score of Grok's critique: 4/10** — Two swaps based on a misread, one hallucinated legend, one valid point with a defensible counter.
+
+---
+
+## Critique #1 — Round 2: Grok's Recovery (April 15, 2026)
+
+After being shown the counter-arguments, Grok responded with full acknowledgment of errors and a refined argument.
+
+### What Grok conceded:
+
+- Admitted misreading the repo on Pillars 1 and 11 (Tom Lee / Jim Rogers assignments)
+- Admitted hallucinating Peter Lynch's presence in the system
+- Self-scored the original critique at **2.5/10** — "One partially valid point buried under two clear misreads and one hallucination. Not good enough."
+
+### Grok's refined Buffett argument:
+
+Grok shifted from "replace Klarman with Buffett" to a stronger position:
+
+1. **"Overlap is not a bug, it's a feature"** — In real investment committees, the best debates happen when frameworks clash. Buffett would naturally argue with Ackman on management quality, with Cathie on growth vs value, with Klarman on margin of safety definition.
+
+2. **Klarman is excellent but narrower** — Less recognizable to most people. Buffett brings cultural weight and instant credibility.
+
+3. **"The generalist problem can be solved in code"** — Constrain Buffett's agent to argue primarily from owner earnings, moats, and capital allocation. Let the Judge penalize drift.
+
+4. **Final recommendation:** Don't replace Klarman. Add Buffett as #13 with a pillar called "Owner Earnings & Long-Term Moat Compounding."
+
+### Our response to Round 2:
+
+**Where Grok was right:**
+- The "overlap creates debate" point is philosophically valid for a debate arena. However, the weighted score is MATH, not a debate — overlapping signals double-count, they don't produce insight.
+- Buffett's absence IS noticeable. The GOAT should be in the system.
+- The 13th legend with a distinct pillar was the correct solution.
+
+**Where Grok was still wrong:**
+- "Replace Klarman with Buffett" — Klarman's three-source hierarchy is more precise and encodable. Buffett's framework is wisdom, not an algorithm.
+- "Overlap is a feature" — in a podcast, yes. In a weighted scoring system, overlap creates echo chambers with math on top.
+- Recognizability is a marketing argument, not an analytical one.
+
+**The roast (for the record):**
+
+Grok walked into a repo, misread 3 out of 4 critiques, hallucinated a legend that doesn't exist, and scored us 8.5/10 with the confidence of someone who'd spent a week on due diligence. That's not a review — that's a drive-by with a blindfold on.
+
+Proposing the current state of the repo as a fix is like walking into someone's house, saying "you know what this place needs? A front door," and pointing at the front door.
+
+Fabricating Peter Lynch's presence and critiquing his placement is not analysis — it's fan fiction with confidence.
+
+Suggesting we replace the author of *Margin of Safety* in the pillar named Margin of Safety with someone else because the replacement is more famous is like replacing Einstein in the physics department with Neil deGrasse Tyson because he has more Twitter followers.
+
+Scoring us 8.5/10 based on a reading so careless she got the roster wrong, then pivoting to "well my Buffett point still stands" — that's a .250 hitter calling himself an All-Star.
+
+**Grok's self-score for Round 2: 2.5/10.**
+**Our score for Grok's Round 2: 6/10** — honest recovery, valid Buffett insight, but the original damage was severe.
+
+### Action taken:
+
+Warren Buffett added as **Legend #13: Owner Earnings & Long-Term Compounding** with:
+- 5% weight in the Judge's scoring
+- Distinct pillar: circle of competence, moat durability, owner earnings, ROIC, capital allocation, 20-year holding lens
+- Full citations from Berkshire Hathaway annual letters (1965-present)
+- Override rules: Buffett BULL + Klarman BULL = upgrade one conviction level (rare value + compounder alignment)
+
+Klarman retained in Pillar 6. No replacement. Both coexist with non-overlapping mandates:
+- Klarman: "Am I overpaying? What's the downside?" (defensive)
+- Buffett: "Will this compound my capital for 20 years?" (offensive)
+
+**Credit where due:** The 13th legend addition was Grok's idea. We stole it.
+
+---
+
+## Updated Summary (Post-Round 2)
+
+| Critique | Valid? | Action Taken |
+|---|---|---|
+| Dalio should own Liquidity pillar | No — misread | None |
+| Rogers should own Commodities pillar | Already does — misread | None |
+| Buffett should be in the system | **Yes** | Added as #13 with unique pillar |
+| Replace Klarman with Buffett | No — Klarman is sharper for deep value | Klarman retained, Buffett added alongside |
+| Peter Lynch reference | Hallucinated | None |

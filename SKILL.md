@@ -51,7 +51,7 @@ Run all 4 simultaneously. Do NOT run additional searches unless a critical data 
 ```
 ⚔️  ROYAL RUMBLE — [TICKER]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-12 legends. 12 pillars. One championship ruling.
+13 legends. 13 pillars. One championship ruling.
 Context: [user context or "None"]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
@@ -62,7 +62,7 @@ Context: [user context or "None"]
    - Output their full analysis with their formatted header
    - Extract and display their PILLAR STANCE clearly
 
-Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simons → Soros → Vol Desk → Howard Marks → Trend Follower → Ackman → Rogers
+Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simons → Soros → Vol Desk → Howard Marks → Trend Follower → Ackman → Rogers → Buffett
 
 5. After all 12 complete, output the **RUMBLE SCORECARD** — a summary table so the user can digest all 12 at a glance BEFORE the Judge speaks:
 
@@ -72,20 +72,21 @@ Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simon
 
 | Legend | Wt | Stance | Thesis | Key Data | Risk |
 |---|---|---|---|---|---|
-| 👑 Tom Lee | 12% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🚀 Cathie Wood | 13% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| ⚡ Druckenmiller | 18% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| ⚖️ Dalio | 10% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 👑 Tom Lee | 11% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🚀 Cathie Wood | 12% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| ⚡ Druckenmiller | 17% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| ⚖️ Dalio | 9% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
 | 🏛️ Klarman | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 📐 Simons | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🌀 Soros | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🎯 Vol Desk | 3% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 📚 Marks | 8% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 📈 Trend | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 📐 Simons | 6% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🌀 Soros | 6% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🎯 Vol Desk | 4% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 📚 Marks | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 📈 Trend | 6% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
 | 🔱 Ackman | 5% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🌍 Rogers | 3% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🌍 Rogers | 5% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🏔️ Buffett | 5% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
 
-BULL: [X/12]  |  NEUTRAL: [X/12]  |  BEAR: [X/12]
+BULL: [X/13]  |  NEUTRAL: [X/13]  |  BEAR: [X/13]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -103,7 +104,7 @@ BULL: [X/12]  |  NEUTRAL: [X/12]  |  BEAR: [X/12]
 ```
 ## [DATE] — [TICKER]
 Context: [context]
-Stances: [list all 8]
+Stances: [list all 13]
 Conviction: [result]
 Weighted Score: [score]
 ```
@@ -123,7 +124,7 @@ Example: .challenge klarman I think the FCF story is stronger than you gave cred
 
 **Trigger:** `.challenge [legend_name] [your argument]`
 
-Accepted names: tomlee, cathiewood, druckenmiller, dalio, klarman, simons, soros, voldesk, marks, trend, ackman, rogers
+Accepted names: tomlee, cathiewood, druckenmiller, dalio, klarman, simons, soros, voldesk, marks, trend, ackman, rogers, buffett
 
 **Execution sequence:**
 
@@ -173,21 +174,22 @@ Show:
 ```
 ⚔️  ROYAL RUMBLE HEDGE FUND SYSTEM
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-12 Legends. 12 Pillars. One Championship Ruling.
+13 Legends. 13 Pillars. One Championship Ruling.
 
 THE LEGENDS:
-  👑 Tom Lee          — Liquidity & Macro Regime       (12%)
-  🚀 Cathie Wood      — Disruptive Innovation          (13%)
-  ⚡ Druckenmiller    — Tactical Macro & Timing        (18%) ← highest weight
-  ⚖️  Ray Dalio        — Risk & Portfolio Construction  (10%)
+  ⚡ Druckenmiller    — Tactical Macro & Timing        (17%) ← highest weight
+  🚀 Cathie Wood      — Disruptive Innovation          (12%)
+  👑 Tom Lee          — Liquidity & Macro Regime       (11%)
+  ⚖️  Ray Dalio        — Risk & Portfolio Construction  (9%)
+  📚 Howard Marks     — Credit & Risk Cycles           (7%)
   🏛️  Seth Klarman     — Deep Value & Margin of Safety  (7%)
-  📐 Jim Simons       — Quantitative & Data Edge       (7%)
-  🌀 George Soros     — Sentiment & Narrative          (7%)
-  🎯 The Vol Desk     — Options & Volatility           (3%)
-  📚 Howard Marks     — Credit & Risk Cycles           (8%)
-  📈 Trend Follower   — Pure Price Trend               (7%)
+  📐 Jim Simons       — Quantitative & Data Edge       (6%)
+  🌀 George Soros     — Sentiment & Narrative          (6%)
+  📈 Trend Follower   — Pure Price Trend               (6%)
+  🏔️  Warren Buffett   — Owner Earnings & Compounding   (5%)
   🔱 Bill Ackman      — Activist & Catalyst            (5%)
-  🌍 Jim Rogers       — Global Macro & Commodities     (3%)
+  🌍 Jim Rogers       — Global Macro & Commodities     (5%)
+  🎯 The Vol Desk     — Options & Volatility           (4%)
 
 COMMANDS:
   .rumble NVDA                          → Start full rumble

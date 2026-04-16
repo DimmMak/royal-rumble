@@ -337,6 +337,38 @@ Every framework element in this system traces back to a primary source: books th
 
 ---
 
+## Warren Buffett — Owner Earnings & Long-Term Compounding
+
+### Primary Sources
+1. **Buffett, Warren.** Berkshire Hathaway Annual Shareholder Letters (1965-present). Published at berkshirehathaway.com. — The definitive primary source for Buffett's investment philosophy, updated annually for 58+ years.
+2. **Buffett, Warren.** "The Superinvestors of Graham-and-Doddsville." Columbia Business School Magazine, 1984. — Buffett's famous defense of value investing with empirical evidence.
+3. **Hagstrom, Robert.** *The Warren Buffett Way.* Wiley, 3rd ed., 2013. ISBN: 978-1118503256. — Most comprehensive third-party analysis of Buffett's investment framework.
+4. **Cunningham, Lawrence.** *The Essays of Warren Buffett: Lessons for Corporate America.* Carolina Academic Press, 5th ed., 2019. ISBN: 978-1611637588. — Curated collection of Buffett's letters organized by topic.
+
+### Framework Citations
+
+| Skill File Element | Source | Location |
+|---|---|---|
+| Circle of competence: "Risk comes from not knowing what you're doing" | Berkshire Hathaway Annual Letter, 1996 | Also cited in Hagstrom Ch. 2; the concept originates in Buffett's letters and Munger's speeches |
+| Owner earnings = net income + D&A - maintenance capex - working capital changes | Berkshire Hathaway Annual Letter, 1986 | Buffett defines "owner earnings" explicitly in the 1986 letter; see Cunningham Ch. 7 |
+| Durable competitive moat — pricing power, switching costs, network effects | Berkshire Hathaway Annual Letters (multiple years, especially 1995, 1999, 2007) | "The key to investing is determining the competitive advantage of any given company and, above all, the durability of that advantage." — 1999 letter |
+| "It's far better to buy a wonderful company at a fair price than a fair company at a wonderful price" | Berkshire Hathaway Annual Letter, 1989 | Exact quote; marks the Munger-influenced evolution from Graham-style deep value |
+| ROIC as the core compounding metric | Berkshire Hathaway Annual Letters + Hagstrom Ch. 8 | Buffett repeatedly emphasizes return on invested capital as the driver of long-term value |
+| Capital allocation as management's most important job | Berkshire Hathaway Annual Letters (1987, 1992, 2014) | "The heads of many companies are not combative in their capital allocation practices. Their inadequacy is not surprising." — 1987 letter |
+| "Our favorite holding period is forever" | Berkshire Hathaway Annual Letter, 1988 | Exact quote |
+| "Only when the tide goes out do you discover who's been swimming naked" | Berkshire Hathaway Annual Letter, 2001 | Exact quote, written after the dot-com bust |
+| "Price is what you pay, value is what you get" | Berkshire Hathaway Annual Letter, 2008 | Exact quote; originally attributed to Benjamin Graham, popularized by Buffett |
+| "Be fearful when others are greedy, and greedy when others are fearful" | Berkshire Hathaway Annual Letter, 2004 | Exact quote |
+| Rejection of macro forecasting: "I don't know what the economy will do" | Multiple Berkshire annual meetings + CNBC interviews | Consistent theme across 50+ years of public statements |
+| 20% CAGR over 58 years (Berkshire record) | Berkshire Hathaway Annual Letters | Documented annually; 1965-2023 compounded returns |
+
+### Supporting Sources
+- **Graham, Benjamin.** *The Intelligent Investor.* Harper & Brothers, 1949. — Buffett's foundational education; Chapters 8 and 20 (Mr. Market and Margin of Safety) shaped his early framework.
+- **Munger, Charles.** *Poor Charlie's Almanack.* Walsworth Publishing, 2005. — Munger's influence on Buffett's evolution from "cigar butt" value to quality compounders.
+- **Berkshire Hathaway Annual Meeting transcripts** — available via CNBC archives and Outstanding Investor Digest.
+
+---
+
 ## The Judge — Championship Verdict
 
 ### Framework Citations
