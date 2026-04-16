@@ -1,6 +1,14 @@
-# Design Decisions & Critiques
+# Claude x Grok — Collaboration Debate
 
-This document records external critiques of the Royal Rumble system and the reasoning behind design choices. Transparency about what was challenged and why decisions were made (or changed) is part of the system's integrity.
+This system was built through a multi-LLM collaboration. The user brainstorms across multiple AI platforms and brings the best ideas back to be implemented.
+
+**Claude (Anthropic)** — built the entire Royal Rumble system: 13 legend frameworks, weighted scoring engine, citation map, token optimization, audit corrections, and all code. The architect and engineer.
+
+**Grok (xAI)** — served as a brainstorming partner and external reviewer. Challenged the system's design, identified the Buffett gap, and pushed the legend count from 12 to 13. The critic and catalyst.
+
+**The user** — the orchestrator who connected both AIs, mediated the debate, and made the final calls. Neither AI would have produced this result alone.
+
+This document records the full debate: what was challenged, what was defended, what changed, and who gets credit for what.
 
 ---
 

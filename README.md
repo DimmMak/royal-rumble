@@ -103,7 +103,7 @@ royal-rumble/
 ├── README.md
 ├── CHANGELOG.md
 ├── SOURCES.md                  ← full citation map: every framework element traced to primary sources
-├── DESIGN-DECISIONS.md         ← design rationale + responses to external critiques (Grok review, etc.)
+├── CLAUDE-GROK-COLLAB-DEBATE.md ← full Claude x Grok debate: how Buffett became #13
 ├── SKILL.md                    ← master orchestrator (used by Claude Code .skill)
 ├── royal-rumble-orchestrator.md ← flow documentation
 ├── scorecard.html              ← visual scorecard template (dark theme, auto-generated per rumble)
@@ -134,9 +134,9 @@ Each SKILL.md encodes the legend's **actual decision framework** from primary so
 - **Soros**: The full reflexivity boom/bust sequence (7 stages) from *The Alchemy of Finance*. He maps every stock to a stage in the sequence.
 - **Simons**: PEAD (post-earnings announcement drift), analyst revision momentum, factor loadings — the publicly documented signals that RenTech is known to exploit.
 
-**Every framework element is cited.** See [SOURCES.md](SOURCES.md) for the full citation map. For design rationale and responses to external critiques, see [DESIGN-DECISIONS.md](DESIGN-DECISIONS.md).
+**Every framework element is cited.** See [SOURCES.md](SOURCES.md) for the full citation map. For the full Claude x Grok collaboration debate (how Buffett became #13), see [CLAUDE-GROK-COLLAB-DEBATE.md](CLAUDE-GROK-COLLAB-DEBATE.md).
 
-**Why Klarman over Buffett?** This is the most common question. Short answer: Buffett's framework is too broad — he'd overlap with 4 other legends. Klarman is a sharper, non-overlapping signal for pure deep value. Full argument in [DESIGN-DECISIONS.md](DESIGN-DECISIONS.md). — each rule, formula, and analytical checklist traced back to the book, paper, or public statement it came from. Primary sources include *Margin of Safety* (Klarman, 1991), *The New Market Wizards* (Schwager, 1992), *Principles for Navigating Big Debt Crises* (Dalio, 2018), *The Alchemy of Finance* (Soros, 1987), *The Man Who Solved the Market* (Zuckerman, 2019), and peer-reviewed academic papers (Jegadeesh & Titman 1993, Bernard & Thomas 1989, Fama & French 1993).
+**Why Klarman over Buffett?** This is the most common question. Short answer: Buffett's framework is too broad — he'd overlap with 4 other legends. Klarman is a sharper, non-overlapping signal for pure deep value. Full argument in [CLAUDE-GROK-COLLAB-DEBATE.md](CLAUDE-GROK-COLLAB-DEBATE.md). — each rule, formula, and analytical checklist traced back to the book, paper, or public statement it came from. Primary sources include *Margin of Safety* (Klarman, 1991), *The New Market Wizards* (Schwager, 1992), *Principles for Navigating Big Debt Crises* (Dalio, 2018), *The Alchemy of Finance* (Soros, 1987), *The Man Who Solved the Market* (Zuckerman, 2019), and peer-reviewed academic papers (Jegadeesh & Titman 1993, Bernard & Thomas 1989, Fama & French 1993).
 
 ---
 
