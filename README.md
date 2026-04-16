@@ -79,20 +79,43 @@ This is the most powerful feature. It forces each legend to expose their reasoni
 
 ---
 
-## Conviction Override Rules
+## v3 Judge System — What Makes This Different
 
-The Judge doesn't just average stances — specific legends have veto power:
+The Judge doesn't just average stances. Seven optimizations make the scoring system smarter:
 
+### 1. Five-Point Stance Scale
+Legends don't just say BULL/BEAR/NEUTRAL. They declare STRONG BULL (+1.0), BULL (+0.5), NEUTRAL (0), BEAR (-0.5), or STRONG BEAR (-1.0). This lets the Judge distinguish between high-conviction calls and framework defaults.
+
+### 2. Conviction Modifier (1-10)
+Each legend reports how confident they are. A BULL with 9/10 conviction contributes 3x more than a BULL with 3/10 conviction. Prevents low-information calls from polluting the score.
+
+### 3. ABSTAIN Option
+If a legend's framework doesn't apply (e.g., Howard Marks on a net-cash company), they abstain. Their weight gets redistributed to legends who DO have a signal. No more forced noise.
+
+### 4. Dual Timeframe Verdicts
+The Judge produces TWO verdicts: SHORT-TERM (0-6 months) using Druck, Tom Lee, Simons, Soros, Trend, Vol Desk — and LONG-TERM (1-5 years) using Cathie, Dalio, Marks, Klarman, Buffett, Ackman, Rogers. A stock can be a short-term SELL and a long-term BUY simultaneously.
+
+### 5. Sector-Adjusted Weights
+Weights shift based on stock type. High-growth tech? Cathie gets +3%, Klarman gets -2%. Heavy debt? Marks gets +4%. Founder-controlled? Ackman gets -3%. The system adapts to what matters for THIS stock.
+
+### 6. Conflict Map
+The most valuable output. When Cathie says STRONG BULL and Klarman says STRONG BEAR, the Judge doesn't just average them — it identifies WHAT they disagree about and frames the bet: "If robotaxi TAM materializes, Cathie is right. If it doesn't, Klarman is right."
+
+### 7. Flip Conditions
+Every legend states what would change their mind. Makes Stage 2 challenges more targeted and gives the feedback loop testable predictions.
+
+### Override Rules (unchanged)
 | Rule | Effect |
 |---|---|
-| Druckenmiller BEAR | Conviction drops one level |
-| Tom Lee + Dalio both BEAR | Conviction drops two levels |
-| Klarman BULL | Conviction upgrades one level (value guy buying = real margin of safety) |
-| Simons BULL + Soros BEAR | Flag: "sentiment exhaustion risk — momentum window may be closing" |
-| Dalio flags high tail risk | Position size reduced one level |
-| Howard Marks + Dalio both BEAR | Flag: "credit cycle warning — balance sheet risk elevated" |
-| Trend Follower BEAR | Flag: "price trend broken — regardless of fundamental thesis" |
-| Ackman + Klarman both BULL | Conviction upgrades one level (value + catalyst alignment) |
+| Druckenmiller STRONG BEAR | Conviction drops one level |
+| Tom Lee + Dalio both BEAR+ | Conviction drops two levels |
+| Klarman BULL+ | Conviction upgrades one level |
+| Simons BULL + Soros BEAR | Flag: "sentiment exhaustion risk" |
+| Marks BEAR + Dalio BEAR | Flag: "credit cycle warning" |
+| Trend Follower BEAR+ | Flag: "price trend broken" |
+| Ackman BULL + Klarman BULL | Upgrade one level |
+| Buffett BULL + Klarman BULL | Upgrade one level |
+| Buffett STRONG BEAR | Flag: "20-year lens says no" |
 
 ---
 

@@ -64,40 +64,42 @@ Context: [user context or "None"]
 
 Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simons → Soros → Vol Desk → Howard Marks → Trend Follower → Ackman → Rogers → Buffett
 
-5. After all 12 complete, output the **RUMBLE SCORECARD** — a summary table so the user can digest all 12 at a glance BEFORE the Judge speaks:
+5. After all 13 complete, output the **RUMBLE SCORECARD** — a summary table so the user can digest all 13 at a glance BEFORE the Judge speaks:
 
 ```
 📊 RUMBLE SCORECARD — [TICKER]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-| Legend | Wt | Stance | Thesis | Key Data | Risk |
+| Legend | Wt | Stance | Conv | Thesis | Flip If |
 |---|---|---|---|---|---|
-| 👑 Tom Lee | 11% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🚀 Cathie Wood | 12% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| ⚡ Druckenmiller | 17% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| ⚖️ Dalio | 9% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🏛️ Klarman | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 📐 Simons | 6% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🌀 Soros | 6% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🎯 Vol Desk | 4% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 📚 Marks | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 📈 Trend | 6% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🔱 Ackman | 5% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🌍 Rogers | 5% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
-| 🏔️ Buffett | 5% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| ⚡ Druck | 17% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🚀 Cathie | 12% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 👑 Tom Lee | 11% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| ⚖️ Dalio | 9% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 📚 Marks | 7% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🏛️ Klarman | 7% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 📐 Simons | 6% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🌀 Soros | 6% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 📈 Trend | 6% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🏔️ Buffett | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🔱 Ackman | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🌍 Rogers | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🎯 Vol Desk | 4% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
 
-BULL: [X/13]  |  NEUTRAL: [X/13]  |  BEAR: [X/13]
+STRONG BULL: [X] | BULL: [X] | NEUTRAL: [X] | BEAR: [X] | STRONG BEAR: [X] | ABSTAIN: [X]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
 **Field rules:**
-- **Thesis:** The single most compelling point from their analysis. Extract the ONE thing that drives their stance. **Bold** the key phrase. Keep short.
-- **Key Data:** The single most important number supporting their argument (e.g., "IV Rank 12th %ile", "FCF $96.7B", "+73% 12mo return")
-- **Risk:** The biggest concern they raised, or "—" if none. One line max.
+- **Stance:** STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+- **Conv:** Conviction 1-10 (how confident is this legend in their call?)
+- **Thesis:** ONE thing that drives their stance. **Bold** the key phrase.
+- **Flip If:** What would make them change their mind — one line.
 
 6. After the scorecard, run the Judge:
-   - Collect all 12 stances and analyses
-   - Run the full Championship Verdict calculation (Steps 1-8 from RUMBLE-ENGINE.md)
+   - Collect all 13 stances, convictions, and analyses
+   - Run the full Championship Verdict calculation (Steps 0-11 from RUMBLE-ENGINE.md)
+   - This includes: sector weight adjustments, abstention handling, conviction-weighted scoring, dual timeframe verdicts, conflict map, and championship ruling
    - Output the full verdict with scorecard, weighted score, conviction, sizing, bull/bear cases, key risk, and championship ruling
 
 7. Log to notes/rumble-log.md:

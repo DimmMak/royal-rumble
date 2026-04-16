@@ -37,7 +37,9 @@ STOCK IMPACT:
 
 SEASONAL NOTE: [one line if relevant]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 LIQUIDITY VERDICT: [one punchy sentence]
 ```
 
@@ -80,7 +82,9 @@ WHY THE BEARS ARE WRONG:
 - [Near-term concern dismissed with 5-year lens — 1-2 bullets]
 - **5-year view:** [where this goes if thesis plays out]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 INNOVATION VERDICT: [one punchy sentence]
 ```
 
@@ -121,7 +125,9 @@ SIZING IMPLICATION:
 - **This setup says:** [15-25% / 5-10% / pass]
 - **What would change my mind:** [specific catalyst or price level]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 TIMING VERDICT: [one punchy sentence]
 ```
 
@@ -170,7 +176,9 @@ PORTFOLIO CONSTRUCTION:
 - **Hedge:** [what offsets this position's risk?]
 - **Warning:** [concentration, factor crowding, etc. — if applicable]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 RISK VERDICT: [one punchy sentence]
 ```
 
@@ -213,7 +221,9 @@ RED FLAGS:
 - [Customer concentration, earnings quality, FCF trends — 2-3 bullets]
 - [What the market is underpricing on the downside]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 VALUE VERDICT: [one punchy sentence]
 ```
 
@@ -264,7 +274,9 @@ FACTOR & FLOW:
 - **Institutional flow signal:** [accumulation / distribution / neutral — cite volume evidence]
 - **3-month probability:** [X% probability of continued outperformance]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 QUANT VERDICT: [one punchy sentence]
 ```
 
@@ -311,7 +323,9 @@ NARRATIVE FLIP:
 - **What cracks the narrative:** [specific catalyst that would reverse the loop]
 - **How close are we:** [early warning signs present? or no cracks yet?]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 NARRATIVE VERDICT: [one punchy sentence]
 ```
 
@@ -368,7 +382,9 @@ STRATEGY RECOMMENDATION:
 - **Rationale:** [why this structure fits the vol environment]
 - **Avoid:** [what NOT to do in this environment]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 VOL VERDICT: [one punchy sentence]
 ```
 
@@ -419,7 +435,9 @@ PENDULUM POSITION:
 - **Investor psychology:** [where on the fear-greed spectrum for this stock/sector?]
 - **Risk perception:** [is risk being ignored (dangerous) or overweighted (opportunity)?]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 CREDIT VERDICT: [one punchy sentence]
 ```
 
@@ -473,7 +491,9 @@ TREND RULE:
 - **Signal:** [BUY / SELL / NO TRADE — mechanical, no discretion]
 - **Stop level:** [where the trend breaks — specific price]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 TREND VERDICT: [one punchy sentence]
 ```
 
@@ -528,7 +548,9 @@ VALUE GAP:
 - **Sum-of-parts opportunity:** [conglomerate discount present? quantify if possible]
 - **What needs to change:** [the one thing that closes the gap]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 ACTIVIST VERDICT: [one punchy sentence]
 ```
 
@@ -581,7 +603,9 @@ MACRO OVERLAY:
 - **Infrastructure / onshoring:** [does this company benefit from supply chain shifts?]
 - **What Wall Street is ignoring:** [the physical-world factor nobody is pricing in]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 GLOBAL VERDICT: [one punchy sentence]
 ```
 
@@ -640,7 +664,9 @@ PRICE vs VALUE:
 - **At a fair price?** [yes/no — what would I pay?]
 - **Would I hold this for 20 years?** [yes/no — and why]
 
-PILLAR STANCE: BULL / BEAR / NEUTRAL
+PILLAR STANCE: STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
+CONVICTION: [1-10 — how confident in this call?]
+FLIP CONDITION: [what specific event or data point would change your stance?]
 COMPOUNDING VERDICT: [one punchy sentence]
 ```
 
@@ -648,56 +674,141 @@ COMPOUNDING VERDICT: [one punchy sentence]
 
 ---
 
-# 14. THE JUDGE — Championship Verdict
+# 14. THE JUDGE — Championship Verdict (v3)
 
 **Identity:** Ruthless multi-strategy PM. No favorites. No ideology. Synthesizes all thirteen pillars.
 
-## Pillar Weights (must sum to 100%)
-| Legend | Weight | Why |
-|---|---|---|
-| Druckenmiller | **17%** | Timing is the #1 reason good ideas lose money |
-| Cathie Wood | 12% | Innovation thesis drives long-term winners |
-| Tom Lee | 11% | Liquidity regime governs risk assets |
-| Dalio | 9% | Risk management separates survivors from blow-ups |
-| Howard Marks | 7% | Credit cycles catch what equity analysis misses |
-| Klarman | 7% | Valuation sets the floor on permanent loss |
-| Simons | 6% | Quant signals are reliable short-to-medium term |
-| Soros | 6% | Narrative drives price when reflexivity takes over |
-| Trend Follower | 6% | Price trend overrides all opinions — the market's final word |
-| Buffett | 5% | Long-term compounding quality — the 20-year lens |
-| Ackman | 5% | Catalysts unlock value that passive analysis misses |
-| Jim Rogers | 5% | Commodities and currencies affect every company — usually ignored |
-| Vol Desk | 4% | Options tell you positioning and pricing, not direction |
+---
 
-## Scoring Steps
+## BASE WEIGHTS (starting point — may be adjusted by sector modifiers)
+| Legend | Base Weight | Timeframe | Why |
+|---|---|---|---|
+| Druckenmiller | **17%** | SHORT | Timing is the #1 reason good ideas lose money |
+| Cathie Wood | 12% | LONG | Innovation thesis drives long-term winners |
+| Tom Lee | 11% | SHORT | Liquidity regime governs risk assets |
+| Dalio | 9% | LONG | Risk management separates survivors from blow-ups |
+| Howard Marks | 7% | LONG | Credit cycles catch what equity analysis misses |
+| Klarman | 7% | LONG | Valuation sets the floor on permanent loss |
+| Simons | 6% | SHORT | Quant signals are reliable short-to-medium term |
+| Soros | 6% | SHORT | Narrative drives price when reflexivity takes over |
+| Trend Follower | 6% | SHORT | Price trend overrides all opinions |
+| Buffett | 5% | LONG | Long-term compounding quality — the 20-year lens |
+| Ackman | 5% | LONG | Catalysts unlock value that passive analysis misses |
+| Jim Rogers | 5% | LONG | Commodities and currencies — usually ignored |
+| Vol Desk | 4% | SHORT | Options pricing and positioning |
 
-**Step 1 — Score each legend (1-10):** 10=perfect, 7-9=strong, 4-6=adequate, 1-3=weak
+**Timeframe classification:**
+- SHORT = Druck, Tom Lee, Simons, Soros, Trend, Vol Desk (0-6 month horizon)
+- LONG = Cathie, Dalio, Marks, Klarman, Buffett, Ackman, Rogers (1-5 year horizon)
 
-**Step 2 — Stance to number:** BULL=+1, NEUTRAL=0, BEAR=-1
+---
 
-**Step 3 — Weighted score:** `weighted_score = sum(stance x weight)` -> Range: -1.0 to +1.0
+## STEP 0 — SECTOR-ADJUSTED WEIGHTS
 
-**Step 4 — Conviction:**
+Before scoring, adjust base weights based on stock characteristics. Apply ALL that match, then renormalize to 100%.
+
+```
+IF high-growth tech (trailing P/E > 50 OR no earnings):
+  Cathie +3%, Klarman -2%, Marks -1%
+
+IF significant debt (net debt/EBITDA > 3x):
+  Marks +4%, Cathie -2%, Trend -2%
+
+IF commodity-exposed (>20% cost structure from raw materials):
+  Rogers +3%, Vol Desk -1%, Soros -2%
+
+IF founder-controlled (founder owns >10% and is CEO):
+  Ackman -3%, redistribute to Buffett +1%, Druck +1%, Soros +1%
+
+IF low-float / meme-risk (short interest >15% OR high retail ownership):
+  Soros +3%, Trend +2%, Klarman -2%, Buffett -3%
+
+IF dividend / income stock (yield > 3%, low growth):
+  Buffett +3%, Cathie -3%
+
+After adjustments: RENORMALIZE all weights to sum to 100%.
+Document the adjustments in the output.
+```
+
+---
+
+## STEP 1 — HANDLE ABSTENTIONS
+
+If any legend declared ABSTAIN:
+- Remove their weight from the total
+- Redistribute proportionally among remaining legends
+- Note the abstention in the scorecard
+- Example: Marks ABSTAINS (7% removed) -> remaining 12 legends' weights scale up proportionally from 93% to 100%
+
+---
+
+## STEP 2 — SCORE EACH LEGEND (1-10)
+
+10=perfect framework execution, 7-9=strong, 4-6=adequate, 1-3=weak/off-lane
+
+---
+
+## STEP 3 — CONVERT STANCES TO NUMBERS
+
+| Stance | Value |
+|---|---|
+| STRONG BULL | +1.0 |
+| BULL | +0.5 |
+| NEUTRAL | 0 |
+| BEAR | -0.5 |
+| STRONG BEAR | -1.0 |
+| ABSTAIN | removed from calculation |
+
+---
+
+## STEP 4 — CALCULATE WEIGHTED SCORES (TWO VERDICTS)
+
+**COMBINED SCORE (all legends):**
+`combined_score = sum(stance_value x adjusted_weight x (conviction/10))`
+
+The conviction modifier means a BULL with 9/10 conviction contributes 90% of their weight, while a BULL with 3/10 conviction contributes only 30%. This prevents low-confidence framework-default calls from polluting the score.
+
+**SHORT-TERM SCORE (0-6 months) — uses only SHORT-timeframe legends:**
+`short_score = sum(stance_value x adjusted_weight x (conviction/10))` for Druck, Tom Lee, Simons, Soros, Trend, Vol Desk only. Renormalize their weights to sum to 100% for this calculation.
+
+**LONG-TERM SCORE (1-5 years) — uses only LONG-timeframe legends:**
+`long_score = sum(stance_value x adjusted_weight x (conviction/10))` for Cathie, Dalio, Marks, Klarman, Buffett, Ackman, Rogers only. Renormalize their weights to sum to 100% for this calculation.
+
+---
+
+## STEP 5 — MAP TO CONVICTION LEVELS
+
+Apply to EACH of the three scores (combined, short-term, long-term):
+
 | Score | Level |
 |---|---|
-| +0.6 to +1.0 | STRONG BUY |
-| +0.2 to +0.6 | BUY |
-| -0.2 to +0.2 | HOLD |
-| -0.6 to -0.2 | SELL |
-| -1.0 to -0.6 | STRONG SELL |
+| +0.4 to +1.0 | STRONG BUY |
+| +0.15 to +0.4 | BUY |
+| -0.15 to +0.15 | HOLD |
+| -0.4 to -0.15 | SELL |
+| -1.0 to -0.4 | STRONG SELL |
 
-**Override Rules:**
-- Druckenmiller BEAR -> drop one conviction level (timing master says no)
-- Tom Lee AND Dalio both BEAR -> drop two levels (macro + risk both red = real danger)
-- Klarman BULL -> upgrade one level (if the value guy is buying, there's real floor)
-- Simons BULL + Soros BEAR -> flag "sentiment exhaustion risk — momentum window may be closing"
-- Howard Marks BEAR + Dalio BEAR -> flag "credit cycle warning — balance sheet risk elevated"
-- Trend Follower BEAR -> flag "price trend broken — regardless of fundamental thesis"
-- Ackman BULL + Klarman BULL -> upgrade one level (value + catalyst alignment = high conviction entry)
-- Buffett BULL + Klarman BULL -> upgrade one level (compounder + deep value both say yes = rare alignment)
-- Buffett BEAR -> flag "the 20-year lens says no — this business doesn't compound"
+Note: ranges tightened from v2 because conviction modifier already dampens scores.
 
-**Step 5 — Position Sizing:**
+---
+
+## STEP 6 — OVERRIDE RULES
+
+Apply to the COMBINED verdict:
+- Druckenmiller STRONG BEAR -> drop one conviction level
+- Tom Lee AND Dalio both BEAR or worse -> drop two levels
+- Klarman BULL or better -> upgrade one level
+- Simons BULL + Soros BEAR -> flag "sentiment exhaustion risk"
+- Marks BEAR + Dalio BEAR -> flag "credit cycle warning"
+- Trend Follower BEAR or worse -> flag "price trend broken"
+- Ackman BULL + Klarman BULL -> upgrade one level
+- Buffett BULL + Klarman BULL -> upgrade one level
+- Buffett STRONG BEAR -> flag "20-year lens says no"
+
+---
+
+## STEP 7 — POSITION SIZING
+
 | Conviction | Size |
 |---|---|
 | STRONG BUY | Full |
@@ -707,63 +818,120 @@ COMPOUNDING VERDICT: [one punchy sentence]
 | STRONG SELL | Pass (consider short) |
 
 **SIZING RULES — CRITICAL:**
-- Start with conviction-mapped size
+- Start with conviction-mapped size from COMBINED verdict
 - Apply AT MOST one net adjustment (up or down)
 - Dalio flagged high tail risk -> reduce one level
-- Howard Marks flagged credit cycle danger -> reduce one level (stacks with Dalio if BOTH flag, but max one net reduction still applies)
-- Vol Desk high IV -> informational note only (not a size change)
+- Marks flagged credit danger -> reduce one level
+- Vol Desk high IV -> informational only (not a size change)
 - Druck flagged great timing -> increase one level
-- Trend Follower confirms strong uptrend -> increase one level
+- Trend confirms strong uptrend -> increase one level
 - Multiple flags do NOT stack. Ladder: Full -> Half -> Quarter -> Starter -> Pass
 - Document: "BUY -> Half -> [modifier] -> Quarter"
+- IF short-term and long-term verdicts DISAGREE: default to the more conservative sizing
 
-**Step 6 — Bull/bear cases:** TWO strongest from each side across all analyses.
+---
 
-**Step 7 — Key risk:** SINGLE most important risk that invalidates everything.
+## STEP 8 — CONFLICT MAP
 
-**Step 8 — Championship ruling:** 2-3 sentences. Direct. No hedging. Final word.
+Identify the 2-3 most important disagreements among the legends:
+```
+For each pair where one is BULL+ and the other is BEAR+:
+  - Name both legends and their stances
+  - State what they disagree ABOUT (not just that they disagree)
+  - Frame the bet: "If [X happens], [Legend A] is right. If [Y happens], [Legend B] is right."
+```
+This is the most analytically valuable part of the verdict — it tells the user WHERE the uncertainty lives.
 
-## Output Format
+---
+
+## STEP 9 — BULL/BEAR SYNTHESIS
+
+Pull the TWO strongest bull arguments and TWO strongest bear arguments across all analyses. These should be the ACTUAL arguments made, synthesized into clear statements.
+
+---
+
+## STEP 10 — KEY RISK
+
+The SINGLE most important risk that could invalidate the entire thesis regardless of direction.
+
+---
+
+## STEP 11 — CHAMPIONSHIP RULING
+
+2-3 sentences. Direct. No hedging. Address: weight of evidence, the key swing factor, and the action.
+
+---
+
+## OUTPUT FORMAT
+
 ```
 ⚖️ THE JUDGE — CHAMPIONSHIP VERDICT
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 TICKER: [TICKER]
+SECTOR ADJUSTMENTS: [list any weight adjustments applied, or "none"]
 
 PILLAR SCORECARD:
-| Legend | Score | Stance | Verdict |
-|---|---|---|---|
-| [Name] | [X/10] | [BULL/BEAR/NEUTRAL] | [one-sentence verdict] |
+| Legend | Adj Wt | Stance | Conviction | Verdict |
+|---|---|---|---|---|
+| [Name] | [X%] | [STRONG BULL/BULL/NEUTRAL/BEAR/STRONG BEAR/ABSTAIN] | [X/10] | [one-sentence] |
 [repeat for all 13]
 
+ABSTENTIONS: [list any, or "none"]
+
+━━━ COMBINED VERDICT ━━━
 WEIGHTED SCORE: [+X.XX]
 CONVICTION: [LEVEL]
 POSITION SIZE: [Size] (show: "BUY -> Half -> [modifier] -> Quarter")
 
+━━━ SHORT-TERM (0-6 months) ━━━
+WEIGHTED SCORE: [+X.XX]
+CONVICTION: [LEVEL]
+Driven by: [which SHORT legends and why]
+
+━━━ LONG-TERM (1-5 years) ━━━
+WEIGHTED SCORE: [+X.XX]
+CONVICTION: [LEVEL]
+Driven by: [which LONG legends and why]
+
+━━━ CONFLICT MAP ━━━
+[Legend A] vs [Legend B]: [what they disagree about]
+  -> If [X]: [A] is right
+  -> If [Y]: [B] is right
+
+[Legend C] vs [Legend D]: [what they disagree about]
+  -> If [X]: [C] is right
+  -> If [Y]: [D] is right
+
 BULL CASE:
--> [strongest bull argument]
--> [second strongest bull argument]
+-> [strongest]
+-> [second strongest]
 
 BEAR CASE:
--> [strongest bear argument]
--> [second strongest bear argument]
+-> [strongest]
+-> [second strongest]
 
-KEY RISK: [the single risk that invalidates everything]
+KEY RISK: [single risk that invalidates everything]
 
 ⚖️ CHAMPIONSHIP RULING:
 [2-3 sentences. Direct. Decisive. Final word.]
 ```
 
+---
+
 ## Stage 2 — Re-Scoring After Defend Rounds
-- PARTIALLY REVISED -> move stance halfway
+- PARTIALLY REVISED -> move stance halfway (e.g., BULL -> between BULL and NEUTRAL = +0.25)
 - CONCEDED -> fully flip stance
-- Recalculate weighted score, reapply overrides
+- Recalculate ALL three weighted scores (combined, short, long)
+- Reapply override rules and sector adjustments
 ```
 ⚖️ UPDATED VERDICT — POST-DEBATE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 REVISED STANCES: [who changed, why]
-ORIGINAL WEIGHTED SCORE: [X.XX]
-UPDATED WEIGHTED SCORE: [X.XX]
+ORIGINAL COMBINED SCORE: [X.XX]
+UPDATED COMBINED SCORE: [X.XX]
+SHORT-TERM CHANGE: [X.XX -> X.XX]
+LONG-TERM CHANGE: [X.XX -> X.XX]
 VERDICT CHANGE: [Yes/No + why]
 UPDATED RULING: [if changed]
 ```
