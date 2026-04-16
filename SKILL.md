@@ -73,23 +73,28 @@ Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simon
 📊 RUMBLE SCORECARD — [TICKER]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+VOTING LEGENDS (v1.0 weights — determine the score):
 | Legend | Wt | Stance | Conv | Thesis | Flip If |
 |---|---|---|---|---|---|
-| ⚡ Druck | 17% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🚀 Cathie | 12% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 👑 Tom Lee | 11% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| ⚖️ Dalio | 9% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 📚 Marks | 7% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🏛️ Klarman | 7% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 📐 Simons | 6% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🌀 Soros | 6% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 📈 Trend | 6% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🏔️ Buffett | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🔱 Ackman | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🌍 Rogers | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
-| 🎯 Vol Desk | 4% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| ⚡ Druck | 20% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 👑 Tom Lee | 15% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🚀 Cathie | 15% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| ⚖️ Dalio | 15% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🏛️ Klarman | 10% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 📐 Simons | 10% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🌀 Soros | 10% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
+| 🎯 Vol Desk | 5% | [stance] | [X/10] | [**bold key insight**] | [flip condition] |
 
-STRONG BULL: [X] | BULL: [X] | NEUTRAL: [X] | BEAR: [X] | STRONG BEAR: [X] | ABSTAIN: [X]
+ADVISORY LEGENDS (shown for context — do NOT affect score):
+| Legend | Stance | Conv | Thesis | Agrees? |
+|---|---|---|---|---|
+| 📚 Marks | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
+| 📈 Trend | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
+| 🏔️ Buffett | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
+| 🔱 Ackman | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
+| 🌍 Rogers | [stance] | [X/10] | [**bold key insight**] | [yes/no] |
+
+ADVISORY DISSENT: [X/5 disagree — flag if 3+]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
@@ -97,13 +102,13 @@ STRONG BULL: [X] | BULL: [X] | NEUTRAL: [X] | BEAR: [X] | STRONG BEAR: [X] | ABS
 - **Stance:** STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
 - **Conv:** Conviction 1-10 (how confident is this legend in their call?)
 - **Thesis:** ONE thing that drives their stance. **Bold** the key phrase.
-- **Flip If:** What would make them change their mind — one line.
+- **Flip If / Agrees?:** Voting legends show flip condition. Advisory legends show if they agree with the combined verdict.
 
 6. After the scorecard, run the Judge:
    - Collect all 13 stances, convictions, and analyses
-   - Run the full Championship Verdict calculation (Steps 0-11 from RUMBLE-ENGINE.md)
-   - This includes: sector weight adjustments, abstention handling, conviction-weighted scoring, dual timeframe verdicts, conflict map, and championship ruling
-   - Output the full verdict with scorecard, weighted score, conviction, sizing, bull/bear cases, key risk, and championship ruling
+   - Run the full Championship Verdict calculation (Steps 0-12 from RUMBLE-ENGINE.md)
+   - v1.0 weights for voting legends, advisory legends reported separately
+   - Includes: sector adjustments (with floor), abstentions, conviction-weighted scoring, dual timeframe verdicts, conflict map, contrarian anchor, and championship ruling
 
 7. Log to notes/rumble-log.md:
 ```
@@ -182,19 +187,22 @@ Show:
 13 Legends. 13 Pillars. One Championship Ruling.
 
 THE LEGENDS:
-  ⚡ Druckenmiller    — Tactical Macro & Timing        (17%) ← highest weight
-  🚀 Cathie Wood      — Disruptive Innovation          (12%)
-  👑 Tom Lee          — Liquidity & Macro Regime       (11%)
-  ⚖️  Ray Dalio        — Risk & Portfolio Construction  (9%)
-  📚 Howard Marks     — Credit & Risk Cycles           (7%)
-  🏛️  Seth Klarman     — Deep Value & Margin of Safety  (7%)
-  📐 Jim Simons       — Quantitative & Data Edge       (6%)
-  🌀 George Soros     — Sentiment & Narrative          (6%)
-  📈 Trend Follower   — Pure Price Trend               (6%)
-  🏔️  Warren Buffett   — Owner Earnings & Compounding   (5%)
-  🔱 Bill Ackman      — Activist & Catalyst            (5%)
-  🌍 Jim Rogers       — Global Macro & Commodities     (5%)
-  🎯 The Vol Desk     — Options & Volatility           (4%)
+  VOTING (v1.0 weights):
+  ⚡ Druckenmiller    — Tactical Macro & Timing        (20%) ← highest weight
+  👑 Tom Lee          — Liquidity & Macro Regime       (15%)
+  🚀 Cathie Wood      — Disruptive Innovation          (15%)
+  ⚖️  Ray Dalio        — Risk & Portfolio Construction  (15%)
+  🏛️  Seth Klarman     — Deep Value & Margin of Safety  (10%)
+  📐 Jim Simons       — Quantitative & Data Edge       (10%)
+  🌀 George Soros     — Sentiment & Narrative          (10%)
+  🎯 The Vol Desk     — Options & Volatility           (5%)
+
+  ADVISORY (analysis shown, no vote until accuracy-validated):
+  📚 Howard Marks     — Credit & Risk Cycles
+  📈 Trend Follower   — Pure Price Trend
+  🏔️  Warren Buffett   — Owner Earnings & Compounding
+  🔱 Bill Ackman      — Activist & Catalyst
+  🌍 Jim Rogers       — Global Macro & Commodities
 
 COMMANDS:
   .rumble NVDA                          → Start full rumble

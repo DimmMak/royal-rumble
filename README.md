@@ -12,26 +12,30 @@ Standard stock analysis asks one person one question. This system asks 13 of the
 
 ---
 
-## The 13 Legends
+## The 13 Legends (8 Voting + 5 Advisory)
 
+**VOTING LEGENDS (v1.0 weights — determine the weighted score):**
 | Legend | Pillar | Weight | Core Framework |
 |---|---|---|---|
+| ⚡ **Stan Druckenmiller** | Tactical Macro & Timing | **20%** | 5-point setup checklist, catalyst calendar, rate cycle, entry asymmetry |
 | 👑 **Tom Lee** | Liquidity & Macro Regime | 15% | Fed policy, M2, credit spreads, yield curve, RRP flows |
 | 🚀 **Cathie Wood** | Disruptive Innovation | 15% | Wright's Law, S-curve positioning, TAM, 5-platform convergence |
-| ⚡ **Stan Druckenmiller** | Tactical Macro & Timing | **20%** | 5-point setup checklist, catalyst calendar, rate cycle, entry asymmetry |
 | ⚖️ **Ray Dalio** | Risk & Portfolio Construction | 15% | Debt cycle template, risk parity, Kelly sizing, tail risk |
-| 🏛️ **Seth Klarman** | Deep Value & Margin of Safety | 10% | 3-source intrinsic value: liquidation → EPV → franchise |
-| 📐 **Jim Simons** | Quantitative & Data Edge | 10% | Momentum factor, PEAD, analyst revisions, institutional flow |
+| 🏛️ **Seth Klarman** | Deep Value & Margin of Safety | 10% | 3-source intrinsic value: liquidation -> EPV -> franchise |
+| 📐 **Jim Simons** | Quantitative & Data Edge | 10% | Momentum factor, PEAD, analyst revisions, institutional flow, RSI |
 | 🌀 **George Soros** | Sentiment & Narrative | 10% | Reflexivity, boom/bust sequence, consensus positioning |
-| 🎯 **The Vol Desk** | Options & Volatility | 5% | IV vs RV, term structure, skew, gamma exposure |
+| 🎯 **The Vol Desk** | Options & Volatility | 5% | IV vs RV, term structure, skew, gamma, max pain, put/call ratio |
 
-| 📚 **Howard Marks** | Credit & Risk Cycles | 8% | Second-level thinking, credit cycle, pendulum, lending standards |
-| 📈 **Trend Follower** | Pure Price Trend | 7% | 200-day MA, breakout systems, trend strength — no fundamentals |
-| 🔱 **Bill Ackman** | Activist & Catalyst | 5% | ROIC, sum-of-parts, identifiable catalyst, management quality |
-| 🏔️ **Warren Buffett** | Owner Earnings & Compounding | 5% | Circle of competence, moat durability, owner earnings, ROIC, capital allocation |
-| 🌍 **Jim Rogers** | Global Macro & Commodities | 5% | Commodity supercycles, EM demand, dollar direction, supply/demand |
+**ADVISORY LEGENDS (full analysis shown, no vote until accuracy-validated):**
+| Legend | Pillar | Core Framework |
+|---|---|---|
+| 📚 **Howard Marks** | Credit & Risk Cycles | Second-level thinking, credit cycle, pendulum, lending standards |
+| 📈 **Trend Follower** | Pure Price Trend | 200-day MA, Fibonacci, ATR stops, multi-timeframe |
+| 🏔️ **Warren Buffett** | Owner Earnings & Compounding | Circle of competence, moat durability, owner earnings, ROIC |
+| 🔱 **Bill Ackman** | Activist & Catalyst | ROIC, sum-of-parts, identifiable catalyst, management quality |
+| 🌍 **Jim Rogers** | Global Macro & Commodities | Commodity supercycles, EM demand, dollar direction, supply/demand |
 
-**Druckenmiller carries the highest weight (17%)** — timing is the #1 reason good ideas lose money.
+**Druckenmiller carries the highest weight (20%)** — timing is the #1 reason good ideas lose money. Advisory legends graduate to voting after 20+ rumbles with accuracy data + user approval.
 
 ---
 

@@ -2,6 +2,75 @@
 
 ---
 
+## [2026-04-15] — v3.2 — Weight Restoration & Anti-Drift Guardrails
+
+**Trigger:** Realized that between v1.0 and v3.1, we had introduced compounding bias through three layers of untested weight changes — while simultaneously warning about the exact same failure mode in a hypothetical Implementer agent. We became the Implementer.
+
+### The Problem We Caught
+
+In one session, with zero rumble outcome data:
+- Dalio lost 40% of his voice (15% -> 9%) to make room for new legends
+- Klarman lost 30% (10% -> 7%)
+- Sector adjustments could further suppress bearish voices by 2-3% per stock
+- Conviction modifier could dampen low-confidence calls toward zero
+- These three layers stacked: a voting legend could go from 10% effective weight to ~2%
+
+All biases pushed in the same direction — suppressing bearish voices on growth stocks. The exact stocks users will rumble most often.
+
+### What Changed
+
+**v1.0 weights restored for all 8 original voting legends:**
+| Legend | v3.1 (diluted) | v3.2 (restored) |
+|---|---|---|
+| Druckenmiller | 17% | **20%** |
+| Tom Lee | 11% | **15%** |
+| Cathie Wood | 12% | **15%** |
+| Dalio | 9% | **15%** |
+| Klarman | 7% | **10%** |
+| Simons | 6% | **10%** |
+| Soros | 6% | **10%** |
+| Vol Desk | 4% | **5%** |
+
+**5 new legends reclassified as ADVISORY:**
+- Howard Marks, Trend Follower, Buffett, Ackman, Rogers
+- Still present their full analysis in every rumble
+- Still shown in the scorecard
+- Do NOT vote in the weighted score
+- Graduate to VOTING only after 20+ rumbles with accuracy data + user approval
+
+**Sector adjustments marked as SESSION-LEVEL HYPOTHESES:**
+- Still applied per rumble for context
+- Marked as unvalidated — will be proven or removed after accuracy tracking
+- Adjustment magnitudes reduced (e.g., Cathie +3% -> +2%)
+
+**New guardrails:**
+- Minimum weight floor: no voting legend can drop below 50% of base weight
+- Contrarian anchor: Judge MUST present the strongest bear case at full weight regardless of bull consensus
+- Advisory dissent flag: if 3+ advisory legends disagree with the combined verdict, it's flagged as a warning
+
+**Conviction mapping ranges restored to v1.0** (+/- 0.6/0.2 thresholds, not the tightened v3.0 ranges that were never tested)
+
+### The Lesson
+
+Every change we made between v2.0 and v3.1 was individually reasonable. Sector adjustments made logical sense. Conviction modifiers made logical sense. Weight rebalancing made logical sense. But stacked together with zero validation data, they compounded into systematic suppression of bearish voices — the exact failure mode we designed the system to prevent.
+
+The PERMANENT DNA of each legend's framework was never touched. The weights — which determine how much each voice matters — were changed four times in one session based on vibes, not data. That's the lesson: frameworks are permanent, weights are earned.
+
+---
+
+## [2026-04-15] — v3.1 — Technical Analysis Tightened
+
+**Trigger:** TA audit found that no legend produced specific price levels. The system told you WHAT to do but not WHERE.
+
+### Changes
+- Druckenmiller: support/resistance with $ prices, volume ratio, relative perf quantified, asymmetry anchored to levels
+- Simons: RSI, VWAP, OBV, cross-asset momentum check added
+- Trend Follower: multi-timeframe, sector confirmation, Fibonacci levels with $ prices, ATR stops
+- Vol Desk: put/call ratio, max pain, OI concentration, strike selection logic
+- Judge: KEY LEVELS table synthesizing price levels from all TA legends into entry zones + stops
+
+---
+
 ## [2026-04-15] — v3.0 — 7 Judge Optimizations (TSLA Stress Test)
 
 **Trigger:** Stress-tested the system against TSLA ($349, P/E 317x). Found 7 architectural weaknesses where legends produced noise instead of signal. All 7 fixed.
@@ -150,9 +219,11 @@
 
 ## Version Summary
 
-| Version | Legends | Key Addition |
-|---|---|---|
-| v1.0 | 8 | Original system |
-| v2.0 | 12 | +4 legends, token optimization, citation map, scorecard, audit fixes |
-| v2.1 | 13 | +Buffett (from Grok collab), debate documented |
-| v3.0 | 13 | 7 Judge optimizations: 5-point scale, ABSTAIN, dual verdicts, conflict map, flip conditions, conviction modifier, sector weights |
+| Version | Legends | Voting | Key Addition |
+|---|---|---|---|
+| v1.0 | 8 | 8 | Original system — weights set by reasoning about pillar importance |
+| v2.0 | 12 | 12 | +4 legends, token optimization, citation map, scorecard, audit fixes |
+| v2.1 | 13 | 13 | +Buffett (from Grok collab), debate documented |
+| v3.0 | 13 | 13 | 7 Judge optimizations: 5-point scale, ABSTAIN, dual verdicts, conflict map, flip conditions, conviction modifier, sector weights |
+| v3.1 | 13 | 13 | TA tightened: specific price levels, RSI, Fibonacci, ATR stops, Key Levels table |
+| **v3.2** | **13** | **8** | **Weight restoration: v1.0 weights for original 8, new 5 become advisory. Anti-drift guardrails. The session where we caught ourselves becoming the Implementer.** |

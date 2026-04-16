@@ -736,71 +736,85 @@ COMPOUNDING VERDICT: [one punchy sentence]
 
 ---
 
-## BASE WEIGHTS (starting point — may be adjusted by sector modifiers)
-| Legend | Base Weight | Timeframe | Why |
+## VOTING vs ADVISORY LEGENDS
+
+**VOTING LEGENDS (determine the weighted score) — v1.0 original weights restored:**
+| Legend | Weight | Timeframe | Status |
 |---|---|---|---|
-| Druckenmiller | **17%** | SHORT | Timing is the #1 reason good ideas lose money |
-| Cathie Wood | 12% | LONG | Innovation thesis drives long-term winners |
-| Tom Lee | 11% | SHORT | Liquidity regime governs risk assets |
-| Dalio | 9% | LONG | Risk management separates survivors from blow-ups |
-| Howard Marks | 7% | LONG | Credit cycles catch what equity analysis misses |
-| Klarman | 7% | LONG | Valuation sets the floor on permanent loss |
-| Simons | 6% | SHORT | Quant signals are reliable short-to-medium term |
-| Soros | 6% | SHORT | Narrative drives price when reflexivity takes over |
-| Trend Follower | 6% | SHORT | Price trend overrides all opinions |
-| Buffett | 5% | LONG | Long-term compounding quality — the 20-year lens |
-| Ackman | 5% | LONG | Catalysts unlock value that passive analysis misses |
-| Jim Rogers | 5% | LONG | Commodities and currencies — usually ignored |
-| Vol Desk | 4% | SHORT | Options pricing and positioning |
+| Druckenmiller | **20%** | SHORT | VOTING — original v1.0 |
+| Tom Lee | 15% | SHORT | VOTING — original v1.0 |
+| Cathie Wood | 15% | LONG | VOTING — original v1.0 |
+| Dalio | 15% | LONG | VOTING — original v1.0 |
+| Klarman | 10% | LONG | VOTING — original v1.0 |
+| Simons | 10% | SHORT | VOTING — original v1.0 |
+| Soros | 10% | SHORT | VOTING — original v1.0 |
+| Vol Desk | 5% | SHORT | VOTING — original v1.0 |
+
+**ADVISORY LEGENDS (shown in scorecard and analysis, but do NOT vote in the weighted score):**
+| Legend | Status | Why Advisory |
+|---|---|---|
+| Howard Marks | ADVISORY — graduate to VOTING after accuracy data proves unique signal | Earned unique signal (credit), but weight not validated by outcomes yet |
+| Trend Follower | ADVISORY — graduate to VOTING after accuracy data proves unique signal | Earned unique signal (pure price), but weight not validated yet |
+| Buffett | ADVISORY — overlaps Klarman (value) + Ackman (quality) | Added based on Grok suggestion, not analytical necessity |
+| Ackman | ADVISORY — overlaps Druckenmiller (catalyst check) | Druck already checks for catalysts in point 1 of his checklist |
+| Rogers | ADVISORY — narrow applicability for most stocks users will rumble | Commodity lens irrelevant for pure tech/software stocks |
+
+**GRADUATION RULE:** An advisory legend graduates to voting status ONLY when:
+1. 20+ rumbles have been logged with outcome data
+2. The accuracy tracker shows their signal added predictive value not captured by existing voting legends
+3. The USER approves the graduation — it is never automatic
 
 **Timeframe classification:**
-- SHORT = Druck, Tom Lee, Simons, Soros, Trend, Vol Desk (0-6 month horizon)
-- LONG = Cathie, Dalio, Marks, Klarman, Buffett, Ackman, Rogers (1-5 year horizon)
+- SHORT = Druck, Tom Lee, Simons, Soros, Trend*, Vol Desk (0-6 month horizon)
+- LONG = Cathie, Dalio, Klarman, Marks*, Buffett*, Ackman*, Rogers* (1-5 year horizon)
+- *Advisory legends are classified for the dual timeframe display but do not affect the score
 
 ---
 
-## STEP 0 — SECTOR-ADJUSTED WEIGHTS
+## STEP 0 — SECTOR-ADJUSTED WEIGHTS (SESSION-LEVEL HYPOTHESES)
 
-Before scoring, adjust base weights based on stock characteristics. Apply ALL that match, then renormalize to 100%.
+**WARNING: These rules are HYPOTHESES, not proven. They were designed in a theoretical TSLA stress test with ZERO rumble outcome data. They will be validated or removed after 20+ rumbles with accuracy tracking. Until then, they are applied conservatively.**
+
+Adjust base weights based on stock characteristics. Apply ALL that match, then renormalize to 100%.
+
+**MINIMUM WEIGHT FLOOR: No voting legend's effective weight can drop below 50% of their base weight, regardless of adjustments.**
+```
+Example: Klarman base = 10%. Floor = 5%. No combination of adjustments can push him below 5%.
+```
 
 ```
 IF high-growth tech (trailing P/E > 50 OR no earnings):
-  Cathie +3%, Klarman -2%, Marks -1%
+  Cathie +2%, Klarman -1% (was +3%/-2%, reduced — untested)
 
 IF significant debt (net debt/EBITDA > 3x):
-  Marks +4%, Cathie -2%, Trend -2%
+  Dalio +2%, Cathie -1%, Vol Desk -1%
 
 IF commodity-exposed (>20% cost structure from raw materials):
-  Rogers +3%, Vol Desk -1%, Soros -2%
-
-IF founder-controlled (founder owns >10% and is CEO):
-  Ackman -3%, redistribute to Buffett +1%, Druck +1%, Soros +1%
+  [No adjustment — Rogers is advisory, adjustments were shuffling between voting and non-voting]
 
 IF low-float / meme-risk (short interest >15% OR high retail ownership):
-  Soros +3%, Trend +2%, Klarman -2%, Buffett -3%
+  Soros +2%, Simons -1%, Vol Desk -1%
 
-IF dividend / income stock (yield > 3%, low growth):
-  Buffett +3%, Cathie -3%
-
-After adjustments: RENORMALIZE all weights to sum to 100%.
-Document the adjustments in the output.
+After adjustments: RENORMALIZE voting weights to sum to 100%.
+ENFORCE minimum weight floor.
+Document any adjustments in the output.
 ```
 
 ---
 
-## STEP 1 — HANDLE ABSTENTIONS
+## STEP 1 — HANDLE ABSTENTIONS (VOTING LEGENDS ONLY)
 
-If any legend declared ABSTAIN:
+If any VOTING legend declared ABSTAIN:
 - Remove their weight from the total
-- Redistribute proportionally among remaining legends
+- Redistribute proportionally among remaining VOTING legends
 - Note the abstention in the scorecard
-- Example: Marks ABSTAINS (7% removed) -> remaining 12 legends' weights scale up proportionally from 93% to 100%
+- Advisory legends can always abstain — it has no effect on the score
 
 ---
 
 ## STEP 2 — SCORE EACH LEGEND (1-10)
 
-10=perfect framework execution, 7-9=strong, 4-6=adequate, 1-3=weak/off-lane
+Score ALL 13 legends (voting + advisory). 10=perfect, 7-9=strong, 4-6=adequate, 1-3=weak/off-lane.
 
 ---
 
@@ -817,18 +831,21 @@ If any legend declared ABSTAIN:
 
 ---
 
-## STEP 4 — CALCULATE WEIGHTED SCORES (TWO VERDICTS)
+## STEP 4 — CALCULATE WEIGHTED SCORES
 
-**COMBINED SCORE (all legends):**
-`combined_score = sum(stance_value x adjusted_weight x (conviction/10))`
+**COMBINED SCORE (voting legends only):**
+`combined_score = sum(stance_value x weight x (conviction/10))` for the 8 voting legends only.
 
-The conviction modifier means a BULL with 9/10 conviction contributes 90% of their weight, while a BULL with 3/10 conviction contributes only 30%. This prevents low-confidence framework-default calls from polluting the score.
+The conviction modifier means a BULL with 9/10 conviction contributes 90% of their weight, while a BULL with 3/10 conviction contributes only 30%.
 
-**SHORT-TERM SCORE (0-6 months) — uses only SHORT-timeframe legends:**
-`short_score = sum(stance_value x adjusted_weight x (conviction/10))` for Druck, Tom Lee, Simons, Soros, Trend, Vol Desk only. Renormalize their weights to sum to 100% for this calculation.
+**SHORT-TERM SCORE (0-6 months) — voting SHORT legends only:**
+`short_score = sum(stance_value x weight x (conviction/10))` for Druck, Tom Lee, Simons, Soros, Vol Desk. Renormalize their weights to sum to 100%.
 
-**LONG-TERM SCORE (1-5 years) — uses only LONG-timeframe legends:**
-`long_score = sum(stance_value x adjusted_weight x (conviction/10))` for Cathie, Dalio, Marks, Klarman, Buffett, Ackman, Rogers only. Renormalize their weights to sum to 100% for this calculation.
+**LONG-TERM SCORE (1-5 years) — voting LONG legends only:**
+`long_score = sum(stance_value x weight x (conviction/10))` for Cathie, Dalio, Klarman. Renormalize their weights to sum to 100%.
+
+**ADVISORY SIGNAL (reported separately, does NOT affect scores):**
+List each advisory legend's stance and conviction. Note if advisory legends agree or disagree with the voting verdict. Flag if 3+ advisory legends disagree with the combined verdict — this is a warning signal worth investigating.
 
 ---
 
@@ -838,32 +855,41 @@ Apply to EACH of the three scores (combined, short-term, long-term):
 
 | Score | Level |
 |---|---|
-| +0.4 to +1.0 | STRONG BUY |
-| +0.15 to +0.4 | BUY |
-| -0.15 to +0.15 | HOLD |
-| -0.4 to -0.15 | SELL |
-| -1.0 to -0.4 | STRONG SELL |
+| +0.6 to +1.0 | STRONG BUY |
+| +0.2 to +0.6 | BUY |
+| -0.2 to +0.2 | HOLD |
+| -0.6 to -0.2 | SELL |
+| -1.0 to -0.6 | STRONG SELL |
 
-Note: ranges tightened from v2 because conviction modifier already dampens scores.
+Note: v1.0 conviction ranges restored. The tightened ranges from v3.0 were untested.
 
 ---
 
-## STEP 6 — OVERRIDE RULES
+## STEP 6 — OVERRIDE RULES (v1.0 core rules restored + flags from advisory)
 
-Apply to the COMBINED verdict:
+**Core overrides (voting legends only):**
 - Druckenmiller STRONG BEAR -> drop one conviction level
 - Tom Lee AND Dalio both BEAR or worse -> drop two levels
 - Klarman BULL or better -> upgrade one level
 - Simons BULL + Soros BEAR -> flag "sentiment exhaustion risk"
-- Marks BEAR + Dalio BEAR -> flag "credit cycle warning"
-- Trend Follower BEAR or worse -> flag "price trend broken"
-- Ackman BULL + Klarman BULL -> upgrade one level
-- Buffett BULL + Klarman BULL -> upgrade one level
-- Buffett STRONG BEAR -> flag "20-year lens says no"
+
+**Advisory flags (informational — shown but do not change the score):**
+- Marks BEAR + Dalio BEAR -> flag "credit cycle warning — advisory"
+- Trend Follower BEAR or worse -> flag "price trend broken — advisory"
+- Buffett STRONG BEAR -> flag "20-year lens says no — advisory"
+- If 3+ advisory legends DISAGREE with combined verdict -> flag "advisory dissent — investigate"
 
 ---
 
-## STEP 7 — POSITION SIZING
+## STEP 7 — CONTRARIAN ANCHOR (GUARDRAIL)
+
+**Regardless of the weighted score, the Judge MUST present the single strongest bear case at full weight.** Even if the combined score is STRONG BUY, the best bearish argument must be given equal prominence in the output — not buried, not minimized, not qualified with "but the bulls outweigh this."
+
+This prevents the system from ever producing a verdict where the downside case was suppressed.
+
+---
+
+## STEP 8 — POSITION SIZING
 
 | Conviction | Size |
 |---|---|
@@ -877,17 +903,15 @@ Apply to the COMBINED verdict:
 - Start with conviction-mapped size from COMBINED verdict
 - Apply AT MOST one net adjustment (up or down)
 - Dalio flagged high tail risk -> reduce one level
-- Marks flagged credit danger -> reduce one level
 - Vol Desk high IV -> informational only (not a size change)
 - Druck flagged great timing -> increase one level
-- Trend confirms strong uptrend -> increase one level
 - Multiple flags do NOT stack. Ladder: Full -> Half -> Quarter -> Starter -> Pass
 - Document: "BUY -> Half -> [modifier] -> Quarter"
 - IF short-term and long-term verdicts DISAGREE: default to the more conservative sizing
 
 ---
 
-## STEP 8 — CONFLICT MAP
+## STEP 9 — CONFLICT MAP
 
 Identify the 2-3 most important disagreements among the legends:
 ```
@@ -900,19 +924,19 @@ This is the most analytically valuable part of the verdict — it tells the user
 
 ---
 
-## STEP 9 — BULL/BEAR SYNTHESIS
+## STEP 10 — BULL/BEAR SYNTHESIS
 
 Pull the TWO strongest bull arguments and TWO strongest bear arguments across all analyses. These should be the ACTUAL arguments made, synthesized into clear statements.
 
 ---
 
-## STEP 10 — KEY RISK
+## STEP 11 — KEY RISK
 
 The SINGLE most important risk that could invalidate the entire thesis regardless of direction.
 
 ---
 
-## STEP 11 — CHAMPIONSHIP RULING
+## STEP 12 — CHAMPIONSHIP RULING
 
 2-3 sentences. Direct. No hedging. Address: weight of evidence, the key swing factor, and the action.
 
@@ -925,15 +949,31 @@ The SINGLE most important risk that could invalidate the entire thesis regardles
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 TICKER: [TICKER]
-SECTOR ADJUSTMENTS: [list any weight adjustments applied, or "none"]
+SECTOR ADJUSTMENTS: [list any weight adjustments applied, or "none — v1.0 base weights used"]
+MINIMUM WEIGHT FLOOR: [any legends hit the 50% floor? list them, or "none"]
 
-PILLAR SCORECARD:
-| Legend | Adj Wt | Stance | Conviction | Verdict |
+VOTING LEGENDS (determine the score):
+| Legend | Weight | Stance | Conv | Verdict |
 |---|---|---|---|---|
-| [Name] | [X%] | [STRONG BULL/BULL/NEUTRAL/BEAR/STRONG BEAR/ABSTAIN] | [X/10] | [one-sentence] |
-[repeat for all 13]
+| Druckenmiller | 20% | [stance] | [X/10] | [one-sentence] |
+| Tom Lee | 15% | [stance] | [X/10] | [one-sentence] |
+| Cathie Wood | 15% | [stance] | [X/10] | [one-sentence] |
+| Dalio | 15% | [stance] | [X/10] | [one-sentence] |
+| Klarman | 10% | [stance] | [X/10] | [one-sentence] |
+| Simons | 10% | [stance] | [X/10] | [one-sentence] |
+| Soros | 10% | [stance] | [X/10] | [one-sentence] |
+| Vol Desk | 5% | [stance] | [X/10] | [one-sentence] |
 
-ABSTENTIONS: [list any, or "none"]
+ADVISORY LEGENDS (shown for context, do NOT affect score):
+| Legend | Stance | Conv | Verdict | Agrees with combined? |
+|---|---|---|---|---|
+| Howard Marks | [stance] | [X/10] | [one-sentence] | [yes/no] |
+| Trend Follower | [stance] | [X/10] | [one-sentence] | [yes/no] |
+| Buffett | [stance] | [X/10] | [one-sentence] | [yes/no] |
+| Ackman | [stance] | [X/10] | [one-sentence] | [yes/no] |
+| Rogers | [stance] | [X/10] | [one-sentence] | [yes/no] |
+
+ADVISORY DISSENT: [X/5 advisory legends disagree with combined verdict — flag if 3+]
 
 ━━━ COMBINED VERDICT ━━━
 WEIGHTED SCORE: [+X.XX]
@@ -987,6 +1027,12 @@ ENTRY ZONES:
 - **Pullback entry:** [$X-$X — Fibonacci 38.2% zone, better asymmetry]
 - **Deep value entry:** [$X-$X — Fibonacci 61.8% or Klarman's zone]
 - **Stop-loss:** [$X — below 200-day MA or 2x ATR from entry]
+
+━━━ CONTRARIAN ANCHOR (mandatory — cannot be suppressed) ━━━
+THE STRONGEST BEAR CASE AT FULL WEIGHT:
+[Present the single best bearish argument as if it were the most important
+analysis in the entire rumble. Do not minimize, qualify, or follow with
+"but the bulls outweigh this." Let it stand on its own.]
 
 ⚖️ CHAMPIONSHIP RULING:
 [2-3 sentences. Direct. Decisive. Final word.]
