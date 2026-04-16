@@ -1,18 +1,18 @@
 # Royal Rumble Hedge Fund System
 
-8 legendary investors. Each a domain expert. Each arguing from their exact framework. One Judge synthesizes a weighted championship verdict. You can argue back.
+12 legendary investors. Each a domain expert. Each arguing from their exact framework. One Judge synthesizes a weighted championship verdict. You can argue back.
 
 ---
 
 ## The Concept
 
-Standard stock analysis asks one person one question. This system asks 8 of the greatest investors in history one question each — in their specific domain of expertise. Tom Lee never touches valuation. Klarman never touches timing. Druckenmiller never touches innovation. Each stays in their lane. The Judge weighs them.
+Standard stock analysis asks one person one question. This system asks 12 of the greatest investors in history one question each — in their specific domain of expertise. Tom Lee never touches valuation. Klarman never touches timing. The Trend Follower never touches fundamentals. Druckenmiller never touches innovation. Each stays in their lane. The Judge weighs them.
 
-**The result:** A verdict that captures liquidity, macro timing, innovation potential, risk construction, deep value, quant signals, sentiment positioning, and options structure — simultaneously.
+**The result:** A verdict that captures liquidity, macro timing, innovation potential, risk construction, deep value, quant signals, sentiment positioning, options structure, credit risk, price trend, activist catalysts, and commodity/currency exposure — simultaneously.
 
 ---
 
-## The 8 Legends
+## The 12 Legends
 
 | Legend | Pillar | Weight | Core Framework |
 |---|---|---|---|
@@ -25,7 +25,12 @@ Standard stock analysis asks one person one question. This system asks 8 of the 
 | 🌀 **George Soros** | Sentiment & Narrative | 10% | Reflexivity, boom/bust sequence, consensus positioning |
 | 🎯 **The Vol Desk** | Options & Volatility | 5% | IV vs RV, term structure, skew, gamma exposure |
 
-**Druckenmiller carries the highest weight (20%)** — timing is the #1 reason good ideas lose money.
+| 📚 **Howard Marks** | Credit & Risk Cycles | 8% | Second-level thinking, credit cycle, pendulum, lending standards |
+| 📈 **Trend Follower** | Pure Price Trend | 7% | 200-day MA, breakout systems, trend strength — no fundamentals |
+| 🔱 **Bill Ackman** | Activist & Catalyst | 5% | ROIC, sum-of-parts, identifiable catalyst, management quality |
+| 🌍 **Jim Rogers** | Global Macro & Commodities | 3% | Commodity supercycles, EM demand, dollar direction, supply/demand |
+
+**Druckenmiller carries the highest weight (18%)** — timing is the #1 reason good ideas lose money.
 
 ---
 
@@ -84,6 +89,9 @@ The Judge doesn't just average stances — specific legends have veto power:
 | Klarman BULL | Conviction upgrades one level (value guy buying = real margin of safety) |
 | Simons BULL + Soros BEAR | Flag: "sentiment exhaustion risk — momentum window may be closing" |
 | Dalio flags high tail risk | Position size reduced one level |
+| Howard Marks + Dalio both BEAR | Flag: "credit cycle warning — balance sheet risk elevated" |
+| Trend Follower BEAR | Flag: "price trend broken — regardless of fundamental thesis" |
+| Ackman + Klarman both BULL | Conviction upgrades one level (value + catalyst alignment) |
 
 ---
 
@@ -93,12 +101,15 @@ The Judge doesn't just average stances — specific legends have veto power:
 royal-rumble/
 ├── README.md
 ├── CHANGELOG.md
+├── SOURCES.md                  ← full citation map: every framework element traced to primary sources
 ├── SKILL.md                    ← master orchestrator (used by Claude Code .skill)
 ├── royal-rumble-orchestrator.md ← flow documentation
+├── scorecard.html              ← visual scorecard template (dark theme, auto-generated per rumble)
 ├── notes/
 │   └── rumble-log.md           ← history of every rumble
 └── skills/
-    ├── tomlee/SKILL.md         ← Tom Lee: Liquidity & Macro Regime
+    ├── RUMBLE-ENGINE.md        ← consolidated engine: all 8 legends + Judge in one file (token-optimized)
+    ├── tomlee/SKILL.md         ← Tom Lee: Liquidity & Macro Regime (original, kept as backup)
     ├── cathiewood/SKILL.md     ← Cathie Wood: Disruptive Innovation
     ├── druckenmiller/SKILL.md  ← Druckenmiller: Tactical Macro & Timing
     ├── dalio/SKILL.md          ← Ray Dalio: Risk & Portfolio Construction
@@ -115,11 +126,13 @@ royal-rumble/
 
 Each SKILL.md encodes the legend's **actual decision framework** from primary sources — not just their personality. Examples:
 
-- **Klarman**: The three-source intrinsic value hierarchy from *Margin of Safety* (liquidation → EPV → franchise). He won't pay for franchise value unless the other two are solid first.
+- **Klarman**: The three-source intrinsic value hierarchy from *Margin of Safety* (liquidation -> EPV -> franchise). He won't pay for franchise value unless the other two are solid first.
 - **Dalio**: The debt cycle template from *Principles* + All Weather's four-environment asset map. He always knows where in the cycle we are.
 - **Druckenmiller**: His 5-point timing checklist. His famous line: "I never use valuation to time the market" encoded as a rule.
-- **Soros**: The full reflexivity boom/bust sequence (7 stages). He maps every stock to a stage in the sequence.
-- **Simons**: PEAD (post-earnings announcement drift), analyst revision momentum, IV/RV — the publicly documented signals that RenTech is known to exploit.
+- **Soros**: The full reflexivity boom/bust sequence (7 stages) from *The Alchemy of Finance*. He maps every stock to a stage in the sequence.
+- **Simons**: PEAD (post-earnings announcement drift), analyst revision momentum, factor loadings — the publicly documented signals that RenTech is known to exploit.
+
+**Every framework element is cited.** See [SOURCES.md](SOURCES.md) for the full citation map — each rule, formula, and analytical checklist traced back to the book, paper, or public statement it came from. Primary sources include *Margin of Safety* (Klarman, 1991), *The New Market Wizards* (Schwager, 1992), *Principles for Navigating Big Debt Crises* (Dalio, 2018), *The Alchemy of Finance* (Soros, 1987), *The Man Who Solved the Market* (Zuckerman, 2019), and peer-reviewed academic papers (Jegadeesh & Titman 1993, Bernard & Thomas 1989, Fama & French 1993).
 
 ---
 

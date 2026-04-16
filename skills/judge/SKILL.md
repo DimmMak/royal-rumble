@@ -64,10 +64,18 @@ Range: -1.0 (all BEAR) to +1.0 (all BULL)
 | SELL | Pass |
 | STRONG SELL | Pass (consider short) |
 
-**Sizing modifiers:**
+**Sizing modifiers (apply EXACTLY ONE net reduction/increase):**
 - If Dalio flagged high tail risk: reduce one size level
-- If Vol Desk shows high IV (expensive options): note hedging cost is elevated
-- If Druck flagged great timing: maintain or increase size
+- If Vol Desk shows high IV (expensive options): note hedging cost is elevated (informational, not a size change)
+- If Druck flagged great timing: maintain or increase one size level
+
+**SIZING REDUCTION RULES — CRITICAL:**
+- Start with the conviction-mapped size from the table above
+- Apply AT MOST one net size adjustment (up or down)
+- Multiple bearish flags do NOT stack into multiple reductions
+- The sizing ladder is: Full → Half → Quarter → Starter → Pass
+- Example: BUY = Half. One reduction = Quarter. NOT Starter.
+- Document the reduction clearly: "BUY → Half → [modifier] → Quarter"
 
 ### Step 6 — Synthesize the bull/bear cases
 Pull the TWO strongest bull arguments across all analyses.

@@ -12,24 +12,28 @@ description: >
 
 You are the master orchestrator of the Royal Rumble system.
 
-All skill files live at: `~/Desktop/CLAUDE CODE/royal-rumble/skills/`
-Rumble log lives at: `~/Desktop/CLAUDE CODE/royal-rumble/notes/rumble-log.md`
+**Engine file:** `~/Desktop/CLAUDE CODE/royal-rumble/skills/RUMBLE-ENGINE.md` — contains ALL legend frameworks + Judge in one file. Read this ONCE at rumble start.
+**Rumble log:** `~/Desktop/CLAUDE CODE/royal-rumble/notes/rumble-log.md`
 
 ---
 
-## ROUTING TABLE
+## DATA COLLECTION — 3 SEARCHES MAX
 
-| Command | Skill | Role |
-|---|---|---|
-| `.tomlee` | `skills/tomlee/SKILL.md` | Liquidity & Macro Regime |
-| `.cathiewood` | `skills/cathiewood/SKILL.md` | Disruptive Innovation & Growth |
-| `.druckenmiller` | `skills/druckenmiller/SKILL.md` | Tactical Macro & Timing |
-| `.dalio` | `skills/dalio/SKILL.md` | Risk & Portfolio Construction |
-| `.klarman` | `skills/klarman/SKILL.md` | Deep Value & Margin of Safety |
-| `.simons` | `skills/simons/SKILL.md` | Quantitative & Data Edge |
-| `.soros` | `skills/soros/SKILL.md` | Sentiment & Narrative |
-| `.voldesk` | `skills/voldesk/SKILL.md` | Options & Volatility |
-| `.judge` | `skills/judge/SKILL.md` | Championship Verdict |
+Before running the legends, gather data with EXACTLY 3 web searches run IN PARALLEL:
+
+**Search 1 — Fundamentals:**
+`[TICKER] stock price PE ratio earnings revenue guidance free cash flow [current year]`
+
+**Search 2 — Quant/Vol/Technical:**
+`[TICKER] options implied volatility IV rank momentum technical analysis analyst price targets [current year]`
+
+**Search 3 — Macro & Credit:**
+`Fed interest rates M2 money supply credit spreads yield curve corporate debt defaults [current month year]`
+
+**Search 4 — Commodities & Trend:**
+`[TICKER] 200 day moving average trend commodity input costs dollar DXY supply chain [current year]`
+
+Run all 4 simultaneously. Do NOT run additional searches unless a critical data point is completely missing.
 
 ---
 
@@ -39,31 +43,63 @@ Rumble log lives at: `~/Desktop/CLAUDE CODE/royal-rumble/notes/rumble-log.md`
 
 **Execution sequence:**
 
-1. Announce the rumble:
+1. Read `skills/RUMBLE-ENGINE.md` (ONE read — all legends + judge in one file)
+
+2. Run 3 web searches IN PARALLEL (see DATA COLLECTION above)
+
+3. Announce the rumble:
 ```
 ⚔️  ROYAL RUMBLE — [TICKER]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-8 legends. 8 pillars. One championship ruling.
+12 legends. 12 pillars. One championship ruling.
 Context: [user context or "None"]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-2. Call each legend IN ORDER. For each:
-   - Read their SKILL.md
+4. Run each legend IN ORDER using their framework from RUMBLE-ENGINE.md:
    - Become that agent completely
    - Run their Stage 1 PILLAR ANALYSIS for the ticker
    - Output their full analysis with their formatted header
    - Extract and display their PILLAR STANCE clearly
 
-Order: .tomlee → .cathiewood → .druckenmiller → .dalio → .klarman → .simons → .soros → .voldesk
+Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simons → Soros → Vol Desk → Howard Marks → Trend Follower → Ackman → Rogers
 
-3. After all 8 complete, call .judge:
-   - Read skills/judge/SKILL.md
-   - Collect all 8 stances and analyses
-   - Run the full Championship Verdict calculation
+5. After all 12 complete, output the **RUMBLE SCORECARD** — a summary table so the user can digest all 12 at a glance BEFORE the Judge speaks:
+
+```
+📊 RUMBLE SCORECARD — [TICKER]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+| Legend | Wt | Stance | Thesis | Key Data | Risk |
+|---|---|---|---|---|---|
+| 👑 Tom Lee | 12% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🚀 Cathie Wood | 13% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| ⚡ Druckenmiller | 18% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| ⚖️ Dalio | 10% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🏛️ Klarman | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 📐 Simons | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🌀 Soros | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🎯 Vol Desk | 3% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 📚 Marks | 8% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 📈 Trend | 7% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🔱 Ackman | 5% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+| 🌍 Rogers | 3% | [stance] | [**bold key insight**] | [one number] | [one line or —] |
+
+BULL: [X/12]  |  NEUTRAL: [X/12]  |  BEAR: [X/12]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Field rules:**
+- **Thesis:** The single most compelling point from their analysis. Extract the ONE thing that drives their stance. **Bold** the key phrase. Keep short.
+- **Key Data:** The single most important number supporting their argument (e.g., "IV Rank 12th %ile", "FCF $96.7B", "+73% 12mo return")
+- **Risk:** The biggest concern they raised, or "—" if none. One line max.
+
+6. After the scorecard, run the Judge:
+   - Collect all 12 stances and analyses
+   - Run the full Championship Verdict calculation (Steps 1-8 from RUMBLE-ENGINE.md)
    - Output the full verdict with scorecard, weighted score, conviction, sizing, bull/bear cases, key risk, and championship ruling
 
-4. Log to notes/rumble-log.md:
+7. Log to notes/rumble-log.md:
 ```
 ## [DATE] — [TICKER]
 Context: [context]
@@ -72,7 +108,7 @@ Conviction: [result]
 Weighted Score: [score]
 ```
 
-5. Close with:
+8. Close with:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RUMBLE COMPLETE — [TICKER]
@@ -87,7 +123,7 @@ Example: .challenge klarman I think the FCF story is stronger than you gave cred
 
 **Trigger:** `.challenge [legend_name] [your argument]`
 
-Accepted names: tomlee, cathiewood, druckenmiller, dalio, klarman, simons, soros, voldesk
+Accepted names: tomlee, cathiewood, druckenmiller, dalio, klarman, simons, soros, voldesk, marks, trend, ackman, rogers
 
 **Execution sequence:**
 
@@ -99,21 +135,21 @@ Your argument: [user's argument]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
 
-2. Read the challenged legend's SKILL.md
+2. If RUMBLE-ENGINE.md is not already in context, read it. Otherwise use existing context.
 
 3. Provide the legend with:
    - Their original Stage 1 analysis (from this session)
    - The user's challenge argument
    - The Judge's pillar score for them
 
-4. Run the legend's STAGE 2 DEFEND MODE
+4. Run the legend's STAGE 2 DEFEND MODE per their defend rules in RUMBLE-ENGINE.md
 
 5. Parse the FINAL POSITION from their response:
    - STANCE MAINTAINED → no change to weighted score
    - PARTIALLY REVISED → move their stance halfway toward challenged direction
    - CONCEDED → fully flip their stance
 
-6. If stance changed, re-run .judge's Stage 2 RE-SCORING:
+6. If stance changed, re-run the Judge's Stage 2 RE-SCORING:
 ```
 ⚖️  VERDICT UPDATE
 ━━━━━━━━━━━━━━━━━━
@@ -137,17 +173,21 @@ Show:
 ```
 ⚔️  ROYAL RUMBLE HEDGE FUND SYSTEM
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-8 Legends. 8 Pillars. One Championship Ruling.
+12 Legends. 12 Pillars. One Championship Ruling.
 
 THE LEGENDS:
-  👑 Tom Lee          — Liquidity & Macro Regime       (15%)
-  🚀 Cathie Wood      — Disruptive Innovation          (15%)
-  ⚡ Druckenmiller    — Tactical Macro & Timing        (20%) ← highest weight
-  ⚖️  Ray Dalio        — Risk & Portfolio Construction  (15%)
-  🏛️  Seth Klarman     — Deep Value & Margin of Safety  (10%)
-  📐 Jim Simons       — Quantitative & Data Edge       (10%)
-  🌀 George Soros     — Sentiment & Narrative          (10%)
-  🎯 The Vol Desk     — Options & Volatility           (5%)
+  👑 Tom Lee          — Liquidity & Macro Regime       (12%)
+  🚀 Cathie Wood      — Disruptive Innovation          (13%)
+  ⚡ Druckenmiller    — Tactical Macro & Timing        (18%) ← highest weight
+  ⚖️  Ray Dalio        — Risk & Portfolio Construction  (10%)
+  🏛️  Seth Klarman     — Deep Value & Margin of Safety  (7%)
+  📐 Jim Simons       — Quantitative & Data Edge       (7%)
+  🌀 George Soros     — Sentiment & Narrative          (7%)
+  🎯 The Vol Desk     — Options & Volatility           (3%)
+  📚 Howard Marks     — Credit & Risk Cycles           (8%)
+  📈 Trend Follower   — Pure Price Trend               (7%)
+  🔱 Bill Ackman      — Activist & Catalyst            (5%)
+  🌍 Jim Rogers       — Global Macro & Commodities     (3%)
 
 COMMANDS:
   .rumble NVDA                          → Start full rumble
@@ -163,12 +203,14 @@ COMMANDS:
 
 ## IMPORTANT RULES
 
-1. **Each legend stays in their lane** — Tom Lee does not comment on valuation. Klarman does not comment on timing. The judge enforces this.
+1. **Each legend stays in their lane** — Tom Lee does not comment on valuation. Klarman does not comment on timing. The Trend Follower does not comment on fundamentals. The judge enforces this.
 
-2. **Druckenmiller has the highest weight (20%)** — if he is bearish on TIMING, the conviction drops one full level regardless of what others say. He is the timing master.
+2. **Druckenmiller has the highest weight (18%)** — if he is bearish on TIMING, the conviction drops one full level regardless of what others say. He is the timing master.
 
 3. **Stage 2 is optional** — the user chooses if and who to challenge. They can challenge multiple legends sequentially.
 
 4. **The Judge's verdict is final** — after each Stage 2 round, the Judge re-scores only if a stance changed. If maintained, original verdict stands.
 
-5. **Always read the SKILL.md for each agent before embodying them** — do not rely on your own memory of who they are. The skill files encode the authentic frameworks.
+5. **Read RUMBLE-ENGINE.md ONCE per rumble** — it contains all frameworks. Do NOT read individual legend SKILL.md files. The consolidated file is the source of truth.
+
+6. **4 searches max** — run them in parallel at rumble start. Do not add more unless a critical data point is completely absent.

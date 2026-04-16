@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NVDA Scorecard</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #181b22;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    color: #c8cad0;
+    padding: 48px;
+    -webkit-font-smoothing: antialiased;
+  }
+  .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 32px;
+  }
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@200;300&display=swap');
+  .top h1 {
+    font-family: 'Inter', 'Helvetica Neue', sans-serif;
+    font-size: 36px;
+    font-weight: 200;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    color: #d4c478;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.6), 0 0 40px rgba(212,196,120,0.06);
+  }
+  .top .date {
+    font-size: 11px;
+    color: #5a5e68;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  th {
+    text-align: left;
+    font-size: 9px;
+    font-weight: 500;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: #5a5e68;
+    padding: 0 16px 10px 0;
+    border-bottom: 1px solid #3a3e48;
+  }
+  td {
+    padding: 14px 16px 14px 0;
+    border-bottom: 1px solid #2e3340;
+    vertical-align: top;
+    line-height: 1.5;
+    background: #1e2230;
+  }
+  tr:last-child td { border-bottom: 1px solid #3a3e48; }
+  .name { font-weight: 600; white-space: nowrap; color: #e8eaed; }
+  .wt { color: #5a5e68; font-size: 11px; }
+  .bull { color: #4fae6e; font-weight: 600; }
+  .bear { color: #d45555; font-weight: 600; }
+  .neutral { color: #7a7e88; font-weight: 600; }
+  .thesis { color: #999ca4; }
+  .thesis strong { color: #e8eaed; font-weight: 600; }
+  .data {
+    font-family: 'SF Mono', Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: #e8eaed;
+    white-space: nowrap;
+  }
+  .risk {
+    color: #5a5e68;
+    font-size: 11px;
+  }
+  .summary {
+    margin-top: 16px;
+    font-size: 11px;
+    color: #5a5e68;
+    letter-spacing: 1px;
+  }
+  .summary span { margin-right: 24px; }
+  .summary .b { color: #4fae6e; }
+  .summary .n { color: #7a7e88; }
+  .summary .r { color: #d45555; }
+</style>
+</head>
+<body>
+
+<div class="top">
+  <h1>NVDA</h1>
+  <span class="date">Apr 15 2026 &middot; $195.88</span>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Manager</th>
+      <th></th>
+      <th>Stance</th>
+      <th>Thesis</th>
+      <th>Key Data</th>
+      <th>Risk</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td class="name">Tom Lee</td>
+      <td class="wt">15%</td>
+      <td class="bull">Bull</td>
+      <td class="thesis"><strong>Fed on hold</strong> + tight spreads, full liquidity support</td>
+      <td class="data">M2 ~4% YoY</td>
+      <td class="risk">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="name">Cathie Wood</td>
+      <td class="wt">15%</td>
+      <td class="bull">Bull</td>
+      <td class="thesis"><strong>CUDA moat</strong>, 4-platform convergence, early S-curve</td>
+      <td class="data">$15&ndash;20T TAM</td>
+      <td class="risk">&mdash;</td>
+    </tr>
+    <tr>
+      <td class="name">Druckenmiller</td>
+      <td class="wt">20%</td>
+      <td class="neutral">Neutral</td>
+      <td class="thesis">4/5 green, <strong>asymmetry 1:2</strong> after 19% rip</td>
+      <td class="data">8% up / 16% dn</td>
+      <td class="risk">Chasing vertical</td>
+    </tr>
+    <tr>
+      <td class="name">Ray Dalio</td>
+      <td class="wt">15%</td>
+      <td class="neutral">Neutral</td>
+      <td class="thesis">Mid-late cycle, <strong>max correlated</strong> to growth/tech/AI</td>
+      <td class="data">15&ndash;20% DD prob</td>
+      <td class="risk">Factor crowding</td>
+    </tr>
+    <tr>
+      <td class="name">Seth Klarman</td>
+      <td class="wt">10%</td>
+      <td class="bear">Bear</td>
+      <td class="thesis"><strong>No margin of safety</strong>, 5x EPV, needs perfection</td>
+      <td class="data">EPV $39/sh</td>
+      <td class="risk">Neg. FCF growth</td>
+    </tr>
+    <tr>
+      <td class="name">Jim Simons</td>
+      <td class="wt">10%</td>
+      <td class="bull">Bull</td>
+      <td class="thesis"><strong>All signals aligned</strong>, momentum + PEAD + flow</td>
+      <td class="data">+73% 12mo</td>
+      <td class="risk">Mean reversion</td>
+    </tr>
+    <tr>
+      <td class="name">George Soros</td>
+      <td class="wt">10%</td>
+      <td class="neutral">Neutral</td>
+      <td class="thesis">Late <strong>Phase 3</strong> reflexivity, crowd one-sided</td>
+      <td class="data">41 buy / 1 sell</td>
+      <td class="risk">Narrative flip</td>
+    </tr>
+    <tr>
+      <td class="name">Vol Desk</td>
+      <td class="wt">5%</td>
+      <td class="neutral">Neutral</td>
+      <td class="thesis"><strong>Options cheap</strong>, buy-vol environment</td>
+      <td class="data">IV Rank 12th</td>
+      <td class="risk">Low hedge cushion</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="summary">
+  <span class="b">Bull 3</span>
+  <span class="n">Neutral 4</span>
+  <span class="r">Bear 1</span>
+</div>
+
+</body>
+</html>
