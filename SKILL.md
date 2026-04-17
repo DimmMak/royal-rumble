@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 1.5.0
+version: 0.5.0
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -82,7 +82,7 @@ Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simon
 📊 RUMBLE SCORECARD — [TICKER]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-VOTING LEGENDS (v1.0 weights — determine the score):
+VOTING LEGENDS (base weights — determine the score):
 | Legend | Wt | Stance | Thesis | Flip If |
 |---|---|---|---|---|
 | ⚡ Druck | 20% | [stance] | [**bold key insight**] | [flip condition] |
@@ -115,7 +115,7 @@ ADVISORY DISSENT: [X/5 disagree — flag if 3+]
 6. After the scorecard, run the Judge:
    - Collect all 13 stances, convictions, and analyses
    - Run the full Championship Verdict calculation (Steps 0-12 from RUMBLE-ENGINE.md)
-   - v1.0 weights for voting legends, advisory legends reported separately
+   - base weights for voting legends, advisory legends reported separately
    - Includes: sector adjustments (with floor), abstentions, conviction-weighted scoring, dual timeframe verdicts, conflict map, contrarian anchor, and championship ruling
 
 7. Log to notes/rumble-log.md:
@@ -246,7 +246,7 @@ Show:
 13 Legends. 13 Pillars. One Championship Ruling.
 
 THE LEGENDS:
-  VOTING (v1.0 weights):
+  VOTING (base weights):
   ⚡ Druckenmiller    — Tactical Macro & Timing        (20%) ← highest weight
   👑 Tom Lee          — Liquidity & Macro Regime       (15%)
   🚀 Cathie Wood      — Disruptive Innovation          (15%)

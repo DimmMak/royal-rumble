@@ -9,7 +9,7 @@
 
 ---
 
-## 📊 Current state (as of 2026-04-17, v1.5.0)
+## 📊 Current state (as of 2026-04-17, v0.5.0)
 
 - 13 legends (8 voting + 5 advisory) + Judge with Fabrication Guard
 - Cite-or-Abstain rule enforced in PRE-STEP + Stage 2
@@ -86,7 +86,7 @@ System is correct in structure. Next frontier: **calibration**.
 ## 🥉 TIER 3 — Hedge-fund-grade (3-6 months, earn each one)
 
 ### T3.1 — Backtesting
-**What:** Replay rumble logic on historical price + macro data. "What would v1.5 have said about NVDA in Jan 2023?"
+**What:** Replay rumble logic on historical price + macro data. "What would v0.5 have said about NVDA in Jan 2023?"
 **Why:** Validates that the framework works across regimes (bull markets, bear markets, rate cycles).
 **Trigger:** Accuracy tracker shows genuine signal (not random). ~3 months of live data.
 **Cost:** LARGE. Requires historical data pipeline. Don't build before earning.
@@ -148,7 +148,7 @@ Custom ML models trained on rumble outcomes (premature)
 
 ## 📜 ROADMAP CHANGELOG
 
-### 2026-04-17 — Initial roadmap (post-v1.5.0)
+### 2026-04-17 — Initial roadmap (post-v0.5.0)
 - 4-tier structure established
 - T1: calibration phase (4 items) — next 2-4 weeks
 - T2: 5 items gated by outcome data
@@ -163,7 +163,7 @@ Custom ML models trained on rumble outcomes (premature)
 1. **Earn your features** — no item ships until pain is real
 2. **Measure before building** — outcome data gates most upgrades
 3. **Risk × Reward matrix on every item** — matches the pinned principle
-4. **Tier-list + T1-only ship** — the discipline that got us to v1.5
+4. **Tier-list + T1-only ship** — the discipline that got us to v0.5
 5. **Future-proof by default** — every item must survive 12 months of drift
 6. **Stress test every 2-3 rumbles** — not every change; avoid paralysis
 7. **Retire what doesn't earn** — advisory legends graduate or die based on data

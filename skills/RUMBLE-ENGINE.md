@@ -1,6 +1,6 @@
 # RUMBLE ENGINE — All Legends + Judge (Consolidated)
 
-<!-- version: 1.5.0 -->
+<!-- version: 0.5.0 (pre-alpha — will hit 1.0 after 50+ calibrated rumbles) -->
 <!-- last-updated: 2026-04-17 -->
 <!-- CHANGELOG pointer: ../CHANGELOG.md. Bump `version:` on every material logic change. -->
 
@@ -19,7 +19,7 @@ This single file contains all 13 legend frameworks + the Judge (including Fabric
 4. **Yield curve (2s10s)** — un-inversion is the danger signal, not the inversion itself
 5. **Repo/Reverse Repo flows** — RRP draining = liquidity entering = bullish.
 
-**Data-gap rule (v1.4):** If 2+ of the 5 indicators were NOT returned by the 5 rumble searches, Tom Lee MUST declare:
+**Data-gap rule (added v0.4):** If 2+ of the 5 indicators were NOT returned by the 5 rumble searches, Tom Lee MUST declare:
 - PILLAR STANCE: NEUTRAL (or ABSTAIN if 3+ missing)
 - Note: "⚠️ Insufficient liquidity data — [list missing indicators]. Directional read only; do not act on this pillar."
 - DO NOT fabricate confident prints like "M2 growing at 4% YoY" when no release was cited.
@@ -734,17 +734,17 @@ COMPOUNDING VERDICT: [one punchy sentence]
 
 ## VOTING vs ADVISORY LEGENDS
 
-**VOTING LEGENDS (determine the weighted score) — v1.0 original weights restored:**
+**VOTING LEGENDS (determine the weighted score) — base original weights restored:**
 | Legend | Weight | Timeframe | Status |
 |---|---|---|---|
-| Druckenmiller | **20%** | SHORT | VOTING — original v1.0 |
-| Tom Lee | 15% | SHORT | VOTING — original v1.0 |
-| Cathie Wood | 15% | LONG | VOTING — original v1.0 |
-| Dalio | 15% | LONG | VOTING — original v1.0 |
-| Klarman | 10% | LONG | VOTING — original v1.0 |
-| Simons | 10% | SHORT | VOTING — original v1.0 |
-| Soros | 10% | SHORT | VOTING — original v1.0 |
-| Vol Desk | 5% | SHORT | VOTING — original v1.0 |
+| Druckenmiller | **20%** | SHORT | VOTING — base |
+| Tom Lee | 15% | SHORT | VOTING — base |
+| Cathie Wood | 15% | LONG | VOTING — base |
+| Dalio | 15% | LONG | VOTING — base |
+| Klarman | 10% | LONG | VOTING — base |
+| Simons | 10% | SHORT | VOTING — base |
+| Soros | 10% | SHORT | VOTING — base |
+| Vol Desk | 5% | SHORT | VOTING — base |
 
 **ADVISORY LEGENDS (shown in scorecard and analysis, but do NOT vote in the weighted score):**
 | Legend | Status | Why Advisory |
@@ -773,7 +773,7 @@ Before ANY synthesis steps, scan every legend's Stage 1 analysis for claims that
 
 ### What triggers a flag
 
-**Original pattern library (v1.2):**
+**Original pattern library (v0.2):**
 - **Specific quotes** attributed to real people ("Musk said...") without source confirmation
 - **Precise statistical correlations** (e.g., "r=0.72") invoked stylistically
 - **Exact dollar figures** for non-public data (internal margins, cost per unit)
@@ -782,7 +782,7 @@ Before ANY synthesis steps, scan every legend's Stage 1 analysis for claims that
 - **Claims about private conversations** or unreported board discussions
 - **Specific market share percentages** without a cited source
 
-**Expanded pattern library (v1.4 — closes real fabrication vectors):**
+**Expanded pattern library (v0.4 — closes real fabrication vectors):**
 - **Analyst price targets** without a cited analyst name or aggregator — e.g., "$220 consensus target" with no source
 - **Moving averages / technical levels** not returned in searches — e.g., "200-day MA at $165" when no technical data was pulled
 - **Macro prints** without a cited release — e.g., "M2 growing at 4% YoY", "IG spreads at 95 bps", "RRP draining to $180B" when no macro data surfaced
@@ -824,7 +824,7 @@ If no flags: `🛡️ FABRICATION GUARD: CLEAN — all claims appear sourced.`
 
 ---
 
-## CITE-OR-ABSTAIN RULE (v1.4) 📎
+## CITE-OR-ABSTAIN RULE (v0.4) 📎
 
 **Every specific number in a legend analysis MUST be one of:**
 
@@ -956,7 +956,7 @@ The rubric scores DISCIPLINE and EVIDENCE — not whether the conclusion is "rig
 
 **Formula: `stance_value x weight` — nothing else. No conviction modifier. No dampening. Each legend's vote counts at full weight.**
 
-The 5-point stance scale (STRONG BULL to STRONG BEAR) already captures conviction through stance intensity. Having a separate conviction modifier on top was double-counting and created a hidden channel for weight suppression. Removed in v3.3.
+The 5-point stance scale (STRONG BULL to STRONG BEAR) already captures conviction through stance intensity. Having a separate conviction modifier on top was double-counting and created a hidden channel for weight suppression. Removed early in development.
 
 **COMBINED SCORE (voting legends only):**
 `combined_score = sum(stance_value x weight)` for the 8 voting legends only.
@@ -984,11 +984,11 @@ Apply to EACH of the three scores (combined, short-term, long-term):
 | -0.6 to -0.2 | SELL |
 | -1.0 to -0.6 | STRONG SELL |
 
-Note: v1.0 conviction ranges restored. The tightened ranges from v3.0 were untested.
+Note: base conviction ranges used. Tightened ranges from historical experiments were untested.
 
 ---
 
-## STEP 6 — OVERRIDE RULES (v1.0 core rules restored + flags from advisory)
+## STEP 6 — OVERRIDE RULES (base core rules + flags from advisory)
 
 **Core overrides (voting legends only):**
 - Druckenmiller STRONG BEAR -> drop one conviction level
@@ -1072,7 +1072,7 @@ The SINGLE most important risk that could invalidate the entire thesis regardles
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 TICKER: [TICKER]
-SECTOR ADJUSTMENTS: [list any weight adjustments applied, or "none — v1.0 base weights used"]
+SECTOR ADJUSTMENTS: [list any weight adjustments applied, or "none — base weights used"]
 MINIMUM WEIGHT FLOOR: [any legends hit the 50% floor? list them, or "none"]
 
 VOTING LEGENDS (determine the score):

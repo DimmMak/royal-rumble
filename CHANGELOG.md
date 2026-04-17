@@ -1,10 +1,12 @@
 # CHANGELOG — Royal Rumble Hedge Fund System
 
+> **🔬 Pre-alpha notice:** All current versions are `<1.0` — system is in calibration phase. `v1.0.0` will be declared only after 50+ rumbles with measured outcome accuracy (per ROADMAP.md). Historical CHANGELOG entries below pre-date this rebrand; their original `v1.x` / `v3.x` labels are preserved as artifacts of the build timeline but the CURRENT system is `v0.5.0`.
+
 ---
 
-## [2026-04-17] — v1.5.0 — Consistency Pass
+## [2026-04-17] — v0.5.0 — Consistency Pass
 
-**Trigger:** 2-round stress test on v1.4.0 surfaced 4 inconsistencies. All T1 (low/no risk, active bugs). Shipped together.
+**Trigger:** 2-round stress test on v0.4.0 surfaced 4 inconsistencies. All T1 (low/no risk, active bugs). Shipped together.
 
 ### Shipped (4 T1 items)
 
@@ -14,11 +16,11 @@
 - All references now say 5, with explicit pointer to S1-S5 naming.
 
 **R2.1 — Cleaned README file structure**
-- Removed stale references to 8 individual legend folders + `judge/SKILL.md` (deleted in v1.3).
+- Removed stale references to 8 individual legend folders + `judge/SKILL.md` (deleted in v0.3).
 - Now shows only `RUMBLE-ENGINE.md` with pointer to CHANGELOG for history.
 
 **R2.2 — Updated SKILL.md Rule #8**
-- Was: "Fabrication Guard is active in Judge STAGE 0" (stale; renamed to PRE-STEP in v1.3).
+- Was: "Fabrication Guard is active in Judge STAGE 0" (stale; renamed to PRE-STEP in v0.3).
 - Now: "active in Judge PRE-STEP AND Stage 2 Defend" with pointer to pattern library.
 
 **R2.3 — Explicit Guard invocation in Stage 2 Defend pipeline**
@@ -31,7 +33,7 @@
 
 ---
 
-## [2026-04-17] — v1.4.0 — Cite or Abstain
+## [2026-04-17] — v0.4.0 — Cite or Abstain
 
 **Trigger:** Accuracy stress test on NVDA found Guard catches only ~30% of real fabrication vectors. Core failure modes: analyst price targets, technical levels (200-day MA, Fib), macro prints (M2, credit spreads, RRP), TAM, intrinsic value anchors — all plausibly invented when searches don't surface them. Legends fill gaps instead of abstaining.
 
@@ -51,18 +53,18 @@
 - New rule: if 2+ indicators missing → NEUTRAL (or ABSTAIN if 3+) with a "⚠️ Insufficient liquidity data" note.
 
 ### Deferred to Tier 2
-- AFP1 (per-claim inline source tags everywhere) — heavy formatting burden; revisit after v1.4 proves in practice
+- AFP1 (per-claim inline source tags everywhere) — heavy formatting burden; revisit after v0.4 proves in practice
 - AG5 (extra search budget for Cathie/Klarman) — violates "5 searches max"; wait for pain
-- AC1 (unify fabrication pattern lists) — cleanup; do after v1.4 settles
+- AC1 (unify fabrication pattern lists) — cleanup; do after v0.4 settles
 
 ### Deferred to Tier 3
 - AG3 (standalone fact-ledger file) — overkill; inline tags solve it
 
 ---
 
-## [2026-04-17] — v1.3.0 — Single Engine
+## [2026-04-17] — v0.3.0 — Single Engine
 
-**Trigger:** Second stress test (v1.2.0) surfaced a dual-source-of-truth bug: Fabrication Guard lived ONLY in `skills/judge/SKILL.md`, but rule #5 says "Read RUMBLE-ENGINE.md ONCE. Do NOT read individual legend SKILL.md files." Guard was orphaned — may have silently not run.
+**Trigger:** Second stress test (v0.2.0) surfaced a dual-source-of-truth bug: Fabrication Guard lived ONLY in `skills/judge/SKILL.md`, but rule #5 says "Read RUMBLE-ENGINE.md ONCE. Do NOT read individual legend SKILL.md files." Guard was orphaned — may have silently not run.
 
 ### Shipped (3 Tier 1 items)
 
@@ -77,7 +79,7 @@
 - Kills 2 bugs (orphaned Guard + dual source of truth) in one move.
 
 **FP1 — Version-stamped RUMBLE-ENGINE.md**
-- Added `version: 1.3.0` + `last-updated` + CHANGELOG pointer as HTML comments at top.
+- Added `version: 0.3.0` + `last-updated` + CHANGELOG pointer as HTML comments at top.
 - Parallel to the pattern already on SKILL.md. Now every file that encodes logic carries a traceable version.
 
 ### Deferred to Tier 2
@@ -90,7 +92,7 @@
 
 ---
 
-## [2026-04-17] — v1.2.0 — Tier 1 Conservative Ship (3 items)
+## [2026-04-17] — v0.2.0 — Tier 1 Conservative Ship (3 items)
 
 **Trigger:** Stress test surfaced 7 bugs + 4 consolidations + 6 future-proofing gaps. Tier-listed by risk/reward. Shipping the 3 lowest-risk items now; rest deferred.
 
@@ -102,8 +104,8 @@
 - Remaining in `skills/`: `RUMBLE-ENGINE.md` + `judge/SKILL.md`.
 - Zero risk — files already unused. Eliminates future drift.
 
-**FP #1 — Version-stamped skill (v1.2.0)**
-- Added `version: 1.2.0` field to SKILL.md frontmatter.
+**FP #1 — Version-stamped skill (v0.2.0)**
+- Added `version: 0.2.0` field to SKILL.md frontmatter.
 - Added Rule #10: "Bump on every material logic change and log to CHANGELOG.md."
 - Enables tracing when behavior changed across years of evolution. Nearly free.
 

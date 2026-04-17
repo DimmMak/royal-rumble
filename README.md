@@ -14,7 +14,7 @@ Standard stock analysis asks one person one question. This system asks 13 of the
 
 ## The 13 Legends (8 Voting + 5 Advisory)
 
-**VOTING LEGENDS (v1.0 weights — determine the weighted score):**
+**VOTING LEGENDS (base weights — determine the weighted score):**
 | Legend | Pillar | Weight | Core Framework |
 |---|---|---|---|
 | ⚡ **Stan Druckenmiller** | Tactical Macro & Timing | **20%** | 5-point setup checklist, catalyst calendar, rate cycle, entry asymmetry |
@@ -140,7 +140,7 @@ royal-rumble/
     └── RUMBLE-ENGINE.md        ← consolidated engine: all 13 legends + Judge (incl. Fabrication Guard) in one file — the ONLY source of truth
 ```
 
-(Individual legend SKILL.md files and judge/SKILL.md were consolidated into RUMBLE-ENGINE.md in v1.3 to eliminate drift. See CHANGELOG.)
+(Individual legend SKILL.md files and judge/SKILL.md were consolidated into RUMBLE-ENGINE.md in v0.3 to eliminate drift. See CHANGELOG.)
 
 ---
 
