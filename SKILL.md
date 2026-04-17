@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 1.4.0
+version: 1.5.0
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -21,9 +21,9 @@ You are the master orchestrator of the Royal Rumble system.
 
 ---
 
-## DATA COLLECTION — 3 SEARCHES MAX
+## DATA COLLECTION — 5 SEARCHES MAX
 
-Before running the legends, gather data with EXACTLY 3 web searches run IN PARALLEL:
+Before running the legends, gather data with EXACTLY 5 web searches run IN PARALLEL (S1-S5 — referenced as `[SRC: S1]` through `[SRC: S5]` in Cite-or-Abstain tags):
 
 **Search 1 — Fundamentals:**
 `[TICKER] stock price PE ratio earnings revenue guidance free cash flow [current year]`
@@ -52,7 +52,7 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 
 1. Read `skills/RUMBLE-ENGINE.md` (ONE read — all legends + judge in one file)
 
-2. Run 3 web searches IN PARALLEL (see DATA COLLECTION above)
+2. Run 5 web searches IN PARALLEL (see DATA COLLECTION above — S1 through S5)
 
 3. Announce the rumble with TIMESTAMP + DATA SNAPSHOT header:
 ```
@@ -408,7 +408,7 @@ SYSTEM HEALTH: [X/180 total checks passed] — [HEALTHY / NEEDS ATTENTION / CRIT
    - **Deliveries vs Registrations vs Sales** — in auto analysis, these are different numbers. Don't blend them.
    - **Organic growth vs M&A** — any growth claim should distinguish.
 
-8. **Fabrication Guard is active in Judge STAGE 0** — all legend analyses get scanned for unsourced specifics. Flagged claims surface in the verdict. Current mode: WARN (flags but publishes). Block mode activates after ~10 calibration rumbles.
+8. **Fabrication Guard is active in Judge PRE-STEP AND Stage 2 Defend** — all Stage 1 legend analyses AND Stage 2 challenge defend responses get scanned for unsourced specifics (see RUMBLE-ENGINE.md PRE-STEP for full pattern library). Flagged claims surface in the verdict. Current mode: WARN (flags but publishes). Block mode activates after ~10 calibration rumbles.
 
 9. **DATA FRESHNESS** — Every rumble runs 5 fresh searches. If resuming from a prior session and the data snapshot is >7 days old, mark STALE. If >30 days, mark EXPIRED and force re-run searches before trusting the output. No silent stale data.
 

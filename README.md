@@ -137,17 +137,10 @@ royal-rumble/
 ├── notes/
 │   └── rumble-log.md           ← history of every rumble
 └── skills/
-    ├── RUMBLE-ENGINE.md        ← consolidated engine: all 8 legends + Judge in one file (token-optimized)
-    ├── tomlee/SKILL.md         ← Tom Lee: Liquidity & Macro Regime (original, kept as backup)
-    ├── cathiewood/SKILL.md     ← Cathie Wood: Disruptive Innovation
-    ├── druckenmiller/SKILL.md  ← Druckenmiller: Tactical Macro & Timing
-    ├── dalio/SKILL.md          ← Ray Dalio: Risk & Portfolio Construction
-    ├── klarman/SKILL.md        ← Seth Klarman: Deep Value & Margin of Safety
-    ├── simons/SKILL.md         ← Jim Simons: Quantitative & Data Edge
-    ├── soros/SKILL.md          ← George Soros: Sentiment & Narrative
-    ├── voldesk/SKILL.md        ← The Vol Desk: Options & Volatility
-    └── judge/SKILL.md          ← The Judge: Championship Verdict
+    └── RUMBLE-ENGINE.md        ← consolidated engine: all 13 legends + Judge (incl. Fabrication Guard) in one file — the ONLY source of truth
 ```
+
+(Individual legend SKILL.md files and judge/SKILL.md were consolidated into RUMBLE-ENGINE.md in v1.3 to eliminate drift. See CHANGELOG.)
 
 ---
 

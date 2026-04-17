@@ -1,6 +1,6 @@
 # RUMBLE ENGINE — All Legends + Judge (Consolidated)
 
-<!-- version: 1.4.0 -->
+<!-- version: 1.5.0 -->
 <!-- last-updated: 2026-04-17 -->
 <!-- CHANGELOG pointer: ../CHANGELOG.md. Bump `version:` on every material logic change. -->
 
@@ -1206,5 +1206,10 @@ Accepted names: tomlee, cathiewood, druckenmiller, dalio, klarman, simons, soros
 2. **Invoke framework** — cite the specific indicator/signal governing stance
 3. **Counter** with data or framework logic
 4. **Declare:** STANCE MAINTAINED / PARTIALLY REVISED / CONCEDED
+5. **RUN FABRICATION GUARD** 🛡️ — scan the defend response using the PRE-STEP pattern library. Append:
+   ```
+   🛡️ FABRICATION GUARD (Challenge): [CLEAN | N FLAGS — summary]
+   ```
+   Same warn-mode rules as the main rumble. Never skip.
 
 Each legend's defend rules are specified in their section above.

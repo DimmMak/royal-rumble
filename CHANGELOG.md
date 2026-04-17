@@ -2,6 +2,35 @@
 
 ---
 
+## [2026-04-17] — v1.5.0 — Consistency Pass
+
+**Trigger:** 2-round stress test on v1.4.0 surfaced 4 inconsistencies. All T1 (low/no risk, active bugs). Shipped together.
+
+### Shipped (4 T1 items)
+
+**R1.1 — Fixed search count contradiction** 🔴 HIGH
+- SKILL.md had "3 SEARCHES MAX" / "EXACTLY 3" / "Run 3 web searches" in 3 places, but 5 searches are defined and Rule #6 says "5 searches max."
+- Cite-or-Abstain tags `[SRC: S1]`-`[SRC: S5]` would have broken if legends followed the "3" instruction.
+- All references now say 5, with explicit pointer to S1-S5 naming.
+
+**R2.1 — Cleaned README file structure**
+- Removed stale references to 8 individual legend folders + `judge/SKILL.md` (deleted in v1.3).
+- Now shows only `RUMBLE-ENGINE.md` with pointer to CHANGELOG for history.
+
+**R2.2 — Updated SKILL.md Rule #8**
+- Was: "Fabrication Guard is active in Judge STAGE 0" (stale; renamed to PRE-STEP in v1.3).
+- Now: "active in Judge PRE-STEP AND Stage 2 Defend" with pointer to pattern library.
+
+**R2.3 — Explicit Guard invocation in Stage 2 Defend pipeline**
+- PRE-STEP policy said "runs on EVERY challenge defend response," but the Stage 2 Defend Mode steps (1-4) never invoked it.
+- Added Step 5: "RUN FABRICATION GUARD" with explicit scan + output format.
+- Closes silent-skip risk — policy now enforced, not just stated.
+
+### Deferred to Tier 2
+- R2.4 (resolve `royal-rumble-orchestrator.md` status) — minor drift source, wait for real confusion.
+
+---
+
 ## [2026-04-17] — v1.4.0 — Cite or Abstain
 
 **Trigger:** Accuracy stress test on NVDA found Guard catches only ~30% of real fabrication vectors. Core failure modes: analyst price targets, technical levels (200-day MA, Fib), macro prints (M2, credit spreads, RRP), TAM, intrinsic value anchors — all plausibly invented when searches don't surface them. Legends fill gaps instead of abstaining.
