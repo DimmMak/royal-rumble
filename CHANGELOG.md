@@ -4,6 +4,35 @@
 
 ---
 
+## [2026-04-17] — v0.7.1 — First-Flight Fix
+
+**Trigger:** Pre-flight stress test on v0.7.0 found 4 critical bugs that would break the first real blind rumble. All T1. Fixed before any live run.
+
+### Shipped
+
+**B1 — Date injection**
+Child spawns fresh with no session context → didn't know today's date. Fix: parent interpolates `[TODAY_YYYY-MM-DD]` and `[TODAY_YYYY]` into sealed prompt. Child uses these verbatim for searches, freshness tag, rumble header.
+
+**B2 — Agent-tool fallback path**
+If Agent tool unavailable or spawn fails, skill used to silently break. Fix: fallback runs single-context with `⚠️ CONTAMINATED MODE` warning banner. Predictions logged with `"mode": "contaminated"` so accuracy tracker can filter them out.
+
+**B3 — Child's tool manifest**
+Sealed prompt now explicitly lists tools child should use (WebSearch, Read, Grep, Bash) and forbids Write/Edit. Prevents silent failure if child doesn't know what's available.
+
+**B4 — Structured footer contract**
+Child's verdict is verbose prose → parent couldn't reliably parse stances/scores for predictions.json. Fix: child MUST append a `---STRUCTURED-FOOTER-BEGIN---` / `---STRUCTURED-FOOTER-END---` code-fenced JSON block at the end. Parent extracts JSON mechanically, no regex gymnastics.
+
+### Deferred to Tier 2 (watch after first rumble)
+- B5: Challenge Stage 2 still single-context (by design — conversational)
+- B6: Token-limit risk on large 13-legend output
+- B7: Child unauthorized Write/Edit (now forbidden in prompt)
+- B8: In-session hypothesis persistence (rare edge case)
+
+### Ready for first real rumble
+v0.7.1 is the first version that should be trusted with a live `.rumble TSLA` call. Blind committee architecture + date injection + structured footer + fallback path = no known pre-flight bugs.
+
+---
+
 ## [2026-04-17] — v0.7.0 — Blind Committee (Subagent Isolation) 🔒
 
 **Trigger:** User caught the v0.6.0 bias bug: hypothesis captured in the same session context as the legends would contaminate their role-play. No amount of "please ignore this" instructions could solve it — the LLM reads the whole context when playing each legend. Fix requires physical isolation.

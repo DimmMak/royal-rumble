@@ -1,6 +1,6 @@
 # RUMBLE ENGINE — All Legends + Judge (Consolidated)
 
-<!-- version: 0.7.0 (pre-alpha — will hit 1.0 after 50+ calibrated rumbles) -->
+<!-- version: 0.7.1 (pre-alpha — will hit 1.0 after 50+ calibrated rumbles) -->
 <!-- last-updated: 2026-04-17 -->
 <!-- CHANGELOG pointer: ../CHANGELOG.md. Bump `version:` on every material logic change. -->
 

@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 0.7.0
+version: 0.7.1
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -86,17 +86,26 @@ Reply with your hypothesis, or "skip" to rumble without pre-registration.
 
 Use the Agent tool with `subagent_type: "general-purpose"`. The prompt MUST NOT reference the user's hypothesis in any form.
 
-**Subagent prompt template (paste verbatim, fill `[TICKER]` and `[CONTEXT]`):**
+**Subagent prompt template (paste verbatim, fill in `[TICKER]`, `[CONTEXT]`, and `[TODAY_YYYY-MM-DD]` before sending — parent MUST inject the actual current date, child does NOT have parent's session context):**
 
 ```
 You are the Royal Rumble research committee orchestrator. Produce a full 13-legend + Judge analysis for a single ticker.
 
 TICKER: [TICKER]
 CONTEXT: [CONTEXT or "None"]
+TODAY'S DATE: [TODAY_YYYY-MM-DD]    ← use this for all time-sensitive logic (searches, freshness tag, rumble header, timestamps)
+CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
+
+🛠️ TOOLS YOU WILL USE:
+- WebSearch — for S1 through S5 (run IN PARALLEL in one message)
+- Read — to load RUMBLE-ENGINE.md
+- Grep (optional) — to find specific legend sections in RUMBLE-ENGINE.md
+- Bash (optional) — for simple date/arithmetic if needed
+DO NOT use Write or Edit. Parent session handles all logging.
 
 STEP A — Read `/Users/danny/Desktop/CLAUDE CODE/royal-rumble/skills/RUMBLE-ENGINE.md` ONCE. This file contains all 13 legend frameworks + the Judge with Fabrication Guard.
 
-STEP B — Run EXACTLY 5 web searches IN PARALLEL (referenced as S1-S5 in Cite-or-Abstain tags):
+STEP B — Run EXACTLY 5 web searches IN PARALLEL (referenced as S1-S5 in Cite-or-Abstain tags). Use [CURRENT YEAR] verbatim in queries:
   S1 — Fundamentals: "[TICKER] stock price PE ratio earnings revenue guidance free cash flow [current year]"
   S2 — Quant/Vol/Technical: "[TICKER] options implied volatility IV rank momentum technical analysis analyst price targets [current year]"
   S3 — Macro & Credit: "Fed interest rates M2 money supply credit spreads yield curve corporate debt defaults [current month year]"
@@ -131,6 +140,52 @@ STEP G — Produce the full OUTPUT FORMAT block per RUMBLE-ENGINE.md (verdict ta
 
 Return the COMPLETE output — announce header + 13 legend analyses + scorecard + full Judge verdict — verbatim to the parent session. Do NOT add preamble, do NOT ask clarifying questions, do NOT editorialize. Just run the rumble and return it.
 
+STEP H — STRUCTURED FOOTER (mandatory). After the championship ruling, append a code-fenced JSON block EXACTLY matching this shape so the parent can parse it mechanically. This is the contract — non-negotiable format:
+
+```json
+---STRUCTURED-FOOTER-BEGIN---
+{
+  "ticker": "[TICKER]",
+  "date": "[TODAY_YYYY-MM-DD]",
+  "price": 0.00,
+  "combined_score": 0.00,
+  "short_term_score": 0.00,
+  "long_term_score": 0.00,
+  "verdict": "STRONG BUY|BUY|HOLD|SELL|STRONG SELL",
+  "position_size": "Full|Half|Quarter|Starter|Pass",
+  "voting_stances": {
+    "druckenmiller": {"stance": "...", "value": 0.0},
+    "tom_lee": {"stance": "...", "value": 0.0},
+    "cathie_wood": {"stance": "...", "value": 0.0},
+    "dalio": {"stance": "...", "value": 0.0},
+    "klarman": {"stance": "...", "value": 0.0},
+    "simons": {"stance": "...", "value": 0.0},
+    "soros": {"stance": "...", "value": 0.0},
+    "vol_desk": {"stance": "...", "value": 0.0}
+  },
+  "advisory_stances": {
+    "marks": {"stance": "..."},
+    "trend": {"stance": "..."},
+    "buffett": {"stance": "..."},
+    "ackman": {"stance": "..."},
+    "rogers": {"stance": "..."}
+  },
+  "flip_conditions": { "druckenmiller": "...", "tom_lee": "...", "cathie_wood": "...", "dalio": "...", "klarman": "...", "simons": "...", "soros": "...", "vol_desk": "..." },
+  "key_levels": {
+    "major_resistance": 0.00,
+    "first_support": 0.00,
+    "two_hundred_day_ma": 0.00,
+    "klarman_buy_price": 0.00,
+    "stop_loss": 0.00
+  },
+  "guard_result": "CLEAN|N_FLAGS",
+  "guard_flag_count": 0
+}
+---STRUCTURED-FOOTER-END---
+```
+
+The BEGIN/END markers are mandatory — parent uses them to extract the JSON.
+
 ⚠️ YOU HAVE NOT BEEN GIVEN ANY USER HYPOTHESIS. Analyze the ticker on its own merits. Do not speculate about what the user expects or hopes.
 ```
 
@@ -138,6 +193,18 @@ Return the COMPLETE output — announce header + 13 legend analyses + scorecard 
 - No reference to "pre-registration," "user hypothesis," "expected direction," or similar
 - Child agent has no way to find the hypothesis (not passed as input, not mentioned by name)
 - Legends analyze purely from RUMBLE-ENGINE.md + search results
+
+**Parent MUST fill these interpolations before spawning:**
+- `[TICKER]` — the ticker symbol
+- `[CONTEXT]` — user's context string, or literal "None"
+- `[TODAY_YYYY-MM-DD]` — current date from parent session (e.g., `2026-04-17`)
+- `[TODAY_YYYY]` — current year only (e.g., `2026`) — used verbatim in search queries
+
+**If the Agent tool is not available in this session (fallback path):**
+- Output a WARNING banner: `⚠️ BLIND COMMITTEE UNAVAILABLE — running in CONTAMINATED MODE (test only). Hypothesis will leak to legends. Do not trust pre-registration scoring from this run.`
+- Proceed with single-context execution: read RUMBLE-ENGINE.md, run 5 searches, play all 13 legends, run Judge, append same structured footer — BUT inside the parent session.
+- Mark the predictions.json entry with `"mode": "contaminated"` so it's flagged in accuracy tracking.
+- Default mode is `"blind"`. Only use fallback if Agent tool spawn fails.
 
 ### 2. RELAY CHILD OUTPUT
 
@@ -174,6 +241,15 @@ Logged at [timestamp] to predictions.json. Scored at 30d / 90d check-ins.
 If user skipped Step 0, skip this block entirely.
 
 ### 4. LOG (parent session)
+
+**Parse the structured footer from child's output.** Extract the JSON between `---STRUCTURED-FOOTER-BEGIN---` and `---STRUCTURED-FOOTER-END---` markers. This is the machine-readable contract — do NOT regex free-text prose.
+
+Append parent-side fields before writing to predictions.json:
+- `mode`: `"blind"` (default) or `"contaminated"` (fallback path)
+- `user_hypothesis`: the sealed hypothesis from Step 0 (or skip values)
+- `locked_at`: ISO timestamp when user submitted hypothesis
+
+Then write to both logs.
 
 Log to notes/rumble-log.md:
 ```
@@ -231,6 +307,9 @@ Log prediction to data/predictions.json — append a new entry to the "rumbles" 
   },
   "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
   "checks_completed": {},
+  "mode": "blind",
+  "guard_result": "[CLEAN or N_FLAGS from structured footer]",
+  "guard_flag_count": 0,
   "user_hypothesis": {
     "direction": "[BULL/BEAR/NEUTRAL/skip]",
     "conviction": "[LOW/MED/HIGH/skip]",
