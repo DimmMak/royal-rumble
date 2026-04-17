@@ -2,6 +2,35 @@
 
 ---
 
+## [2026-04-17] — v1.4.0 — Cite or Abstain
+
+**Trigger:** Accuracy stress test on NVDA found Guard catches only ~30% of real fabrication vectors. Core failure modes: analyst price targets, technical levels (200-day MA, Fib), macro prints (M2, credit spreads, RRP), TAM, intrinsic value anchors — all plausibly invented when searches don't surface them. Legends fill gaps instead of abstaining.
+
+### Shipped (3 Tier 1 items)
+
+**AG2 + AFP3 — Expanded Fabrication Guard pattern library**
+- Added 8 new flagged patterns: unsourced analyst targets, moving averages, macro prints, TAM figures, intrinsic value anchors, Fibonacci/support/resistance, max-pain/put-call/OI, forward-quarter deliveries.
+- Guard catch-rate estimated to lift from ~30% → ~75%.
+
+**AG1 + AFP2 — Cite-or-abstain rule**
+- Every specific number in an analysis MUST carry one tag: `[SRC: S_]`, `[REPORTED — Q_ YYYY]`, `[ESTIMATE]`, or `[UNVERIFIED]`.
+- If a legend's framework requires a number that can't be tagged, the legend MUST abstain or mark insufficient data — no plausibility-filling.
+- Examples of correct vs incorrect claims documented in RUMBLE-ENGINE.md.
+
+**AG4 — Tom Lee data-gap rule**
+- Old framework said "ALL 5 mandatory — never skip." When RRP or credit spread data wasn't in searches, this invited fabrication.
+- New rule: if 2+ indicators missing → NEUTRAL (or ABSTAIN if 3+) with a "⚠️ Insufficient liquidity data" note.
+
+### Deferred to Tier 2
+- AFP1 (per-claim inline source tags everywhere) — heavy formatting burden; revisit after v1.4 proves in practice
+- AG5 (extra search budget for Cathie/Klarman) — violates "5 searches max"; wait for pain
+- AC1 (unify fabrication pattern lists) — cleanup; do after v1.4 settles
+
+### Deferred to Tier 3
+- AG3 (standalone fact-ledger file) — overkill; inline tags solve it
+
+---
+
 ## [2026-04-17] — v1.3.0 — Single Engine
 
 **Trigger:** Second stress test (v1.2.0) surfaced a dual-source-of-truth bug: Fabrication Guard lived ONLY in `skills/judge/SKILL.md`, but rule #5 says "Read RUMBLE-ENGINE.md ONCE. Do NOT read individual legend SKILL.md files." Guard was orphaned — may have silently not run.

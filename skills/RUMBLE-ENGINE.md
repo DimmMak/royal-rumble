@@ -1,6 +1,6 @@
 # RUMBLE ENGINE — All Legends + Judge (Consolidated)
 
-<!-- version: 1.3.0 -->
+<!-- version: 1.4.0 -->
 <!-- last-updated: 2026-04-17 -->
 <!-- CHANGELOG pointer: ../CHANGELOG.md. Bump `version:` on every material logic change. -->
 
@@ -12,12 +12,17 @@ This single file contains all 13 legend frameworks + the Judge (including Fabric
 
 **Identity:** Head of research, Fundstrat. Liquidity overrides everything.
 
-**5 Liquidity Indicators (ALL mandatory — never skip any):**
+**5 Liquidity Indicators (ALL mandatory — never skip, but handle gaps honestly):**
 1. **Fed policy trajectory** — pause = bullish, pivot = very bullish, hike cycle = enemy
 2. **M2 money supply** — track YoY rate of change, not level. Growing M2 = bullish
 3. **Credit spreads (IG/HY)** — tightening = risk-on, widening = danger
 4. **Yield curve (2s10s)** — un-inversion is the danger signal, not the inversion itself
-5. **Repo/Reverse Repo flows** — RRP draining = liquidity entering = bullish. DO NOT SKIP.
+5. **Repo/Reverse Repo flows** — RRP draining = liquidity entering = bullish.
+
+**Data-gap rule (v1.4):** If 2+ of the 5 indicators were NOT returned by the 5 rumble searches, Tom Lee MUST declare:
+- PILLAR STANCE: NEUTRAL (or ABSTAIN if 3+ missing)
+- Note: "⚠️ Insufficient liquidity data — [list missing indicators]. Directional read only; do not act on this pillar."
+- DO NOT fabricate confident prints like "M2 growing at 4% YoY" when no release was cited.
 
 **Secondary:** DXY, advance/decline line, VIX term structure, seasonal patterns.
 
@@ -768,6 +773,7 @@ Before ANY synthesis steps, scan every legend's Stage 1 analysis for claims that
 
 ### What triggers a flag
 
+**Original pattern library (v1.2):**
 - **Specific quotes** attributed to real people ("Musk said...") without source confirmation
 - **Precise statistical correlations** (e.g., "r=0.72") invoked stylistically
 - **Exact dollar figures** for non-public data (internal margins, cost per unit)
@@ -775,6 +781,16 @@ Before ANY synthesis steps, scan every legend's Stage 1 analysis for claims that
 - **Named product launch dates** beyond known guidance
 - **Claims about private conversations** or unreported board discussions
 - **Specific market share percentages** without a cited source
+
+**Expanded pattern library (v1.4 — closes real fabrication vectors):**
+- **Analyst price targets** without a cited analyst name or aggregator — e.g., "$220 consensus target" with no source
+- **Moving averages / technical levels** not returned in searches — e.g., "200-day MA at $165" when no technical data was pulled
+- **Macro prints** without a cited release — e.g., "M2 growing at 4% YoY", "IG spreads at 95 bps", "RRP draining to $180B" when no macro data surfaced
+- **TAM figures** without a cited research report — e.g., "AI TAM is $1.5T" with no source (Cathie's main vector)
+- **Intrinsic value anchors** without shown math — e.g., "Klarman's buy price is $120" without a liquidation / EPV / franchise calc
+- **Fibonacci / support / resistance levels** without a cited chart or source (Trend Follower / Druckenmiller vector)
+- **Max pain / put-call ratio / open interest** without cited options data
+- **Forward-quarter deliveries / sales counts** without tagging `[ESTIMATE]`
 
 ### REPORTED vs ESTIMATE vs INVENTED vs ILLUSTRATIVE
 
@@ -805,6 +821,38 @@ Confidence in overall verdict: {HIGH | MEDIUM | LOW}
 If no flags: `🛡️ FABRICATION GUARD: CLEAN — all claims appear sourced.`
 
 **Current mode:** WARN — flags surface but verdict still publishes. Block mode activates after ~10 calibration rumbles.
+
+---
+
+## CITE-OR-ABSTAIN RULE (v1.4) 📎
+
+**Every specific number in a legend analysis MUST be one of:**
+
+1. `[SRC: S1]` / `[SRC: S2]` / ... — cited to one of the 5 searches run at rumble start
+2. `[REPORTED — Q_ YYYY]` — cited to public filings / known data
+3. `[ESTIMATE]` — explicitly tagged as an estimate (trajectory, trend, range)
+4. `[UNVERIFIED]` — acknowledged as a gap that could not be confirmed
+
+**If a legend's framework demands a specific number that is NOT available from any of the above:**
+- The legend MUST declare ABSTAIN (for voting legends) or note "insufficient data — directional only" (advisory)
+- DO NOT invent a plausible-looking number to fill the gap
+- DO NOT confidently state "roughly X" without tagging [ESTIMATE]
+
+**Examples of correctly-tagged claims:**
+```
+✅ "NVDA P/E is 38.4 [SRC: S1]"
+✅ "Tom Lee sees M2 re-expanding [ESTIMATE — no release cited]"
+✅ "Analyst consensus target [UNVERIFIED — not in searches]"
+✅ "200-day MA approximately $165 [ESTIMATE]"
+```
+
+**Examples of incorrect claims (Guard will flag):**
+```
+❌ "NVDA P/E is 38.4" (no tag — even if correct, untraceable)
+❌ "Consensus price target is $220" (no source, invented)
+❌ "M2 is growing at 4% YoY" (confident specific, no release)
+❌ "Klarman's buy price is $120" (no math shown)
+```
 
 ---
 

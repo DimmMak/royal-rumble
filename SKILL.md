@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 1.3.0
+version: 1.4.0
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
