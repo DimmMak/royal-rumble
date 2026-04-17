@@ -2,6 +2,36 @@
 
 ---
 
+## [2026-04-17] — v1.3.0 — Single Engine
+
+**Trigger:** Second stress test (v1.2.0) surfaced a dual-source-of-truth bug: Fabrication Guard lived ONLY in `skills/judge/SKILL.md`, but rule #5 says "Read RUMBLE-ENGINE.md ONCE. Do NOT read individual legend SKILL.md files." Guard was orphaned — may have silently not run.
+
+### Shipped (3 Tier 1 items)
+
+**B3 — Fixed stale legend count in frontmatter**
+- Description said "8 legendary investors." Body has said "13 legends" since advisory panel was added.
+- Now reads "13 legendary investors (8 voting + 5 advisory)."
+
+**C1 + B1 + B2 — Merged `judge/SKILL.md` into `RUMBLE-ENGINE.md`**
+- Fabrication Guard now lives as `PRE-STEP — FABRICATION GUARD` in RUMBLE-ENGINE, immediately before STEP 0 (sector weights). Guaranteed to run on every rumble.
+- Deleted `skills/judge/` folder entirely.
+- `RUMBLE-ENGINE.md` is now the ONE source of truth for Judge logic — no sidecar files.
+- Kills 2 bugs (orphaned Guard + dual source of truth) in one move.
+
+**FP1 — Version-stamped RUMBLE-ENGINE.md**
+- Added `version: 1.3.0` + `last-updated` + CHANGELOG pointer as HTML comments at top.
+- Parallel to the pattern already on SKILL.md. Now every file that encodes logic carries a traceable version.
+
+### Deferred to Tier 2
+- B4 + C2 (single accepted-names roster) — real bug but hasn't fired yet
+- FP3 (schema_version on predictions.json) — nothing parses it yet
+
+### Deferred to Tier 3
+- C3 (split rules out of SKILL.md) — aesthetic, current structure works
+- FP2 (framework_valid_as_of per legend) — speculative; wait for first framework rot
+
+---
+
 ## [2026-04-17] — v1.2.0 — Tier 1 Conservative Ship (3 items)
 
 **Trigger:** Stress test surfaced 7 bugs + 4 consolidations + 6 future-proofing gaps. Tier-listed by risk/reward. Shipping the 3 lowest-risk items now; rest deferred.

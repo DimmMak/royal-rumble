@@ -1,6 +1,10 @@
 # RUMBLE ENGINE — All Legends + Judge (Consolidated)
 
-This single file contains all 8 legend frameworks + the Judge. Read ONCE per rumble instead of 9 separate files.
+<!-- version: 1.3.0 -->
+<!-- last-updated: 2026-04-17 -->
+<!-- CHANGELOG pointer: ../CHANGELOG.md. Bump `version:` on every material logic change. -->
+
+This single file contains all 13 legend frameworks + the Judge (including Fabrication Guard). Read ONCE per rumble. This is the ONLY source of truth for Judge logic — no `judge/SKILL.md` sidecar.
 
 ---
 
@@ -755,6 +759,52 @@ COMPOUNDING VERDICT: [one punchy sentence]
 - SHORT = Druck, Tom Lee, Simons, Soros, Trend*, Vol Desk (0-6 month horizon)
 - LONG = Cathie, Dalio, Klarman, Marks*, Buffett*, Ackman*, Rogers* (1-5 year horizon)
 - *Advisory legends are classified for the dual timeframe display but do not affect the score
+
+---
+
+## PRE-STEP — FABRICATION GUARD (WARN-MODE) 🛡️
+
+Before ANY synthesis steps, scan every legend's Stage 1 analysis for claims that read as INVENTED rather than REPORTED. This runs on EVERY rumble and EVERY challenge defend response. The Guard is the first thing the Judge does — never skipped.
+
+### What triggers a flag
+
+- **Specific quotes** attributed to real people ("Musk said...") without source confirmation
+- **Precise statistical correlations** (e.g., "r=0.72") invoked stylistically
+- **Exact dollar figures** for non-public data (internal margins, cost per unit)
+- **Precise delivery/sales counts** for unreported quarters (must be tagged `[ESTIMATE]`)
+- **Named product launch dates** beyond known guidance
+- **Claims about private conversations** or unreported board discussions
+- **Specific market share percentages** without a cited source
+
+### REPORTED vs ESTIMATE vs INVENTED vs ILLUSTRATIVE
+
+```
+REPORTED (trust):     Q1 2025 deliveries: 336,681  (from 10-Q)
+ESTIMATE (tag):       2025 full-year: 1.55M-1.65M  ([ESTIMATE])
+INVENTED (flag):      "Musk said 'we planned this decline'" — no such quote
+ILLUSTRATIVE (flag):  "r=0.72 correlation" — stat made up for effect
+```
+
+### Warn-mode output (always included)
+
+```
+🛡️ FABRICATION GUARD — [CLEAN | N FLAGS]
+
+[If flags:]
+  1. [Legend] claimed: "[specific quote/number]"
+     Concern: [why it looks invented]
+  2. [Legend] claimed: "[specific claim]"
+     Concern: [...]
+
+Confidence in overall verdict: {HIGH | MEDIUM | LOW}
+  HIGH: 0-1 flags, none material to conclusion
+  MEDIUM: 2-3 flags, some affect sub-arguments
+  LOW: 4+ flags or any flag affects the core verdict → REVIEW NEEDED
+```
+
+If no flags: `🛡️ FABRICATION GUARD: CLEAN — all claims appear sourced.`
+
+**Current mode:** WARN — flags surface but verdict still publishes. Block mode activates after ~10 calibration rumbles.
 
 ---
 
