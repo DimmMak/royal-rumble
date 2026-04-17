@@ -2,6 +2,34 @@
 
 ---
 
+## [2026-04-17] — v1.2.0 — Tier 1 Conservative Ship (3 items)
+
+**Trigger:** Stress test surfaced 7 bugs + 4 consolidations + 6 future-proofing gaps. Tier-listed by risk/reward. Shipping the 3 lowest-risk items now; rest deferred.
+
+### Shipped
+
+**Consolidation #1 — Deleted 8 unused legend folders**
+- `RUMBLE-ENGINE.md` has been source of truth since v3.3 (rule #5: "Do NOT read individual legend SKILL.md files").
+- Deleted: `skills/cathiewood/`, `dalio/`, `druckenmiller/`, `klarman/`, `simons/`, `soros/`, `tomlee/`, `voldesk/`.
+- Remaining in `skills/`: `RUMBLE-ENGINE.md` + `judge/SKILL.md`.
+- Zero risk — files already unused. Eliminates future drift.
+
+**FP #1 — Version-stamped skill (v1.2.0)**
+- Added `version: 1.2.0` field to SKILL.md frontmatter.
+- Added Rule #10: "Bump on every material logic change and log to CHANGELOG.md."
+- Enables tracing when behavior changed across years of evolution. Nearly free.
+
+**FP #2 — Data-freshness expiration warning**
+- Added `⏳ Freshness:` field to rumble header: FRESH (<7d) | STALE (7-30d) | EXPIRED (>30d).
+- Added Rule #9: forces re-running searches when snapshot is stale.
+- Prevents a 98-day-old rumble from being silently trusted.
+
+### Deferred (not yet earned)
+- Bug #1 (Guard in Challenge mode), Bug #3 (honest timestamp labels), Bug #5 (Guard self-test canary) — shipping next pass.
+- Consolidations #2-4, FP #3-6 — earn-your-features; no pain yet.
+
+---
+
 ## [2026-04-15] — v3.3 — Mechanical Judge Rubric (Grok suggestion #2)
 
 **Trigger:** Grok suggested making the Judge "dumber and stricter" — a fixed mechanical rubric instead of subjective 1-10 scoring. This was her best suggestion. Implemented with modifications.

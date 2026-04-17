@@ -1,5 +1,6 @@
 ---
 name: royal-rumble
+version: 1.2.0
 description: >
   8 legendary investors — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -7,6 +8,9 @@ description: >
   Stage 2: challenge any legend — they defend their stance or concede. Verdict updates live.
   Commands: .rumble [TICKER] | .challenge [legend] | .verdict | .log | .help
 ---
+
+<!-- CHANGELOG pointer: see CHANGELOG.md. Bump `version:` on every material logic change. -->
+
 
 # Royal Rumble Hedge Fund System — Master Orchestrator
 
@@ -56,6 +60,7 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 📅 Analysis date:       [YYYY-MM-DD]
 📊 Data snapshot as of: [most recent reported quarter, e.g., "2025-Q2"]
+⏳ Freshness:           [FRESH (<7 days) | STALE (7-30d) | EXPIRED (>30d — re-run searches before trusting)]
 ⚠️  Claims about post-snapshot periods are projections, not reports.
 
 13 legends. 13 pillars. One championship ruling.
@@ -404,3 +409,7 @@ SYSTEM HEALTH: [X/180 total checks passed] — [HEALTHY / NEEDS ATTENTION / CRIT
    - **Organic growth vs M&A** — any growth claim should distinguish.
 
 8. **Fabrication Guard is active in Judge STAGE 0** — all legend analyses get scanned for unsourced specifics. Flagged claims surface in the verdict. Current mode: WARN (flags but publishes). Block mode activates after ~10 calibration rumbles.
+
+9. **DATA FRESHNESS** — Every rumble runs 5 fresh searches. If resuming from a prior session and the data snapshot is >7 days old, mark STALE. If >30 days, mark EXPIRED and force re-run searches before trusting the output. No silent stale data.
+
+10. **VERSION STAMP** — The skill frontmatter has a `version:` field. Bump on every material logic change and log to CHANGELOG.md. Future-me must be able to trace when behavior changed.
