@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 0.7.1
+version: 0.7.2
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -46,7 +46,10 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 
 ## STAGE 1 — THE RUMBLE (Blind Committee Architecture, v0.7+)
 
-**Trigger:** `.rumble [TICKER]` or `.rumble [TICKER] [context]`
+**Trigger:** `.rumble [TICKER]` or `.rumble [TICKER] [context]` or `.rumble [TICKER] --skip` (bypasses hypothesis step entirely)
+
+**Skip flags (any of these at the end of the command skips Step 0 directly — no prompt asked):**
+- `--skip` / `--nohype` / `--blind` / `skip`
 
 **Core principle:** The 13 legends + Judge run in an ISOLATED SUBAGENT that cannot see the user's hypothesis. Hypothesis lives only in the parent session. Comparison happens AFTER the blind verdict returns. This fixes the v0.6 bias bug by physical isolation, not discipline.
 
@@ -54,7 +57,9 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 
 ### 0. HYPOTHESIS CAPTURE (PARENT SESSION ONLY) 🔒
 
-BEFORE spawning any subagent, ask the user for their locked-in hypothesis. This pre-registers their call so it can be compared to the Judge verdict AND tracked over time.
+**FAST PATH:** If the user's command included a skip flag (`--skip` / `--nohype` / `--blind` / trailing `skip`), skip this step entirely and jump to Step 1. Log `"mode": "skipped"` on hypothesis fields. No prompt shown. This is the "just rumble, no questions" path.
+
+Otherwise, BEFORE spawning any subagent, ask the user for their locked-in hypothesis. This pre-registers their call so it can be compared to the Judge verdict AND tracked over time.
 
 Output this prompt verbatim:
 ```
@@ -69,10 +74,12 @@ Before the committee weighs in — what's YOUR read on [TICKER]?
   3. Why (1 line): _______________________
   4. Wrong if:    _______________________    (optional)
 
-Reply with your hypothesis, or "skip" to rumble without pre-registration.
+Reply with your hypothesis, or type "skip" / "skip all" to rumble without pre-registration.
 
 🔒 Your hypothesis will be SEALED in this session and never passed to
    the blind committee subagent. The legends will analyze independently.
+
+💨 Tip: next time add `--skip` to `.rumble [TICKER]` to bypass this step entirely.
 ```
 
 **Rules:**

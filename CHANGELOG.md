@@ -4,6 +4,23 @@
 
 ---
 
+## [2026-04-17] — v0.7.2 — Skip-All Flag
+
+**Trigger:** Hypothesis prompt is useful for calibration but intrusive when user just wants a quick rumble. Added explicit bypass.
+
+### Shipped
+
+- `.rumble [TICKER] --skip` (also `--nohype`, `--blind`, trailing `skip`) — bypasses Step 0 entirely, no prompt shown.
+- Step 0 prompt now shows tip: "next time add `--skip` to bypass this step."
+- Predictions.json logs `"mode": "skipped"` on hypothesis fields for this path.
+
+Three clean modes:
+- **Pre-register:** real opinion to measure
+- **Answer "skip":** dialog path — still shown the prompt, choose to skip inline
+- **`--skip` flag:** fast path — never see the prompt
+
+---
+
 ## [2026-04-17] — v0.7.1 — First-Flight Fix
 
 **Trigger:** Pre-flight stress test on v0.7.0 found 4 critical bugs that would break the first real blind rumble. All T1. Fixed before any live run.
