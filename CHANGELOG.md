@@ -4,7 +4,52 @@
 
 ---
 
-## [2026-04-17] — v0.6.0 — Your Call First (Pre-Registration)
+## [2026-04-17] — v0.7.0 — Blind Committee (Subagent Isolation) 🔒
+
+**Trigger:** User caught the v0.6.0 bias bug: hypothesis captured in the same session context as the legends would contaminate their role-play. No amount of "please ignore this" instructions could solve it — the LLM reads the whole context when playing each legend. Fix requires physical isolation.
+
+### The architectural shift
+
+**BEFORE (v0.6):** One context, Claude plays all 13 roles + Judge in sequence. User's hypothesis lives in the same scrollback → contamination inevitable.
+
+**AFTER (v0.7):** Parent session captures hypothesis → spawns ISOLATED SUBAGENT via the Agent tool → subagent runs the full 13-legend + Judge rumble with ZERO access to parent's context → returns verdict → parent appends comparison.
+
+The subagent has its own fresh context. It literally cannot see the hypothesis. Blindness is physical, not discipline-based.
+
+### Shipped
+
+**Stage 1 completely restructured into 5 parent-session steps:**
+1. Hypothesis capture (parent-only, sealed)
+2. Spawn blind committee subagent with purpose-built sealed prompt
+3. Relay child verdict + append Your Call vs The Judge comparison
+4. Log to rumble-log.md + predictions.json
+5. Close
+
+**Subagent prompt hardened:**
+- No reference to "hypothesis," "user prediction," "expected direction"
+- Explicit instruction: "⚠️ YOU HAVE NOT BEEN GIVEN ANY USER HYPOTHESIS"
+- Full orchestration embedded (5 searches, 13 legends, Judge steps 0-12, output format)
+
+**Why this unlocks everything:**
+- Fixes the bias bug (physically, not rhetorically)
+- Gateway to parallel legend execution (v0.8)
+- Gateway to compressed verdicts (v0.9)
+- Gateway to multi-ticker portfolio rumbles (v0.11)
+- Gateway to blind accuracy audits (v0.10)
+- Gateway to historical backtesting (v0.13)
+
+### The meta-insight
+Subagent isolation isn't a feature, it's the foundation. Every downstream capability in Phases 2-4 of the ROADMAP depends on context-isolated children. This is the single most significant architectural change royal-rumble will ever get.
+
+---
+
+## [2026-04-17] — v0.6.0 — Your Call First (Pre-Registration) ⚠️ DEPRECATED
+
+**⚠️ Architecture replaced in v0.7.0.** The Step 0 hypothesis capture lived in the same session as the legends, causing contamination. Preserved in CHANGELOG as a historical artifact. See v0.7.0 for the fixed architecture.
+
+---
+
+## [2026-04-17] — v0.6.0 (original entry) — Your Call First (Pre-Registration)
 
 **Trigger:** Recognized that system accuracy ≠ user calibration. Royal Rumble was measuring the Judge's track record but not the USER's. After celebrating the pending-rumbles.md pre-registration move, user asked to hardwire this into every rumble.
 

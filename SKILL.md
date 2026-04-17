@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 0.6.0
+version: 0.7.0
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -44,107 +44,138 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 
 ---
 
-## STAGE 1 — THE RUMBLE
+## STAGE 1 — THE RUMBLE (Blind Committee Architecture, v0.7+)
 
 **Trigger:** `.rumble [TICKER]` or `.rumble [TICKER] [context]`
 
+**Core principle:** The 13 legends + Judge run in an ISOLATED SUBAGENT that cannot see the user's hypothesis. Hypothesis lives only in the parent session. Comparison happens AFTER the blind verdict returns. This fixes the v0.6 bias bug by physical isolation, not discipline.
+
 **Execution sequence:**
 
-0. **PRE-RUMBLE HYPOTHESIS (Your Call First)** 🧠
+### 0. HYPOTHESIS CAPTURE (PARENT SESSION ONLY) 🔒
 
-   BEFORE running any searches or legends, ask the user for their locked-in hypothesis. This pre-registers their call so it can be compared to the Judge AND tracked over time for accuracy.
+BEFORE spawning any subagent, ask the user for their locked-in hypothesis. This pre-registers their call so it can be compared to the Judge verdict AND tracked over time.
 
-   Output this prompt verbatim:
-   ```
-   ┌─────────────────────────────────────────────────────────┐
-   │ STEP 0 — YOUR CALL FIRST (locked before legends speak)  │
-   └─────────────────────────────────────────────────────────┘
-
-   Before the committee weighs in — what's YOUR read on [TICKER]?
-
-     1. Direction:   BULL / BEAR / NEUTRAL        (or "skip")
-     2. Conviction:  LOW / MED / HIGH             (or "skip")
-     3. Why (1 line): _______________________
-     4. Wrong if:    _______________________    (optional)
-
-   Reply with your hypothesis, or "skip" to rumble without pre-registration.
-   ```
-
-   **Rules:**
-   - WAIT for the user's reply before proceeding to Step 1
-   - If user says "skip" (or equivalent), proceed with no hypothesis logged
-   - Do NOT influence the user by offering your own view — this is THEIR call
-   - Once submitted, the hypothesis is locked. It gets logged to predictions.json and compared to the Judge's verdict at the end.
-
-1. Read `skills/RUMBLE-ENGINE.md` (ONE read — all legends + judge in one file)
-
-2. Run 5 web searches IN PARALLEL (see DATA COLLECTION above — S1 through S5)
-
-3. Announce the rumble with TIMESTAMP + DATA SNAPSHOT header:
+Output this prompt verbatim:
 ```
-⚔️  ROYAL RUMBLE — [TICKER]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-📅 Analysis date:       [YYYY-MM-DD]
-📊 Data snapshot as of: [most recent reported quarter, e.g., "2025-Q2"]
-⏳ Freshness:           [FRESH (<7 days) | STALE (7-30d) | EXPIRED (>30d — re-run searches before trusting)]
-⚠️  Claims about post-snapshot periods are projections, not reports.
+┌─────────────────────────────────────────────────────────┐
+│ STEP 0 — YOUR CALL FIRST (sealed in parent session)     │
+└─────────────────────────────────────────────────────────┘
 
-13 legends. 13 pillars. One championship ruling.
-Context: [user context or "None"]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Before the committee weighs in — what's YOUR read on [TICKER]?
+
+  1. Direction:   BULL / BEAR / NEUTRAL        (or "skip")
+  2. Conviction:  LOW / MED / HIGH             (or "skip")
+  3. Why (1 line): _______________________
+  4. Wrong if:    _______________________    (optional)
+
+Reply with your hypothesis, or "skip" to rumble without pre-registration.
+
+🔒 Your hypothesis will be SEALED in this session and never passed to
+   the blind committee subagent. The legends will analyze independently.
 ```
 
-4. Run each legend IN ORDER using their framework from RUMBLE-ENGINE.md:
-   - Become that agent completely
-   - Run their Stage 1 PILLAR ANALYSIS for the ticker
-   - Output their full analysis with their formatted header
-   - Extract and display their PILLAR STANCE clearly
+**Rules:**
+- WAIT for the user's reply before proceeding to Step 1
+- Store hypothesis in PARENT SESSION ONLY — never inject it into downstream prompts
+- Do NOT offer your own view — this is THEIR call
+- If user says "skip" (or equivalent), proceed with no hypothesis logged
+- Once submitted, hypothesis is locked until the comparison block at Step 3
+
+### 1. SPAWN BLIND COMMITTEE SUBAGENT 🚀
+
+Use the Agent tool with `subagent_type: "general-purpose"`. The prompt MUST NOT reference the user's hypothesis in any form.
+
+**Subagent prompt template (paste verbatim, fill `[TICKER]` and `[CONTEXT]`):**
+
+```
+You are the Royal Rumble research committee orchestrator. Produce a full 13-legend + Judge analysis for a single ticker.
+
+TICKER: [TICKER]
+CONTEXT: [CONTEXT or "None"]
+
+STEP A — Read `/Users/danny/Desktop/CLAUDE CODE/royal-rumble/skills/RUMBLE-ENGINE.md` ONCE. This file contains all 13 legend frameworks + the Judge with Fabrication Guard.
+
+STEP B — Run EXACTLY 5 web searches IN PARALLEL (referenced as S1-S5 in Cite-or-Abstain tags):
+  S1 — Fundamentals: "[TICKER] stock price PE ratio earnings revenue guidance free cash flow [current year]"
+  S2 — Quant/Vol/Technical: "[TICKER] options implied volatility IV rank momentum technical analysis analyst price targets [current year]"
+  S3 — Macro & Credit: "Fed interest rates M2 money supply credit spreads yield curve corporate debt defaults [current month year]"
+  S4 — Technical Analysis & Trend: "[TICKER] 200 day moving average 50 day MA RSI ADX support resistance fibonacci levels technical analysis [current year]"
+  S5 — Commodities, Options Flow & Positioning: "[TICKER] max pain open interest put call ratio commodity input costs dollar DXY [current year]"
+
+STEP C — Announce the rumble with TIMESTAMP + DATA SNAPSHOT header (include all 13 legends line, current date, snapshot quarter, freshness tag).
+
+STEP D — Run each legend IN ORDER using their framework from RUMBLE-ENGINE.md. Become each agent completely. Produce their full formatted analysis with PILLAR STANCE + FLIP CONDITION. Apply Cite-or-Abstain rule: every specific number must carry [SRC: S1-S5] / [REPORTED] / [ESTIMATE] / [UNVERIFIED]. If framework inputs are missing from searches, the legend declares ABSTAIN or NEUTRAL with a "data gap" note — do NOT fabricate numbers to fill gaps.
 
 Order: Tom Lee → Cathie Wood → Druckenmiller → Dalio → Klarman → Simons → Soros → Vol Desk → Howard Marks → Trend Follower → Ackman → Rogers → Buffett
 
-5. After all 13 complete, output the **RUMBLE SCORECARD** — a summary table so the user can digest all 13 at a glance BEFORE the Judge speaks:
+STEP E — Produce the RUMBLE SCORECARD (summary table of all 13 legends with Wt / Stance / Thesis / Flip If).
 
-```
-📊 RUMBLE SCORECARD — [TICKER]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STEP F — Run the Judge. Execute ALL steps in RUMBLE-ENGINE.md Judge section, in order:
+  - PRE-STEP: Fabrication Guard (scan all 13 analyses for inventions)
+  - STEP 0: Sector-adjusted weights (with floor)
+  - STEP 1: Handle abstentions
+  - STEP 2: Fixed 100-point rubric per legend
+  - STEP 3: Convert stances to numbers
+  - STEP 4: Calculate weighted scores (combined / short-term / long-term)
+  - STEP 5: Map to conviction levels
+  - STEP 6: Override rules
+  - STEP 7: Contrarian Anchor (mandatory — strongest bear case at full weight)
+  - STEP 8: Position sizing (apply AT MOST one adjustment)
+  - STEP 9: Conflict Map
+  - STEP 10: Bull/Bear synthesis
+  - STEP 11: Key Risk
+  - STEP 12: Championship Ruling (2-3 sentences)
 
-VOTING LEGENDS (base weights — determine the score):
-| Legend | Wt | Stance | Thesis | Flip If |
-|---|---|---|---|---|
-| ⚡ Druck | 20% | [stance] | [**bold key insight**] | [flip condition] |
-| 👑 Tom Lee | 15% | [stance] | [**bold key insight**] | [flip condition] |
-| 🚀 Cathie | 15% | [stance] | [**bold key insight**] | [flip condition] |
-| ⚖️ Dalio | 15% | [stance] | [**bold key insight**] | [flip condition] |
-| 🏛️ Klarman | 10% | [stance] | [**bold key insight**] | [flip condition] |
-| 📐 Simons | 10% | [stance] | [**bold key insight**] | [flip condition] |
-| 🌀 Soros | 10% | [stance] | [**bold key insight**] | [flip condition] |
-| 🎯 Vol Desk | 5% | [stance] | [**bold key insight**] | [flip condition] |
+STEP G — Produce the full OUTPUT FORMAT block per RUMBLE-ENGINE.md (verdict table, conviction, sizing, conflict map, bull/bear case, key risk, key levels, entry zones, contrarian anchor, championship ruling).
 
-ADVISORY LEGENDS (shown for context — do NOT affect score):
-| Legend | Stance | Thesis | Agrees? |
-|---|---|---|---|
-| 📚 Marks | [stance] | [**bold key insight**] | [yes/no] |
-| 📈 Trend | [stance] | [**bold key insight**] | [yes/no] |
-| 🏔️ Buffett | [stance] | [**bold key insight**] | [yes/no] |
-| 🔱 Ackman | [stance] | [**bold key insight**] | [yes/no] |
-| 🌍 Rogers | [stance] | [**bold key insight**] | [yes/no] |
+Return the COMPLETE output — announce header + 13 legend analyses + scorecard + full Judge verdict — verbatim to the parent session. Do NOT add preamble, do NOT ask clarifying questions, do NOT editorialize. Just run the rumble and return it.
 
-ADVISORY DISSENT: [X/5 disagree — flag if 3+]
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+⚠️ YOU HAVE NOT BEEN GIVEN ANY USER HYPOTHESIS. Analyze the ticker on its own merits. Do not speculate about what the user expects or hopes.
 ```
 
-**Field rules:**
-- **Stance:** STRONG BULL / BULL / NEUTRAL / BEAR / STRONG BEAR / ABSTAIN
-- **Thesis:** ONE thing that drives their stance. **Bold** the key phrase.
-- **Flip If / Agrees?:** Voting legends show flip condition. Advisory legends show if they agree with the combined verdict.
+**Why this prompt is sealed:**
+- No reference to "pre-registration," "user hypothesis," "expected direction," or similar
+- Child agent has no way to find the hypothesis (not passed as input, not mentioned by name)
+- Legends analyze purely from RUMBLE-ENGINE.md + search results
 
-6. After the scorecard, run the Judge:
-   - Collect all 13 stances, convictions, and analyses
-   - Run the full Championship Verdict calculation (Steps 0-12 from RUMBLE-ENGINE.md)
-   - base weights for voting legends, advisory legends reported separately
-   - Includes: sector adjustments (with floor), abstentions, conviction-weighted scoring, dual timeframe verdicts, conflict map, contrarian anchor, and championship ruling
+### 2. RELAY CHILD OUTPUT
 
-7. Log to notes/rumble-log.md:
+When the subagent returns, display its full output verbatim to the user. This is the blind verdict.
+
+### 3. YOUR CALL vs THE JUDGE 🎯 (parent session)
+
+If the user submitted a hypothesis in Step 0, append this comparison block AFTER the child's championship ruling (before the close message):
+
+```
+━━━ YOUR CALL vs THE JUDGE ━━━
+YOUR CALL:      [direction]  ([conviction] conviction)
+YOUR WHY:       [user's one-liner]
+JUDGE VERDICT:  [CONVICTION level]  (score: [+X.XX])
+
+DIVERGENCE:     [AGREE / MILD / MODERATE / STRONG]
+                [one sentence explaining the gap or alignment]
+
+→ If you AGREE: reason to override Judge's sizing, or does the number rule?
+→ If you DIVERGE: what do you see that [most-opposed legend] missed?
+   (This question doesn't change the verdict — it trains your edge.)
+
+🔒 Hypothesis was SEALED from the blind committee. This comparison
+   is honest — no contamination.
+Logged at [timestamp] to predictions.json. Scored at 30d / 90d check-ins.
+```
+
+**Divergence scale:**
+- AGREE: same direction, same/similar conviction
+- MILD: same direction, different conviction magnitude
+- MODERATE: one NEUTRAL vs one directional
+- STRONG: opposite directions (user BULL vs Judge SELL)
+
+If user skipped Step 0, skip this block entirely.
+
+### 4. LOG (parent session)
+
+Log to notes/rumble-log.md:
 ```
 ## [DATE] — [TICKER]
 Context: [context]
@@ -153,7 +184,7 @@ Conviction: [result]
 Weighted Score: [score]
 ```
 
-8. Log prediction to data/predictions.json — append a new entry to the "rumbles" array:
+Log prediction to data/predictions.json — append a new entry to the "rumbles" array:
 ```json
 {
   "ticker": "[TICKER]",
@@ -211,37 +242,9 @@ Weighted Score: [score]
 ```
 **CRITICAL:** This must be logged on EVERY rumble. No exceptions. This is the data that feeds the future accuracy tracker. A rumble without a prediction log is wasted data. If user skipped pre-registration, all user_hypothesis fields = "skip" / null.
 
-9. **YOUR CALL vs THE JUDGE** 🎯
+### 5. CLOSE
 
-   If the user submitted a pre-rumble hypothesis in Step 0, append this comparison block AFTER the Judge's championship ruling (before the close message):
-
-   ```
-   ━━━ YOUR CALL vs THE JUDGE ━━━
-   YOUR CALL:      [direction]  ([conviction] conviction)
-   YOUR WHY:       [user's one-liner]
-   JUDGE VERDICT:  [CONVICTION level]  (score: [+X.XX])
-
-   DIVERGENCE:     [AGREE / MILD / MODERATE / STRONG]
-                   [one sentence explaining the gap or alignment]
-
-   → If you AGREE with the committee: do you have a reason to override
-     position sizing, or does the Judge's number rule?
-   → If you DIVERGE: what do you see that [most-opposed legend] missed?
-     (This question doesn't change the verdict — it trains your edge.)
-
-   This hypothesis was locked at [timestamp] and logged to
-   predictions.json. It will be scored on 30d / 90d check-ins.
-   ```
-
-   **Divergence scale:**
-   - AGREE: same direction, same/similar conviction
-   - MILD: same direction, different conviction magnitude
-   - MODERATE: one NEUTRAL vs one directional
-   - STRONG: opposite directions (user BULL vs Judge SELL)
-
-   If user skipped Step 0, skip this block entirely and go straight to the close message.
-
-10. Close with:
+Close with:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RUMBLE COMPLETE — [TICKER]
