@@ -50,10 +50,14 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 
 2. Run 3 web searches IN PARALLEL (see DATA COLLECTION above)
 
-3. Announce the rumble:
+3. Announce the rumble with TIMESTAMP + DATA SNAPSHOT header:
 ```
 ⚔️  ROYAL RUMBLE — [TICKER]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📅 Analysis date:       [YYYY-MM-DD]
+📊 Data snapshot as of: [most recent reported quarter, e.g., "2025-Q2"]
+⚠️  Claims about post-snapshot periods are projections, not reports.
+
 13 legends. 13 pillars. One championship ruling.
 Context: [user context or "None"]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -391,3 +395,12 @@ SYSTEM HEALTH: [X/180 total checks passed] — [HEALTHY / NEEDS ATTENTION / CRIT
 5. **Read RUMBLE-ENGINE.md ONCE per rumble** — it contains all frameworks. Do NOT read individual legend SKILL.md files. The consolidated file is the source of truth.
 
 6. **5 searches max** — run them in parallel at rumble start. Do not add more unless a critical data point is completely absent.
+
+7. **DATA SANITY — distinctions that matter** (enforce in relevant analyses):
+   - **BEV vs BEV+PHEV** — when discussing EV market share, ALWAYS specify. "BYD overtook Tesla" is TRUE for BEV+PHEV combined and MISLEADING for pure BEV. Force the distinction.
+   - **Reported vs Estimated** — tag numbers `[REPORTED — Q_ year]` or `[ESTIMATE]`. Never present estimates as reported facts.
+   - **Trailing vs Forward** — P/E, revenue growth, margins — always specify TTM or forward. "80× P/E" is ambiguous.
+   - **Deliveries vs Registrations vs Sales** — in auto analysis, these are different numbers. Don't blend them.
+   - **Organic growth vs M&A** — any growth claim should distinguish.
+
+8. **Fabrication Guard is active in Judge STAGE 0** — all legend analyses get scanned for unsourced specifics. Flagged claims surface in the verdict. Current mode: WARN (flags but publishes). Block mode activates after ~10 calibration rumbles.

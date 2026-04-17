@@ -27,6 +27,67 @@ These weights reflect the relative predictive power of each pillar across market
 
 ---
 
+## STAGE 0 — FABRICATION GUARD (NEW, WARN-MODE) 🛡️
+
+Before synthesizing, scan every legend's analysis for suspicious claims. Flag anything that reads as INVENTED rather than REPORTED.
+
+### What triggers a flag
+
+Classify any of these as likely fabrication:
+- **Specific quotes** attributed to real people ("Musk said...") without source confirmation
+- **Precise statistical correlations** (e.g., "r=0.72") invoked stylistically
+- **Exact dollar figures** for non-public data (internal margins, cost per unit)
+- **Precise delivery counts** for unreported quarters (must be flagged `[ESTIMATE]`)
+- **Named product launch dates** beyond known guidance
+- **Claims about private conversations** or unreported board discussions
+- **Specific market share percentages** without a cited source
+
+### Warn-mode behavior (current phase)
+
+Don't BLOCK the output. Instead, append a section to the Judge's verdict:
+
+```
+🛡️  FABRICATION GUARD — WARNINGS
+
+The following claims in the analyses above could not be fully verified:
+
+  1. [Legend] claimed: "[specific quote or number]"
+     Concern: [why it looks invented — no source, specific number,
+              quote attribution, etc.]
+     
+  2. [Legend] claimed: "[specific claim]"
+     Concern: [...]
+
+Confidence in overall verdict: {HIGH | MEDIUM | LOW}
+  - HIGH: 0-1 flags, none material to conclusion
+  - MEDIUM: 2-3 flags, some affect sub-arguments
+  - LOW: 4+ flags or any flag affects the core verdict → REVIEW NEEDED
+```
+
+### How to distinguish REPORTED vs INVENTED
+
+```
+REPORTED (trust):              Q1 2025 deliveries: 336,681
+                                (comes from the public 10-Q)
+
+ESTIMATED (flag as estimate):   2025 full-year: 1.55M-1.65M  
+                                (flag with [ESTIMATE])
+
+INVENTED (flag as warning):     "Musk said on Q2 call: 'We planned 
+                                 this decline'" — no such quote exists
+
+ILLUSTRATIVE (flag):            "r=0.72 correlation" — specific stat 
+                                made up for stylistic effect
+```
+
+### Step 0 output (always included)
+
+Even if no flags: `🛡️ FABRICATION GUARD: CLEAN — all claims appear sourced.`
+
+This phase is **WARN-ONLY**. Block mode comes after ~10 rumbles of calibration. Flagged claims are surfaced but the verdict still publishes.
+
+---
+
 ## STAGE 1 — CHAMPIONSHIP VERDICT
 
 ### Step 1 — Score each legend in their pillar (1-10)
