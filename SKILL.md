@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 0.5.0
+version: 0.6.0
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -49,6 +49,32 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 **Trigger:** `.rumble [TICKER]` or `.rumble [TICKER] [context]`
 
 **Execution sequence:**
+
+0. **PRE-RUMBLE HYPOTHESIS (Your Call First)** 🧠
+
+   BEFORE running any searches or legends, ask the user for their locked-in hypothesis. This pre-registers their call so it can be compared to the Judge AND tracked over time for accuracy.
+
+   Output this prompt verbatim:
+   ```
+   ┌─────────────────────────────────────────────────────────┐
+   │ STEP 0 — YOUR CALL FIRST (locked before legends speak)  │
+   └─────────────────────────────────────────────────────────┘
+
+   Before the committee weighs in — what's YOUR read on [TICKER]?
+
+     1. Direction:   BULL / BEAR / NEUTRAL        (or "skip")
+     2. Conviction:  LOW / MED / HIGH             (or "skip")
+     3. Why (1 line): _______________________
+     4. Wrong if:    _______________________    (optional)
+
+   Reply with your hypothesis, or "skip" to rumble without pre-registration.
+   ```
+
+   **Rules:**
+   - WAIT for the user's reply before proceeding to Step 1
+   - If user says "skip" (or equivalent), proceed with no hypothesis logged
+   - Do NOT influence the user by offering your own view — this is THEIR call
+   - Once submitted, the hypothesis is locked. It gets logged to predictions.json and compared to the Judge's verdict at the end.
 
 1. Read `skills/RUMBLE-ENGINE.md` (ONE read — all legends + judge in one file)
 
@@ -173,12 +199,49 @@ Weighted Score: [score]
     "stop_loss": [price]
   },
   "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
-  "checks_completed": {}
+  "checks_completed": {},
+  "user_hypothesis": {
+    "direction": "[BULL/BEAR/NEUTRAL/skip]",
+    "conviction": "[LOW/MED/HIGH/skip]",
+    "why": "[one-line reasoning or null]",
+    "wrong_if": "[optional falsification condition or null]",
+    "locked_at": "[ISO timestamp when user submitted]"
+  }
 }
 ```
-**CRITICAL:** This must be logged on EVERY rumble. No exceptions. This is the data that feeds the future accuracy tracker. A rumble without a prediction log is wasted data.
+**CRITICAL:** This must be logged on EVERY rumble. No exceptions. This is the data that feeds the future accuracy tracker. A rumble without a prediction log is wasted data. If user skipped pre-registration, all user_hypothesis fields = "skip" / null.
 
-9. Close with:
+9. **YOUR CALL vs THE JUDGE** 🎯
+
+   If the user submitted a pre-rumble hypothesis in Step 0, append this comparison block AFTER the Judge's championship ruling (before the close message):
+
+   ```
+   ━━━ YOUR CALL vs THE JUDGE ━━━
+   YOUR CALL:      [direction]  ([conviction] conviction)
+   YOUR WHY:       [user's one-liner]
+   JUDGE VERDICT:  [CONVICTION level]  (score: [+X.XX])
+
+   DIVERGENCE:     [AGREE / MILD / MODERATE / STRONG]
+                   [one sentence explaining the gap or alignment]
+
+   → If you AGREE with the committee: do you have a reason to override
+     position sizing, or does the Judge's number rule?
+   → If you DIVERGE: what do you see that [most-opposed legend] missed?
+     (This question doesn't change the verdict — it trains your edge.)
+
+   This hypothesis was locked at [timestamp] and logged to
+   predictions.json. It will be scored on 30d / 90d check-ins.
+   ```
+
+   **Divergence scale:**
+   - AGREE: same direction, same/similar conviction
+   - MILD: same direction, different conviction magnitude
+   - MODERATE: one NEUTRAL vs one directional
+   - STRONG: opposite directions (user BULL vs Judge SELL)
+
+   If user skipped Step 0, skip this block entirely and go straight to the close message.
+
+10. Close with:
 ```
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 RUMBLE COMPLETE — [TICKER]

@@ -4,6 +4,41 @@
 
 ---
 
+## [2026-04-17] — v0.6.0 — Your Call First (Pre-Registration)
+
+**Trigger:** Recognized that system accuracy ≠ user calibration. Royal Rumble was measuring the Judge's track record but not the USER's. After celebrating the pending-rumbles.md pre-registration move, user asked to hardwire this into every rumble.
+
+### Shipped
+
+**Step 0 — Pre-Rumble Hypothesis**
+- Before ANY searches or legend analysis, `.rumble [TICKER]` now prompts the user for their locked-in call:
+  1. Direction (BULL / BEAR / NEUTRAL / skip)
+  2. Conviction (LOW / MED / HIGH / skip)
+  3. One-line why
+  4. Falsification condition (optional)
+- Rumble WAITS for the user's reply before proceeding — forces commitment before external data can anchor the view.
+- "skip" is always valid — some rumbles are cold research, not hypothesis tests.
+
+**Your Call vs The Judge — end-of-verdict comparison**
+- After the championship ruling, a new block compares the user's pre-registered call to the Judge's verdict.
+- Divergence scale: AGREE / MILD / MODERATE / STRONG.
+- Surfaces the learning question: *"what do you see that the opposing legend missed?"* — trains the user's edge over time.
+
+**predictions.json schema extended**
+- Added `user_hypothesis` object: direction, conviction, why, wrong_if, locked_at timestamp.
+- Enables future tracking: user hit-rate vs system hit-rate, user's edge per sector, blind spots.
+
+### Why it matters
+- Builds YOUR track record from rumble #1, not just the system's.
+- Measures user calibration honestly — no hindsight bias, no "I knew it all along."
+- Turns every rumble into a self-improvement rep.
+
+### Deferred
+- v0.7: Focus Modes (--technical / --fundamental / --exit / --macro) — next ship
+- v0.8+: CIO Router (natural-language query → focus mode routing) — after 10 rumbles
+
+---
+
 ## [2026-04-17] — v0.5.0 — Consistency Pass
 
 **Trigger:** 2-round stress test on v0.4.0 surfaced 4 inconsistencies. All T1 (low/no risk, active bugs). Shipped together.
