@@ -42,30 +42,48 @@ Standard stock analysis asks one person one question. This system asks 13 of the
 ## How to Use
 
 ```
-# 1. Open Claude Code
-/royal-rumble
+# Type /royal-rumble to see the main menu:
 
-# 2. Start a rumble
-.rumble NVDA
-.rumble META post-earnings dip, considering calls
-.rumble AAPL concerned about China revenue risk
-
-# 3. Get the championship verdict
-→ All 8 legends analyze from their pillar
-→ Judge scores each 1-10 and issues weighted verdict
-→ Conviction level: STRONG BUY / BUY / HOLD / SELL / STRONG SELL
-→ Position size: Full / Half / Quarter / Starter / Pass
-
-# 4. Argue back (Stage 2)
-.challenge klarman The FCF yield is actually 4.2% adjusted for SBC — that's real margin of safety
-.challenge druckenmiller The FOMC meeting is in 3 weeks, that's your catalyst
-.challenge soros Institutional positioning shows funds are still underweight here
-
-# 5. Watch the verdict update
-→ Legend defends their stance or concedes
-→ If stance changes, Judge recalculates weighted score
-→ Conviction level may change
+⚔️  ROYAL RUMBLE — Main Menu
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1. 🎯 Single ticker deep-dive          .rumble TICKER
+2. ⚔️  Head-to-head compare             .compare A vs B
+3. 📅 Monday morning theme meeting     .strategy THEME TIMEFRAME
+4. 🔄 Check-in on a prior rumble       .checkin TICKER       [stub]
+5. 📁 Portfolio review (all holdings)  .portfolio            [stub]
+6. 👀 Watchlist scan & rank            .watchlist [list]     [stub]
+7. 🗡️  Challenge a legend               .challenge LEGEND
+8. 📜 Track record + history           .log
+9. ❓ Help / legends / framework       .help
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+### Example commands
+
+```bash
+# Single ticker, with hypothesis pre-registration
+.rumble NVDA
+
+# Quick rumble, skip hypothesis prompt
+.rumble TSLA --skip
+
+# Head-to-head (spawns 2 blind committees in parallel)
+.compare CRM vs NOW
+
+# Monday morning thematic meeting — produces a portfolio plan
+.strategy AI 12mo $7k-IRA
+.strategy "recession hedge" 6mo long-only
+
+# Argue back against a single legend
+.challenge klarman The FCF yield is actually 4.2% adjusted for SBC
+```
+
+### What each command returns
+
+- **`.rumble`** → 13-legend analysis + Judge verdict + YOUR call vs committee
+- **`.compare`** → 2 parallel rumbles + head-to-head table + clear winner
+- **`.strategy`** → 3-round committee meeting + full portfolio plan with sizing
+- **`.challenge`** → 1 legend defends; Judge re-scores if stance changes
 
 ---
 

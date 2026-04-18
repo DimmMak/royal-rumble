@@ -4,6 +4,48 @@
 
 ---
 
+## [2026-04-17] — v0.9.0 — Main Menu + `.compare` (Front Door)
+
+**Trigger:** User noticed there was no front-door UX — commands existed but weren't discoverable. Also: head-to-head comparison (CRM vs NOW, AI meeting) had been done manually but never formalized. Shipped both together.
+
+### Shipped
+
+**Main Menu (bare `/royal-rumble` now shows 9 options)**
+- Typing the skill without a subcommand lands on a menu card
+- 9 numbered options, each routing to the underlying command
+- Clear UX: "what's the job?" — pick a lane
+
+**New command: `.compare [TICKER_A] vs [TICKER_B]`**
+- Spawns TWO blind committee subagents IN PARALLEL
+- Each subagent fully isolated — neither knows the other exists or that a comparison is happening
+- Parent parses both structured footers, produces head-to-head table
+- Scores 10 categories, declares winner
+- Appends both rumbles to predictions.json, appends comparison to data/comparisons.json
+- First use (CRM vs NOW) retroactively logged
+
+**Honest stubs: `.checkin`, `.portfolio`, `.watchlist`**
+- Registered in the menu (visible as capabilities)
+- Show informative messages explaining WHY they're not built yet + the trigger condition to earn them
+- `.checkin` earns at 30+ day rumble
+- `.portfolio` earns at 3+ open positions
+- `.watchlist` earns when a real watchlist file exists
+
+**Updated `.help`**
+- Main menu is the new front door
+- `.help` now shows expanded legend + framework detail (previously was the default)
+
+**data/comparisons.json** — new log file for head-to-head comparisons.
+
+### Why this matters
+Royal Rumble went from "hidden command palette" to "real hedge-fund-style tool with a front door." Menu is discoverable. Commands are enumerable. Stubs tell the truth about what's built vs coming.
+
+### Deferred to Tier 2 (with trigger conditions)
+- `.checkin` full build (needs 30-day-old rumble)
+- `.portfolio` full build (needs 3+ open positions)
+- `.watchlist` full build (needs real watchlist file + 10+ tickers scan pattern)
+
+---
+
 ## [2026-04-17] — v0.8.0 — Strategy Meeting (Thematic Committee)
 
 **Trigger:** User asked "how do I get investors to debate how to play AI stocks next year and come up with a plan." Manually spawned a subagent with a 3-round meeting prompt. Output was exceptional ("WOW it's beautiful"). Earn-your-features fired — one successful use + clear repeat demand.

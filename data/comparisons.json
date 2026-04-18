@@ -1,0 +1,17 @@
+{
+  "comparisons": [
+    {
+      "date": "2026-04-17",
+      "ticker_a": "CRM",
+      "ticker_b": "NOW",
+      "score_a": 0.125,
+      "score_b": 0.24,
+      "verdict_a": "HOLD",
+      "verdict_b": "STRONG BUY",
+      "winner": "NOW",
+      "categories_won_by_winner": 8,
+      "total_categories": 10,
+      "notes": "First .compare run, retroactively logged. NOW won decisively — Klarman override fired (first time this session). 46% YTD drawdown + AT Klarman buy price."
+    }
+  ]
+}

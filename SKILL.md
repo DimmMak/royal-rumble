@@ -1,12 +1,12 @@
 ---
 name: royal-rumble
-version: 0.8.0
+version: 0.9.0
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
   The Judge synthesizes a weighted championship verdict with conviction level and position sizing.
   Stage 2: challenge any legend — they defend their stance or concede. Verdict updates live.
-  Commands: .rumble [TICKER] | .challenge [legend] | .verdict | .log | .help
+  Commands: .rumble | .compare | .strategy | .challenge | .checkin | .portfolio | .watchlist | .log | .help
 ---
 
 <!-- CHANGELOG pointer: see CHANGELOG.md. Bump `version:` on every material logic change. -->
@@ -389,9 +389,45 @@ Original verdict stands.
 
 ---
 
-## IF NO COMMAND GIVEN
+## IF NO COMMAND GIVEN — MAIN MENU (v0.9+)
 
 Show:
+```
+⚔️  ROYAL RUMBLE — Main Menu
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+What's the job?
+
+1. 🎯 Single ticker deep-dive          .rumble TICKER
+2. ⚔️  Head-to-head compare             .compare A vs B
+3. 📅 Monday morning theme meeting     .strategy THEME TIMEFRAME
+4. 🔄 Check-in on a prior rumble       .checkin TICKER       [stub]
+5. 📁 Portfolio review (all holdings)  .portfolio            [stub]
+6. 👀 Watchlist scan & rank            .watchlist [list]     [stub]
+7. 🗡️  Challenge a legend               .challenge LEGEND
+8. 📜 Track record + history           .log
+9. ❓ Help / legends / framework       .help
+
+Reply with a number (1-9) or type the command directly.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Menu number → command routing:**
+- 1 → `.rumble` (prompt for TICKER)
+- 2 → `.compare` (prompt for A and B)
+- 3 → `.strategy` (prompt for theme/timeframe/constraints)
+- 4 → `.checkin` (prompt for TICKER — show stub message)
+- 5 → `.portfolio` (show stub message)
+- 6 → `.watchlist` (prompt for tickers — show stub message)
+- 7 → `.challenge` (prompt for legend + argument)
+- 8 → `.log` (display predictions.json summary)
+- 9 → `.help` (show the "legends + framework" detail view below)
+
+---
+
+### `.help` expanded view
+
+Show THIS when user types `.help` or picks menu 9:
 ```
 ⚔️  ROYAL RUMBLE HEDGE FUND SYSTEM
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -399,7 +435,7 @@ Show:
 
 THE LEGENDS:
   VOTING (base weights):
-  ⚡ Druckenmiller    — Tactical Macro & Timing        (20%) ← highest weight
+  ⚡ Druckenmiller    — Tactical Macro & Timing        (20%)
   👑 Tom Lee          — Liquidity & Macro Regime       (15%)
   🚀 Cathie Wood      — Disruptive Innovation          (15%)
   ⚖️  Ray Dalio        — Risk & Portfolio Construction  (15%)
@@ -408,28 +444,121 @@ THE LEGENDS:
   🌀 George Soros     — Sentiment & Narrative          (10%)
   🎯 The Vol Desk     — Options & Volatility           (5%)
 
-  ADVISORY (analysis shown, no vote until accuracy-validated):
-  📚 Howard Marks     — Credit & Risk Cycles
-  📈 Trend Follower   — Pure Price Trend
-  🏔️  Warren Buffett   — Owner Earnings & Compounding
-  🔱 Bill Ackman      — Activist & Catalyst
-  🌍 Jim Rogers       — Global Macro & Commodities
+  ADVISORY (no vote until accuracy-validated):
+  📚 Howard Marks  📈 Trend Follower  🏔️ Warren Buffett
+  🔱 Bill Ackman   🌍 Jim Rogers
 
-COMMANDS:
-  .rumble NVDA                          → Blind committee, single ticker
-  .rumble NVDA post-earnings dip        → With context
-  .rumble NVDA --skip                   → Skip hypothesis prompt
-  .challenge klarman [your argument]    → Stage 2 challenge
-  .strategy AI 12mo $7k-IRA             → Thematic committee meeting
-  .strategy "recession hedge" 6mo       → Produces portfolio plan
-  .verdict                              → Re-show last verdict
-  .log                                  → Rumble history
-  .test                                 → Full test suite (5 tickers)
-  .test NVDA                            → Test one ticker and audit
-  .test quick                           → Quick test (2 tickers)
-  .help                                 → This screen
+Architecture: blind subagent per rumble (sealed from hypothesis).
+v0.8+ adds .strategy thematic meetings.
+v0.9+ adds .compare head-to-head + main menu.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
+
+---
+
+## STAGE 5 — `.compare` HEAD-TO-HEAD (v0.9)
+
+**Trigger:** `.compare [TICKER_A] vs [TICKER_B]` or `.compare A B`
+
+**Core principle:** Two blind committees run IN PARALLEL (one per ticker), then parent synthesizes a head-to-head table. Proved this architecture works today with CRM vs NOW.
+
+### Execution sequence
+
+#### 0. PARSE ARGUMENTS
+- Extract TICKER_A and TICKER_B
+- Optional: ask for hypothesis on the pair ("which do YOU lean toward?") or accept `--skip`
+
+#### 1. SPAWN TWO PARALLEL BLIND COMMITTEES
+Use Agent tool TWICE in a single message (parallel execution). Each uses the same sealed prompt template from STAGE 1 (with ticker interpolated). Neither subagent knows the other exists or that a comparison is happening.
+
+#### 2. RECEIVE BOTH VERDICTS + STRUCTURED FOOTERS
+Parent parses both JSON footers.
+
+#### 3. HEAD-TO-HEAD SYNTHESIS (parent)
+Produce comparison table:
+```
+⚔️ HEAD-TO-HEAD — [TICKER_A] vs [TICKER_B]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+                        | [A]    | [B]    | Winner |
+|-----------------------|--------|--------|--------|
+| Combined score        | +X.XX  | +X.XX  | 🟢 [X] |
+| Verdict               | ...    | ...    | 🟢 [X] |
+| Position size         | ...    | ...    | 🟢 [X] |
+| Short-term score      | +X.XX  | +X.XX  | 🟢 [X] |
+| Long-term score       | +X.XX  | +X.XX  | 🟢 [X] |
+| Klarman stance        | ...    | ...    | 🟢 [X] |
+| Trend stance          | ...    | ...    | 🟢 [X] |
+| Fabrication flags     | N      | N      | [tie or 🟢] |
+| Current price         | $X.XX  | $X.XX  | —      |
+| vs Klarman buy price  | above  | AT     | 🟢 [X] |
+
+WINNER: [TICKER] by [N] categories out of 10
+ACTION: Run full .rumble [WINNER] if you want deep-dive entry/exit
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+#### 4. LOG
+Append BOTH rumbles to predictions.json (each standalone). Append a comparison entry to `data/comparisons.json` with both ticker IDs and the winner.
+
+#### 5. CLOSE
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+COMPARE COMPLETE — [A] vs [B]
+Winner: [TICKER]
+Both rumbles logged. Run .rumble [WINNER] for deep-dive.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+---
+
+## STUBS — `.checkin`, `.portfolio`, `.watchlist` (v0.9 — honest-stub mode)
+
+These commands are **registered in the menu** but not fully built. Each shows a stub message explaining the trigger condition to earn it:
+
+### `.checkin [TICKER]`
+```
+🔄 CHECK-IN — Not yet built
+
+Trigger to earn this feature:
+  ✗ Need a rumble at least 30 days old in predictions.json
+  → Oldest current rumble: 0 days (all logged today)
+  → Check back after 2026-05-17 (first NOW rumble hits 30d)
+
+In the meantime:
+  • Re-run .rumble [TICKER] to see today's view vs old
+  • Compare manually: oldest predictions.json entry vs current price
+```
+
+### `.portfolio`
+```
+📁 PORTFOLIO REVIEW — Not yet built
+
+Trigger to earn this feature:
+  ✗ Need 3+ open positions logged
+  → Currently tracked: 1 (NOW — 4 shares @ $83.50)
+
+In the meantime:
+  • Show your open trades manually in trading-journal.md
+  • Re-rumble each holding to re-check thesis
+  • Revisit after 3rd real position is opened
+```
+
+### `.watchlist [tickers]`
+```
+👀 WATCHLIST — Not yet built as a fast-scan tool
+
+Trigger to earn this feature:
+  ✗ Need a real watchlist file (data/watchlist.md)
+  ✗ Need a lightweight 1-search-per-ticker scan pattern
+
+In the meantime, for small lists use .compare:
+  .compare NVDA vs AMD        (2 tickers)
+  .rumble [TICKER] for each   (best for 3-5 tickers)
+
+For a 10+ ticker scan — wait for v0.10.
+```
+
+These stubs are **honest signals**. They tell the user when the feature will earn itself. No fake functionality.
 
 ---
 
