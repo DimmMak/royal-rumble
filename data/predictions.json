@@ -1,3 +1,116 @@
 {
-  "rumbles": []
+  "rumbles": [
+    {
+      "ticker": "TSLA",
+      "date": "2026-04-17",
+      "price": 391.95,
+      "combined_score": 0.03,
+      "short_term_score": 0.04,
+      "long_term_score": 0.01,
+      "verdict": "HOLD",
+      "position_size": "Starter",
+      "voting_stances": {
+        "druckenmiller": {"stance": "NEUTRAL", "value": 0.0},
+        "tom_lee": {"stance": "BULL", "value": 0.5},
+        "cathie_wood": {"stance": "STRONG BULL", "value": 1.0},
+        "dalio": {"stance": "BEAR", "value": -0.5},
+        "klarman": {"stance": "STRONG BEAR", "value": -1.0},
+        "simons": {"stance": "NEUTRAL", "value": 0.0},
+        "soros": {"stance": "BEAR", "value": -0.5},
+        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+      },
+      "advisory_stances": {
+        "marks": {"stance": "BEAR"},
+        "trend": {"stance": "BEAR"},
+        "buffett": {"stance": "BEAR"},
+        "ackman": {"stance": "NEUTRAL"},
+        "rogers": {"stance": "NEUTRAL"}
+      },
+      "flip_conditions": {
+        "druckenmiller": "Close above $398 on 1.5x volume post-earnings = BULL; break $352 = BEAR",
+        "tom_lee": "HY OAS widens >100bps OR Fed re-tightens",
+        "cathie_wood": "FSD/robotaxi proven to fail OR Optimus canceled",
+        "dalio": "Core PCE <2.5% AND TSLA <40x forward EPS",
+        "klarman": "Stock <$65 OR owner-earnings doubles",
+        "simons": "Clean RSI + earnings surprise + revision wave",
+        "soros": "Q1 beat with raised guide",
+        "vol_desk": "Post-earnings IV crush with put skew (BULL) OR backwardation (BEAR)"
+      },
+      "key_levels": {
+        "major_resistance": 398.01,
+        "first_support": 381.27,
+        "two_hundred_day_ma": 398.01,
+        "klarman_buy_price": 52.50,
+        "stop_loss": 352.00
+      },
+      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_completed": {},
+      "mode": "blind",
+      "guard_result": "3_FLAGS",
+      "guard_flag_count": 3,
+      "user_hypothesis": {
+        "direction": "BULL",
+        "conviction": "HIGH",
+        "why": "SpaceX IPO, Optimus robot, Robotaxi",
+        "wrong_if": "EV sales tank further",
+        "locked_at": "2026-04-17T00:00:00Z"
+      }
+    },
+    {
+      "ticker": "AMD",
+      "date": "2026-04-17",
+      "price": 255.07,
+      "combined_score": 0.25,
+      "short_term_score": 0.29,
+      "long_term_score": 0.13,
+      "verdict": "BUY",
+      "position_size": "Quarter",
+      "voting_stances": {
+        "druckenmiller": {"stance": "NEUTRAL", "value": 0.0},
+        "tom_lee": {"stance": "BULL", "value": 0.5},
+        "cathie_wood": {"stance": "STRONG BULL", "value": 1.0},
+        "dalio": {"stance": "NEUTRAL", "value": 0.0},
+        "klarman": {"stance": "STRONG BEAR", "value": -1.0},
+        "simons": {"stance": "BULL", "value": 0.5},
+        "soros": {"stance": "BULL", "value": 0.5},
+        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+      },
+      "advisory_stances": {
+        "marks": {"stance": "BEAR"},
+        "trend": {"stance": "BULL"},
+        "buffett": {"stance": "BEAR"},
+        "ackman": {"stance": "NEUTRAL"},
+        "rogers": {"stance": "NEUTRAL"}
+      },
+      "flip_conditions": {
+        "druckenmiller": "Pullback to $215-220 flips BULL; break $190 = BEAR",
+        "tom_lee": "HY OAS widens >100bps OR Fed re-tightens",
+        "cathie_wood": "MI450 delay >2 quarters OR OpenAI/Oracle restructure",
+        "dalio": "Spreads widen >150bps OR PCE >3.3%",
+        "klarman": "Price to $85 OR normalized FCF doubles to $13B+",
+        "simons": "RSI <50 on volume OR earnings miss",
+        "soros": "Named hyperscaler cuts 2027 capex OR MI450 slips",
+        "vol_desk": "IV rank >75 on fear OR <25 with put skew"
+      },
+      "key_levels": {
+        "major_resistance": 264.33,
+        "first_support": 213.48,
+        "two_hundred_day_ma": 215.87,
+        "klarman_buy_price": 78.00,
+        "stop_loss": 215.00
+      },
+      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_completed": {},
+      "mode": "skipped",
+      "guard_result": "2_FLAGS",
+      "guard_flag_count": 2,
+      "user_hypothesis": {
+        "direction": "skip",
+        "conviction": "skip",
+        "why": null,
+        "wrong_if": null,
+        "locked_at": null
+      }
+    }
+  ]
 }
