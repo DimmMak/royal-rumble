@@ -111,6 +111,62 @@
         "wrong_if": null,
         "locked_at": null
       }
+    },
+    {
+      "ticker": "MU",
+      "date": "2026-04-17",
+      "price": 377.58,
+      "combined_score": 0.275,
+      "short_term_score": 0.292,
+      "long_term_score": 0.25,
+      "verdict": "BUY",
+      "position_size": "Quarter",
+      "voting_stances": {
+        "druckenmiller": {"stance": "BULL", "value": 0.5},
+        "tom_lee": {"stance": "BULL", "value": 0.5},
+        "cathie_wood": {"stance": "STRONG BULL", "value": 1.0},
+        "dalio": {"stance": "NEUTRAL", "value": 0.0},
+        "klarman": {"stance": "BEAR", "value": -0.5},
+        "simons": {"stance": "BULL", "value": 0.5},
+        "soros": {"stance": "BEAR", "value": -0.5},
+        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+      },
+      "advisory_stances": {
+        "marks": {"stance": "BEAR"},
+        "trend": {"stance": "BULL"},
+        "buffett": {"stance": "BEAR"},
+        "ackman": {"stance": "NEUTRAL"},
+        "rogers": {"stance": "BULL"}
+      },
+      "flip_conditions": {
+        "druckenmiller": "Break $337.50 on volume, or any hyperscaler capex guide-down",
+        "tom_lee": "Fed pivot to hikes or HY spreads widen >100bps in 60 days",
+        "cathie_wood": "HBM TAM revisions down >25% or hyperscaler capex guide-downs",
+        "dalio": "Net debt/EBITDA >1.5x or 2s10s flattening back to inversion",
+        "klarman": "Pullback to sub-$200 or through-cycle FCF proves structurally higher",
+        "simons": "Break below 50-day MA ($337.50) with volume, first downgrade wave",
+        "soros": "First major Wall Street downgrade; hyperscaler capex cut; DRAM spot break",
+        "vol_desk": "IV rank >85 with call skew (BEAR) or <25 with put skew (BULL)"
+      },
+      "key_levels": {
+        "major_resistance": 492.56,
+        "first_support": 337.50,
+        "two_hundred_day_ma": 216.10,
+        "klarman_buy_price": 130.00,
+        "stop_loss": 337.50
+      },
+      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_completed": {},
+      "mode": "blind",
+      "guard_result": "2_FLAGS",
+      "guard_flag_count": 2,
+      "user_hypothesis": {
+        "direction": "BULL",
+        "conviction": "HIGH",
+        "why": "Memory chips sold out all 2026, projected demand to grow in 2027",
+        "wrong_if": "AI bubble premature ejaculation",
+        "locked_at": "2026-04-17T00:00:00Z"
+      }
     }
   ]
 }
