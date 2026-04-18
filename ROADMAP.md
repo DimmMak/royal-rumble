@@ -9,15 +9,18 @@
 
 ---
 
-## 📊 Current state (as of 2026-04-17, v0.5.0)
+## 📊 Current state (as of 2026-04-17, v0.9.1)
 
 - 13 legends (8 voting + 5 advisory) + Judge with Fabrication Guard
+- Subagent isolation (v0.7+) — blind committee, no contamination
+- `.rumble` / `.compare` / `.strategy` / `.challenge` all shipped
+- Main Menu UX (v0.9) — 9-option front door
 - Cite-or-Abstain rule enforced in PRE-STEP + Stage 2
-- 5-search data budget, Guard ~75% estimated catch-rate
-- Versioning discipline: 5 clean versions shipped in one day
-- **What's MISSING:** real outcome data. No rumble has been measured against actual price movement yet.
+- Install script (v0.9.1) — `scripts/install.sh` syncs Desktop → installed skill
+- 6 rumbles + 1 strategy meeting + 1 comparison logged
+- **What's MISSING:** real outcome data. First 30d check-in due 2026-05-17 (NOW).
 
-System is correct in structure. Next frontier: **calibration**.
+System is correct in structure. Next frontier: **calibration via real trades**.
 
 ---
 
@@ -111,6 +114,16 @@ System is correct in structure. Next frontier: **calibration**.
 **What:** Extend beyond stocks. Bonds (duration, credit), commodities (gold, oil), crypto (BTC/ETH), FX.
 **Trigger:** Stock system has 50+ rumbles and proven > random accuracy.
 **Cost:** LARGE. Whole new legend framework tuning per asset class.
+
+---
+
+## 🔧 INFRASTRUCTURE TIER — Already shipped
+
+### INFRA.1 — `scripts/install.sh` (v0.9.1, shipped) ✅
+**What:** Syncs `~/Desktop/CLAUDE CODE/royal-rumble/` → `~/.claude/skills/royal-rumble/`. Also deletes stale `.skill` zip files that cause duplicate skill registration.
+**Why earned:** v0.9.0 shipped the full Main Menu + `.compare` to the Desktop working copy and GitHub — but Claude Code still loaded the stale v0.5-era installed copy. Took a manual `cp -R` to fix. Will happen every time without a script.
+**Usage:** `./scripts/install.sh` (plain) or `./scripts/install.sh --clean` (nuke + fresh).
+**After running:** restart Claude Code to reload.
 
 ---
 

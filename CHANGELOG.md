@@ -4,6 +4,25 @@
 
 ---
 
+## [2026-04-17] — v0.9.1 — Install Script (Desktop ↔ Installed sync)
+
+**Trigger:** v0.9.0 shipped to Desktop + GitHub successfully, but Claude Code was still loading the stale v0.5-era installed skill from `~/.claude/skills/royal-rumble/`. Also detected duplicate registration: a stale `royal-rumble.skill` zip alongside the extracted directory caused 3 identical skills to show in the skill registry. Fixed manually, then automated.
+
+### Shipped
+
+**`scripts/install.sh`** — one-command sync from working copy to installed skill location.
+- Removes stale `.skill` zip (prevents duplicate registration)
+- Syncs `SKILL.md` + `skills/` + `data/` + `notes/` to `~/.claude/skills/royal-rumble/`
+- `--clean` flag for full wipe + fresh install
+- Reports installed version after sync
+- Reminds user to restart Claude Code
+
+**Why:** Editing the Desktop copy is useful for git discipline. Loading from `~/.claude/skills/` is how the skill actually runs. These two paths diverge silently. The install script makes the sync explicit and one-shot.
+
+**ROADMAP infrastructure tier added** with this entry.
+
+---
+
 ## [2026-04-17] — v0.9.0 — Main Menu + `.compare` (Front Door)
 
 **Trigger:** User noticed there was no front-door UX — commands existed but weren't discoverable. Also: head-to-head comparison (CRM vs NOW, AI meeting) had been done manually but never formalized. Shipped both together.
