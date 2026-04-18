@@ -7,6 +7,10 @@ description: >
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
   The Judge synthesizes a weighted championship verdict with conviction level and position sizing.
   Stage 2: challenge any legend — they defend their stance or concede. Verdict updates live.
+  NOT for: P0-P3 attention ranking or briefings (use .chief).
+  NOT for: risk × reward tiering of arbitrary items (use .tier).
+  NOT for: Howard Marks memo writeups of a verdict (use .journalist).
+  NOT for: hit-rate scoring of past predictions (use .accuracy).
   Commands: .rumble | .compare | .strategy | .challenge | .checkin | .portfolio | .watchlist | .log | .help
 ---
 
