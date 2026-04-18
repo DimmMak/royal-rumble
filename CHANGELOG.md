@@ -4,6 +4,34 @@
 
 ---
 
+## [2026-04-18] — v0.9.3 — Price Desk integration (mandatory live-price gate)
+
+**Trigger:** User caught the critical stale-price bug on 2026-04-17 rumbles. NOW cited $82.91 when actual was $96.66 (+16.6%). MU was +20.5% off. Fund operations paused until fix shipped.
+
+### Shipped
+
+**STEP 0.5: LIVE PRICE VERIFICATION (new mandatory gate)**
+- Parent session calls `price-desk` (yfinance wrapper) BEFORE spawning any subagent
+- Execution: `python3 ~/.claude/skills/price-desk/scripts/price.py TICKER`
+- If price-desk returns ERROR → rumble ABORTS (no silent failure)
+- If OK → verified price passed to subagent as authoritative anchor
+
+**Subagent prompt extended:**
+- Now receives VERIFIED LIVE PRICE block at the top
+- Every Cite-or-Abstain price tag must reference `[SRC: price-desk YYYY-MM-DD HH:MM]`
+- Web search price conflicts flagged, not silently used
+
+**Architectural rule:**
+> No rumble produces a verdict without price-desk verification. Stale data is structurally impossible.
+
+### Why
+Cite-or-Abstain tagged sources but didn't verify source FRESHNESS. Web searches silently returned 7-day-old data. Price Desk closes this gap as a hard gate. No trust — verify.
+
+### Note
+v0.9.2 skipped; jumped from v0.9.1 to v0.9.3 because the stale-price issue deserved its own version + CHANGELOG entry.
+
+---
+
 ## [2026-04-17] — v0.9.1 — Install Script (Desktop ↔ Installed sync)
 
 **Trigger:** v0.9.0 shipped to Desktop + GitHub successfully, but Claude Code was still loading the stale v0.5-era installed skill from `~/.claude/skills/royal-rumble/`. Also detected duplicate registration: a stale `royal-rumble.skill` zip alongside the extracted directory caused 3 identical skills to show in the skill registry. Fixed manually, then automated.

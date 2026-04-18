@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 0.9.1
+version: 0.9.3
 role: Investment Committee
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
@@ -90,6 +90,37 @@ Reply with your hypothesis, or type "skip" / "skip all" to rumble without pre-re
 - If user says "skip" (or equivalent), proceed with no hypothesis logged
 - Once submitted, hypothesis is locked until the comparison block at Step 3
 
+### 0.5. LIVE PRICE VERIFICATION (MANDATORY — v0.9.3+) 📊
+
+**BEFORE spawning any subagent, call `price-desk` to get the live, verified price for this ticker.** This is non-negotiable. Web search returns stale data; price-desk prevents it.
+
+**Execution (parent session only):**
+```bash
+python3 ~/.claude/skills/price-desk/scripts/price.py [TICKER]
+```
+
+**Capture the output JSON.** Extract:
+- `price` — the authoritative current price (use this, not web search)
+- `previous_close` — prior day's close
+- `day_high` / `day_low` — intraday range
+- `pulled_at` — timestamp (proves freshness)
+- `status` — must be "OK" to proceed
+
+**Hard gate:**
+- If `status` = "OK" → continue to Step 1, pass the verified price to the subagent
+- If `status` = "ERROR" → ABORT the rumble. Display:
+  ```
+  ⚠️ Price Desk returned ERROR for [TICKER]: [error message]
+  Rumble aborted — no trade decision without verified data.
+  Options:
+    1. Check ticker spelling
+    2. Retry in 60 seconds (yfinance may be rate-limited)
+    3. If persistent failure, manually verify price on Yahoo Finance
+       and re-run with --override-price $XXX (future flag, not yet built)
+  ```
+
+**The verified price is the anchor.** Web searches in STEP B of the subagent prompt still happen (for qualitative data, analyst targets, technical levels, macro, options data) — but the REFERENCE PRICE that all analysis hangs on comes from price-desk, not web search.
+
 ### 1. SPAWN BLIND COMMITTEE SUBAGENT 🚀
 
 Use the Agent tool with `subagent_type: "general-purpose"`. The prompt MUST NOT reference the user's hypothesis in any form.
@@ -103,6 +134,18 @@ TICKER: [TICKER]
 CONTEXT: [CONTEXT or "None"]
 TODAY'S DATE: [TODAY_YYYY-MM-DD]    ← use this for all time-sensitive logic (searches, freshness tag, rumble header, timestamps)
 CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
+
+⭐ VERIFIED LIVE PRICE (from price-desk, pulled [PRICE_PULLED_AT]):
+   PRICE:           $[VERIFIED_PRICE]
+   PREVIOUS CLOSE:  $[VERIFIED_PREV_CLOSE]
+   CHANGE TODAY:    [VERIFIED_CHANGE_PCT]%
+   DAY RANGE:       $[VERIFIED_DAY_LOW] - $[VERIFIED_DAY_HIGH]
+
+   ⚠️ THIS IS THE AUTHORITATIVE REFERENCE PRICE. Every Cite-or-Abstain
+   tag referencing price must use [SRC: price-desk YYYY-MM-DD HH:MM].
+   Web searches may return conflicting prices — TRUST ONLY THIS ONE.
+   If web search returns a price >2% different, flag it as stale,
+   do NOT use it to recalculate anything.
 
 🛠️ TOOLS YOU WILL USE:
 - WebSearch — for S1 through S5 (run IN PARALLEL in one message)
