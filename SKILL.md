@@ -1,6 +1,6 @@
 ---
 name: royal-rumble
-version: 0.7.2
+version: 0.8.0
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
@@ -416,12 +416,15 @@ THE LEGENDS:
   🌍 Jim Rogers       — Global Macro & Commodities
 
 COMMANDS:
-  .rumble NVDA                          → Start full rumble
-  .rumble NVDA post-earnings dip        → Rumble with context
+  .rumble NVDA                          → Blind committee, single ticker
+  .rumble NVDA post-earnings dip        → With context
+  .rumble NVDA --skip                   → Skip hypothesis prompt
   .challenge klarman [your argument]    → Stage 2 challenge
+  .strategy AI 12mo $7k-IRA             → Thematic committee meeting
+  .strategy "recession hedge" 6mo       → Produces portfolio plan
   .verdict                              → Re-show last verdict
   .log                                  → Rumble history
-  .test                                 → Run full test suite (5 tickers)
+  .test                                 → Full test suite (5 tickers)
   .test NVDA                            → Test one ticker and audit
   .test quick                           → Quick test (2 tickers)
   .help                                 → This screen
@@ -536,6 +539,149 @@ SYSTEM HEALTH: [X/180 total checks passed] — [HEALTHY / NEEDS ATTENTION / CRIT
 4. Log to `notes/test-log.md`
 
 **CRITICAL: The test suite NEVER modifies skill files. It only reports. The user decides what to fix.**
+
+---
+
+## STAGE 4 — THE STRATEGY MEETING (v0.8, Thematic Committee)
+
+**Trigger:** `.strategy [theme] [timeframe] [constraints]`
+
+**Core principle:** Unlike `.rumble` (one ticker) or `.challenge` (one legend), `.strategy` runs a 3-round INVESTMENT COMMITTEE MEETING on a THEME. Produces a portfolio plan, not a verdict. Same blind-committee architecture — spawned in isolated subagent, sealed from parent session.
+
+**Use cases:**
+- `.strategy AI 12mo $7k-IRA`
+- `.strategy "recession hedge" 6mo long-only`
+- `.strategy semis 2027 concentrated $10k`
+- `.strategy "dividend stocks" 3yr conservative`
+
+### Execution sequence
+
+#### 0. PARSE ARGUMENTS
+
+Extract from the command:
+- **theme** — the investment theme (AI, semis, dividends, etc.)
+- **timeframe** — 3mo / 6mo / 12mo / 2yr / 5yr
+- **constraints** — account size ($7k), account type (IRA/taxable), long-only/hedged, concentration level
+
+If constraints omitted, prompt user ONCE:
+```
+💼 Account constraints for this strategy meeting?
+  - Capital size: $_____
+  - Account type: IRA (long-only, no margin) / Taxable (full toolkit)
+  - Position style: concentrated (3-5) / diversified (6-10) / barbell
+  - Special: anything else to respect?
+
+Reply with your constraints, or "default" for ($7k IRA, long-only, 4-5 positions max).
+```
+
+#### 1. SPAWN STRATEGY COMMITTEE SUBAGENT
+
+Use Agent tool, `subagent_type: "general-purpose"`. Use this sealed prompt template — interpolate [THEME], [TIMEFRAME], [CONSTRAINTS], [TODAY_YYYY-MM-DD], [TODAY_YYYY]:
+
+```
+You are the Royal Rumble Investment Committee running a THEMATIC STRATEGY MEETING (not a single-ticker rumble).
+
+THEME: [THEME]
+TIMEFRAME: [TIMEFRAME]
+ACCOUNT CONSTRAINTS: [CONSTRAINTS]
+TODAY'S DATE: [TODAY_YYYY-MM-DD]
+
+🛠️ TOOLS: WebSearch (5 parallel searches on the theme landscape), Read (RUMBLE-ENGINE.md), Grep. DO NOT Write/Edit.
+
+STEP A — Read /Users/danny/Desktop/CLAUDE CODE/royal-rumble/skills/RUMBLE-ENGINE.md ONCE. Load all 13 legend frameworks + Judge.
+
+STEP B — Run 5 PARALLEL web searches to establish the theme landscape. Design queries to the theme; e.g., for AI: hyperscaler capex, silicon supply/demand, enterprise software adoption, valuation/bubble risk, analyst picks. For recession hedge: defensive sectors, inverse correlations, volatility structure, historical drawdown performance, inflation hedges.
+
+STEP C — ROUND 1: INDEPENDENT MEMOS
+For each of the 13 legends (Tom Lee, Cathie Wood, Druckenmiller, Dalio, Klarman, Simons, Soros, Vol Desk, Marks, Trend, Ackman, Rogers, Buffett), produce a 1-paragraph memo in their voice with:
+- STANCE on the theme
+- TOP 2 PICKS from their framework
+- WHAT TO AVOID
+- ONE-LINE THESIS (pillar-specific)
+- ONE-LINE FLIP condition
+Apply Cite-or-Abstain. Tag [SRC: S1-S5] / [REPORTED] / [ESTIMATE] / [UNVERIFIED].
+
+STEP D — ROUND 2: DEBATE (surface 3 sharpest disagreements)
+For each debate: bull camp, bear camp, strongest bull argument, strongest bear rebuttal, resolution.
+
+STEP E — ROUND 3: JUDGE SYNTHESIS
+Produce complete strategy plan sized for [CONSTRAINTS]:
+- Core thesis (2-3 sentences)
+- Fabrication Guard result
+- Core positions table (ticker, why, entry zone, target, stop, IRA size, capital $, shares)
+- Satellite positions table (same)
+- Hedges table (instrument, purpose, cost, when to use)
+- Cash/dry powder
+- Total allocation breakdown
+- Timeframe roadmap with quarterly (or proportional) check-ins
+- Key invalidation triggers (stop-loss the whole thesis)
+- Contrarian anchor (the scenario where the plan LOSES)
+- Championship ruling (2-3 sentences — decisive strategic call)
+
+STEP F — STRUCTURED FOOTER (mandatory):
+
+```json
+---STRUCTURED-FOOTER-BEGIN---
+{
+  "meeting_type": "thematic_strategy",
+  "theme": "[THEME]",
+  "timeframe": "[TIMEFRAME]",
+  "date": "[TODAY_YYYY-MM-DD]",
+  "account_capital": 0,
+  "core_positions": [ {"ticker": "...", "size_pct": 0, "capital_usd": 0, "entry_zone": "...", "target": "...", "stop": "..."} ],
+  "satellite_positions": [ {"ticker": "...", "size_pct": 0, "capital_usd": 0, "entry_zone": "...", "target": "...", "stop": "..."} ],
+  "hedges": [ {"instrument": "...", "purpose": "...", "cost_usd": 0} ],
+  "cash_reserve_pct": 0,
+  "invalidation_triggers": ["...", "...", "..."],
+  "guard_result": "CLEAN|N_FLAGS",
+  "guard_flag_count": 0
+}
+---STRUCTURED-FOOTER-END---
+```
+
+⚠️ YOU HAVE NOT BEEN GIVEN ANY USER HYPOTHESIS. Committee analyzes theme independently.
+⚠️ ACCOUNT CONSTRAINTS ARE NON-NEGOTIABLE. Size every position to fit them.
+```
+
+#### 2. RELAY CHILD OUTPUT
+
+Display full meeting output verbatim to the user.
+
+#### 3. LOG (parent session)
+
+Parse the structured footer. Append to `data/strategy-meetings.json` (create if missing):
+
+```json
+{
+  "meetings": [
+    {
+      "theme": "...",
+      "timeframe": "...",
+      "date": "...",
+      "account_capital": 0,
+      "core_positions": [...],
+      "satellite_positions": [...],
+      "hedges": [...],
+      "cash_reserve_pct": 0,
+      "invalidation_triggers": [...],
+      "guard_result": "...",
+      "guard_flag_count": 0
+    }
+  ]
+}
+```
+
+#### 4. CLOSE
+
+```
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+STRATEGY MEETING COMPLETE — [THEME] [TIMEFRAME]
+Plan logged to data/strategy-meetings.json
+Revisit quarterly per the roadmap — or when invalidation trigger fires.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Why `.strategy` matters:** real hedge funds hold thematic committee meetings weekly. This command is that capability, reusable, blind, auditable. Produces a PLAN not a verdict.
 
 ---
 

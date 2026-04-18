@@ -1,0 +1,39 @@
+{
+  "meetings": [
+    {
+      "meeting_type": "thematic_strategy",
+      "theme": "AI_12mo",
+      "timeframe": "12mo",
+      "date": "2026-04-17",
+      "account_capital": 7000,
+      "account_type": "IRA (Chase, long-only)",
+      "core_positions": [
+        {"ticker": "MSFT", "size_pct": 20, "capital_usd": 1400, "entry_zone": "scale-in 3 tranches Q2-Q3 2026", "target": "+20-30% 12mo", "stop": "-15% from avg cost or thesis break"},
+        {"ticker": "GOOGL", "size_pct": 20, "capital_usd": 1400, "entry_zone": "scale-in on 5-10% pullbacks", "target": "+25-35% 12mo", "stop": "-15% or search share loss"}
+      ],
+      "satellite_positions": [
+        {"ticker": "NVDA", "size_pct": 10, "capital_usd": 700, "entry_zone": "only on 10%+ pullback from local high", "target": "+25% or trim at +40%", "stop": "-20% or Mag4 capex guide cut"},
+        {"ticker": "AVGO", "size_pct": 10, "capital_usd": 700, "entry_zone": "scale in on pullback", "target": "+20%", "stop": "-20%"}
+      ],
+      "hedges": [
+        {"instrument": "Cash reserve (primary)", "purpose": "Dry powder for 15%+ drawdown deployment", "cost_usd": 0},
+        {"instrument": "Optional MSFT protective put Q3/Q4", "purpose": "Tail protection if capex cycle stresses", "cost_usd": 75}
+      ],
+      "cash_reserve_pct": 15,
+      "invalidation_triggers": [
+        "Any Mag4 hyperscaler cuts forward capex guide >10% -> exit satellites, halve core",
+        "HY credit spreads widen past 500bp OR aggressive 2s10s un-inversion -> cash to 40%",
+        "MSFT or GOOGL breaks 200-day weekly close with volume -> exit that core name"
+      ],
+      "quarterly_roadmap": {
+        "Q2_2026": "Initiate half-weight MSFT + GOOGL ($700 each). Watch NVDA earnings late May.",
+        "Q3_2026": "Complete scale-in. Initiate AVGO on pullback. Trim satellites if sentiment euphoric.",
+        "Q4_2026": "Earnings gauntlet. Exit satellites if Mag4 capex guide cut >10%.",
+        "Q1_2027": "Rebalance. Trim winners over 25%. Re-harvest to cash or laggards."
+      },
+      "guard_result": "2_FLAGS",
+      "guard_flag_count": 2,
+      "notes": "First strategy meeting run pre-v0.8 ship — retroactively logged. Earned the .strategy feature."
+    }
+  ]
+}

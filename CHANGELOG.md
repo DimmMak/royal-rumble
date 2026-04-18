@@ -4,6 +4,46 @@
 
 ---
 
+## [2026-04-17] — v0.8.0 — Strategy Meeting (Thematic Committee)
+
+**Trigger:** User asked "how do I get investors to debate how to play AI stocks next year and come up with a plan." Manually spawned a subagent with a 3-round meeting prompt. Output was exceptional ("WOW it's beautiful"). Earn-your-features fired — one successful use + clear repeat demand.
+
+### Shipped
+
+**New command: `.strategy [theme] [timeframe] [constraints]`**
+
+Runs a **3-round investment committee meeting** in an isolated subagent:
+- Round 1 — 13 independent memos (sealed, blind)
+- Round 2 — Debate (3 sharpest disagreements surface)
+- Round 3 — Judge synthesis (complete portfolio plan)
+
+Output includes:
+- Core / satellite positions with sizing, entry zones, targets, stops
+- Hedges + cash reserve
+- Quarterly roadmap with check-in triggers
+- Invalidation triggers (stop the whole thesis)
+- Contrarian anchor (the scenario where plan loses)
+- Structured JSON footer for logging
+
+**New log file:** `data/strategy-meetings.json` — every meeting appended.
+
+**Account constraints baked in:** plan sizes every position to fit the account (e.g., $7k IRA = Full ≈ $1,400, max 4-5 positions, long-only).
+
+**Examples:**
+```
+.strategy AI 12mo $7k-IRA
+.strategy "recession hedge" 6mo long-only
+.strategy semis 2027 concentrated $10k
+```
+
+### Why this matters
+Real hedge funds hold thematic committee meetings weekly. Until now, royal-rumble was single-ticker only. `.strategy` is the missing capability — produces PLANS, not verdicts. Reusable. Blind. Auditable.
+
+### First meeting logged
+AI 12mo plan for $7k IRA — retroactively logged to data/strategy-meetings.json. Core: MSFT + GOOGL. Satellite: NVDA + AVGO. Hedges: 15% cash minimum. Full plan with Q2-Q1 roadmap and 3 invalidation triggers.
+
+---
+
 ## [2026-04-17] — v0.7.2 — Skip-All Flag
 
 **Trigger:** Hypothesis prompt is useful for calibration but intrusive when user just wants a quick rumble. Added explicit bypass.
