@@ -13,6 +13,28 @@ description: >
   NOT for: Howard Marks memo writeups of a verdict (use .journalist).
   NOT for: hit-rate scoring of past predictions (use .accuracy).
   Commands: .rumble | .compare | .strategy | .challenge | .checkin | .portfolio | .watchlist | .log | .help
+capabilities:
+  reads:
+    - "RUMBLE-ENGINE.md"
+    - "notes/rumble-log.md"
+    - "price-desk output"
+    - "fundamentals-desk output"
+    - "technicals-desk output"
+    - "web search"
+  writes:
+    - "data/predictions.json"
+    - "data/comparisons.json"
+    - "data/strategy-meetings.json"
+    - "notes/rumble-log.md"
+  calls:
+    - "price-desk (mandatory)"
+    - "fundamentals-desk"
+    - "technicals-desk"
+    - "Agent subagent tool"
+  cannot:
+    - "cite fundamental numbers without fundamentals-desk pull"
+    - "cite prices without price-desk"
+    - "bypass blind-committee isolation"
 ---
 
 <!-- CHANGELOG pointer: see CHANGELOG.md. Bump `version:` on every material logic change. -->
