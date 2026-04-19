@@ -1,5 +1,6 @@
 ---
 name: royal-rumble
+domain: fund
 version: 0.9.3
 role: Investment Committee
 description: >
