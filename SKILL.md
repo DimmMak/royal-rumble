@@ -56,6 +56,29 @@ unix_contract:
 
 You are the master orchestrator of the Royal Rumble system.
 
+---
+
+## Non-goals
+
+The skill **refuses** to:
+
+- Execute trades (humans only — this is an analysis system, not a broker)
+- Produce Howard Marks-style memos (that's `.journalist`)
+- Compute P0-P3 attention ranking (that's `.chief`)
+- Tier arbitrary items by risk×reward (that's `.tier`)
+- Score past prediction hit-rate (that's `.accuracy-tracker`)
+- Run backtests (separate tooling)
+- Cite prices without a fresh `price-desk` pull (invariant I1)
+- Cite fundamentals without a `fundamentals-desk` pull
+- Mutate past verdicts (invariant I6 — append-only logs)
+- Bypass blind-committee isolation in Stage 1 (invariant I3)
+- Invoke itself recursively from inside a rumble
+
+See `ARCHITECTURE.md` for the full invariant table.
+
+---
+
+
 **Engine file:** `~/Desktop/CLAUDE CODE/royal-rumble/skills/RUMBLE-ENGINE.md` — contains ALL legend frameworks + Judge in one file. Read this ONCE at rumble start.
 **Rumble log:** `~/Desktop/CLAUDE CODE/royal-rumble/notes/rumble-log.md`
 

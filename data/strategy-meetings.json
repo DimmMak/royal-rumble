@@ -1,4 +1,5 @@
 {
+  "schema_version": "0.9.3",
   "meetings": [
     {
       "meeting_type": "thematic_strategy",
@@ -8,16 +9,52 @@
       "account_capital": 7000,
       "account_type": "IRA (Chase, long-only)",
       "core_positions": [
-        {"ticker": "MSFT", "size_pct": 20, "capital_usd": 1400, "entry_zone": "scale-in 3 tranches Q2-Q3 2026", "target": "+20-30% 12mo", "stop": "-15% from avg cost or thesis break"},
-        {"ticker": "GOOGL", "size_pct": 20, "capital_usd": 1400, "entry_zone": "scale-in on 5-10% pullbacks", "target": "+25-35% 12mo", "stop": "-15% or search share loss"}
+        {
+          "ticker": "MSFT",
+          "size_pct": 20,
+          "capital_usd": 1400,
+          "entry_zone": "scale-in 3 tranches Q2-Q3 2026",
+          "target": "+20-30% 12mo",
+          "stop": "-15% from avg cost or thesis break"
+        },
+        {
+          "ticker": "GOOGL",
+          "size_pct": 20,
+          "capital_usd": 1400,
+          "entry_zone": "scale-in on 5-10% pullbacks",
+          "target": "+25-35% 12mo",
+          "stop": "-15% or search share loss"
+        }
       ],
       "satellite_positions": [
-        {"ticker": "NVDA", "size_pct": 10, "capital_usd": 700, "entry_zone": "only on 10%+ pullback from local high", "target": "+25% or trim at +40%", "stop": "-20% or Mag4 capex guide cut"},
-        {"ticker": "AVGO", "size_pct": 10, "capital_usd": 700, "entry_zone": "scale in on pullback", "target": "+20%", "stop": "-20%"}
+        {
+          "ticker": "NVDA",
+          "size_pct": 10,
+          "capital_usd": 700,
+          "entry_zone": "only on 10%+ pullback from local high",
+          "target": "+25% or trim at +40%",
+          "stop": "-20% or Mag4 capex guide cut"
+        },
+        {
+          "ticker": "AVGO",
+          "size_pct": 10,
+          "capital_usd": 700,
+          "entry_zone": "scale in on pullback",
+          "target": "+20%",
+          "stop": "-20%"
+        }
       ],
       "hedges": [
-        {"instrument": "Cash reserve (primary)", "purpose": "Dry powder for 15%+ drawdown deployment", "cost_usd": 0},
-        {"instrument": "Optional MSFT protective put Q3/Q4", "purpose": "Tail protection if capex cycle stresses", "cost_usd": 75}
+        {
+          "instrument": "Cash reserve (primary)",
+          "purpose": "Dry powder for 15%+ drawdown deployment",
+          "cost_usd": 0
+        },
+        {
+          "instrument": "Optional MSFT protective put Q3/Q4",
+          "purpose": "Tail protection if capex cycle stresses",
+          "cost_usd": 75
+        }
       ],
       "cash_reserve_pct": 15,
       "invalidation_triggers": [

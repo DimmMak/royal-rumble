@@ -1,4 +1,5 @@
 {
+  "schema_version": "0.9.3",
   "rumbles": [
     {
       "ticker": "TSLA",
@@ -10,21 +11,55 @@
       "verdict": "HOLD",
       "position_size": "Starter",
       "voting_stances": {
-        "druckenmiller": {"stance": "NEUTRAL", "value": 0.0},
-        "tom_lee": {"stance": "BULL", "value": 0.5},
-        "cathie_wood": {"stance": "STRONG BULL", "value": 1.0},
-        "dalio": {"stance": "BEAR", "value": -0.5},
-        "klarman": {"stance": "STRONG BEAR", "value": -1.0},
-        "simons": {"stance": "NEUTRAL", "value": 0.0},
-        "soros": {"stance": "BEAR", "value": -0.5},
-        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+        "druckenmiller": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "STRONG BULL",
+          "value": 1.0
+        },
+        "dalio": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "klarman": {
+          "stance": "STRONG BEAR",
+          "value": -1.0
+        },
+        "simons": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "soros": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
       },
       "advisory_stances": {
-        "marks": {"stance": "BEAR"},
-        "trend": {"stance": "BEAR"},
-        "buffett": {"stance": "BEAR"},
-        "ackman": {"stance": "NEUTRAL"},
-        "rogers": {"stance": "NEUTRAL"}
+        "marks": {
+          "stance": "BEAR"
+        },
+        "trend": {
+          "stance": "BEAR"
+        },
+        "buffett": {
+          "stance": "BEAR"
+        },
+        "ackman": {
+          "stance": "NEUTRAL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
       },
       "flip_conditions": {
         "druckenmiller": "Close above $398 on 1.5x volume post-earnings = BULL; break $352 = BEAR",
@@ -40,10 +75,17 @@
         "major_resistance": 398.01,
         "first_support": 381.27,
         "two_hundred_day_ma": 398.01,
-        "klarman_buy_price": 52.50,
-        "stop_loss": 352.00
+        "klarman_buy_price": 52.5,
+        "stop_loss": 352.0
       },
-      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
       "checks_completed": {},
       "mode": "blind",
       "guard_result": "3_FLAGS",
@@ -66,21 +108,55 @@
       "verdict": "BUY",
       "position_size": "Quarter",
       "voting_stances": {
-        "druckenmiller": {"stance": "NEUTRAL", "value": 0.0},
-        "tom_lee": {"stance": "BULL", "value": 0.5},
-        "cathie_wood": {"stance": "STRONG BULL", "value": 1.0},
-        "dalio": {"stance": "NEUTRAL", "value": 0.0},
-        "klarman": {"stance": "STRONG BEAR", "value": -1.0},
-        "simons": {"stance": "BULL", "value": 0.5},
-        "soros": {"stance": "BULL", "value": 0.5},
-        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+        "druckenmiller": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "STRONG BULL",
+          "value": 1.0
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "STRONG BEAR",
+          "value": -1.0
+        },
+        "simons": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "soros": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
       },
       "advisory_stances": {
-        "marks": {"stance": "BEAR"},
-        "trend": {"stance": "BULL"},
-        "buffett": {"stance": "BEAR"},
-        "ackman": {"stance": "NEUTRAL"},
-        "rogers": {"stance": "NEUTRAL"}
+        "marks": {
+          "stance": "BEAR"
+        },
+        "trend": {
+          "stance": "BULL"
+        },
+        "buffett": {
+          "stance": "BEAR"
+        },
+        "ackman": {
+          "stance": "NEUTRAL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
       },
       "flip_conditions": {
         "druckenmiller": "Pullback to $215-220 flips BULL; break $190 = BEAR",
@@ -96,10 +172,17 @@
         "major_resistance": 264.33,
         "first_support": 213.48,
         "two_hundred_day_ma": 215.87,
-        "klarman_buy_price": 78.00,
-        "stop_loss": 215.00
+        "klarman_buy_price": 78.0,
+        "stop_loss": 215.0
       },
-      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
       "checks_completed": {},
       "mode": "skipped",
       "guard_result": "2_FLAGS",
@@ -122,21 +205,55 @@
       "verdict": "BUY",
       "position_size": "Quarter",
       "voting_stances": {
-        "druckenmiller": {"stance": "BULL", "value": 0.5},
-        "tom_lee": {"stance": "BULL", "value": 0.5},
-        "cathie_wood": {"stance": "STRONG BULL", "value": 1.0},
-        "dalio": {"stance": "NEUTRAL", "value": 0.0},
-        "klarman": {"stance": "BEAR", "value": -0.5},
-        "simons": {"stance": "BULL", "value": 0.5},
-        "soros": {"stance": "BEAR", "value": -0.5},
-        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+        "druckenmiller": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "STRONG BULL",
+          "value": 1.0
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "simons": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "soros": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
       },
       "advisory_stances": {
-        "marks": {"stance": "BEAR"},
-        "trend": {"stance": "BULL"},
-        "buffett": {"stance": "BEAR"},
-        "ackman": {"stance": "NEUTRAL"},
-        "rogers": {"stance": "BULL"}
+        "marks": {
+          "stance": "BEAR"
+        },
+        "trend": {
+          "stance": "BULL"
+        },
+        "buffett": {
+          "stance": "BEAR"
+        },
+        "ackman": {
+          "stance": "NEUTRAL"
+        },
+        "rogers": {
+          "stance": "BULL"
+        }
       },
       "flip_conditions": {
         "druckenmiller": "Break $337.50 on volume, or any hyperscaler capex guide-down",
@@ -150,12 +267,19 @@
       },
       "key_levels": {
         "major_resistance": 492.56,
-        "first_support": 337.50,
-        "two_hundred_day_ma": 216.10,
-        "klarman_buy_price": 130.00,
-        "stop_loss": 337.50
+        "first_support": 337.5,
+        "two_hundred_day_ma": 216.1,
+        "klarman_buy_price": 130.0,
+        "stop_loss": 337.5
       },
-      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
       "checks_completed": {},
       "mode": "blind",
       "guard_result": "2_FLAGS",
@@ -178,30 +302,71 @@
       "verdict": "HOLD",
       "position_size": "Quarter",
       "voting_stances": {
-        "druckenmiller": {"stance": "NEUTRAL", "value": 0.0},
-        "tom_lee": {"stance": "NEUTRAL", "value": 0.0},
-        "cathie_wood": {"stance": "BULL", "value": 0.5},
-        "dalio": {"stance": "NEUTRAL", "value": 0.0},
-        "klarman": {"stance": "NEUTRAL", "value": 0.0},
-        "simons": {"stance": "NEUTRAL", "value": 0.0},
-        "soros": {"stance": "BULL", "value": 0.5},
-        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+        "druckenmiller": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "tom_lee": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "cathie_wood": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "simons": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "soros": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
       },
       "advisory_stances": {
-        "marks": {"stance": "BULL"},
-        "trend": {"stance": "BEAR"},
-        "buffett": {"stance": "BULL"},
-        "ackman": {"stance": "BULL"},
-        "rogers": {"stance": "NEUTRAL"}
+        "marks": {
+          "stance": "BULL"
+        },
+        "trend": {
+          "stance": "BEAR"
+        },
+        "buffett": {
+          "stance": "BULL"
+        },
+        "ackman": {
+          "stance": "BULL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
       },
       "key_levels": {
-        "major_resistance": 200.00,
-        "first_support": 155.00,
-        "two_hundred_day_ma": 0.00,
-        "klarman_buy_price": 117.00,
-        "stop_loss": 148.00
+        "major_resistance": 200.0,
+        "first_support": 155.0,
+        "two_hundred_day_ma": 0.0,
+        "klarman_buy_price": 117.0,
+        "stop_loss": 148.0
       },
-      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
       "checks_completed": {},
       "mode": "skipped",
       "guard_result": "3_FLAGS",
@@ -220,34 +385,75 @@
       "price": 82.91,
       "combined_score": 0.24,
       "short_term_score": 0.04,
-      "long_term_score": 0.50,
+      "long_term_score": 0.5,
       "verdict": "STRONG BUY",
       "position_size": "Half",
       "voting_stances": {
-        "druckenmiller": {"stance": "NEUTRAL", "value": 0.0},
-        "tom_lee": {"stance": "BULL", "value": 0.5},
-        "cathie_wood": {"stance": "STRONG BULL", "value": 1.0},
-        "dalio": {"stance": "NEUTRAL", "value": 0.0},
-        "klarman": {"stance": "BULL", "value": 0.5},
-        "simons": {"stance": "NEUTRAL", "value": 0.0},
-        "soros": {"stance": "BEAR", "value": -0.5},
-        "vol_desk": {"stance": "NEUTRAL", "value": 0.0}
+        "druckenmiller": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "STRONG BULL",
+          "value": 1.0
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "simons": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "soros": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
       },
       "advisory_stances": {
-        "marks": {"stance": "BULL"},
-        "trend": {"stance": "BEAR"},
-        "buffett": {"stance": "BULL"},
-        "ackman": {"stance": "BULL"},
-        "rogers": {"stance": "NEUTRAL"}
+        "marks": {
+          "stance": "BULL"
+        },
+        "trend": {
+          "stance": "BEAR"
+        },
+        "buffett": {
+          "stance": "BULL"
+        },
+        "ackman": {
+          "stance": "BULL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
       },
       "key_levels": {
         "major_resistance": 110.41,
-        "first_support": 83.00,
+        "first_support": 83.0,
         "two_hundred_day_ma": 110.41,
-        "klarman_buy_price": 108.00,
-        "stop_loss": 72.00
+        "klarman_buy_price": 108.0,
+        "stop_loss": 72.0
       },
-      "checks_due": ["7d", "14d", "21d", "30d", "60d", "90d"],
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
       "checks_completed": {},
       "mode": "skipped",
       "guard_result": "3_FLAGS",
