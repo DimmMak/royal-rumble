@@ -1,59 +1,28 @@
 #!/usr/bin/env bash
-# royal-rumble — install / sync script
-# ────────────────────────────────────────────────────────────────────
-# Syncs the Desktop working copy to ~/.claude/skills/royal-rumble/
-# so Claude Code loads the latest version on next restart.
-#
-# Lesson learned v0.9.0: we edited the Desktop folder for hours, pushed
-# to GitHub, but Claude Code kept loading the stale installed copy.
-# This script closes that gap.
-#
-# Usage:
-#   ./scripts/install.sh          # sync + print version
-#   ./scripts/install.sh --clean  # nuke installed + fresh sync
-#
-# After running: restart Claude Code to reload the skill.
-# ────────────────────────────────────────────────────────────────────
-
+# royal-rumble — install script (standard fleet template, S3-compliant)
 set -euo pipefail
 
-REPO_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-INSTALL_DIR="$HOME/.claude/skills/royal-rumble"
+SRC="$(cd "$(dirname "$0")/.." && pwd)"
+DEST="$HOME/.claude/skills/royal-rumble"
 STALE_ZIP="$HOME/.claude/skills/royal-rumble.skill"
 
 echo "📦 royal-rumble install/sync"
-echo "   source: $REPO_DIR"
-echo "   target: $INSTALL_DIR"
-echo
+echo "   source: $SRC"
+echo "   target: $DEST"
 
-# Remove stale .skill zip if present (causes duplicate registration)
-if [ -f "$STALE_ZIP" ]; then
-  echo "🗑️  Removing stale $STALE_ZIP (causes duplicate skill registration)"
-  rm "$STALE_ZIP"
+# ─── Auto-validate SKILL.md against fleet schema v0.3 ───
+VALIDATOR="$HOME/.claude/skills/future-proof/scripts/validate-skill.py"
+if [ -f "$VALIDATOR" ]; then
+  python3 "$VALIDATOR" --schema-version 0.3 "$SRC/SKILL.md" || {
+    echo "❌ SKILL.md failed schema v0.3 validation — install aborted"
+    exit 1
+  }
 fi
+# ───────────────────────────────────────────────────────────
 
-# Clean install mode
-if [ "${1:-}" = "--clean" ]; then
-  echo "🧹 Clean install — removing existing installed copy"
-  rm -rf "$INSTALL_DIR"
-fi
+[ -f "$STALE_ZIP" ] && { echo "🗑️  removing stale $STALE_ZIP"; rm "$STALE_ZIP"; }
+{ [ -L "$DEST" ] || [ -e "$DEST" ]; } && rm -rf "$DEST"
 
-# Fresh install if target doesn't exist
-if [ ! -d "$INSTALL_DIR" ]; then
-  echo "📂 Creating $INSTALL_DIR"
-  mkdir -p "$INSTALL_DIR"
-fi
-
-# Sync essential files
-echo "🔄 Syncing SKILL.md, skills/, data/, notes/"
-cp "$REPO_DIR/SKILL.md" "$INSTALL_DIR/"
-rm -rf "$INSTALL_DIR/skills" "$INSTALL_DIR/data" "$INSTALL_DIR/notes" 2>/dev/null || true
-cp -R "$REPO_DIR/skills" "$INSTALL_DIR/"
-[ -d "$REPO_DIR/data" ] && cp -R "$REPO_DIR/data" "$INSTALL_DIR/"
-[ -d "$REPO_DIR/notes" ] && cp -R "$REPO_DIR/notes" "$INSTALL_DIR/"
-
-# Report version
-VERSION=$(grep -m1 "^version:" "$INSTALL_DIR/SKILL.md" | awk '{print $2}')
-echo
-echo "✅ Installed royal-rumble v$VERSION"
-echo "   Restart Claude Code to reload."
+ln -s "$SRC" "$DEST"
+VERSION=$(grep -m1 "^version:" "$SRC/SKILL.md" | awk '{print $2}')
+echo "✅ royal-rumble v$VERSION installed as symlink → $SRC"
