@@ -35,6 +35,18 @@ capabilities:
     - "cite fundamental numbers without fundamentals-desk pull"
     - "cite prices without price-desk"
     - "bypass blind-committee isolation"
+unix_contract:
+  data_format: "json+markdown"
+  schema_version: "0.9.3"
+  stdin_support: false
+  stdout_format: "markdown"
+  composable_with:
+    - "price-desk"
+    - "fundamentals-desk"
+    - "technicals-desk"
+    - "journalist"
+    - "accuracy-tracker"
+    - "chief-of-staff"
 ---
 
 <!-- CHANGELOG pointer: see CHANGELOG.md. Bump `version:` on every material logic change. -->
