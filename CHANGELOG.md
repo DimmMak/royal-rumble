@@ -1,5 +1,21 @@
 # CHANGELOG — Royal Rumble Hedge Fund System
 
+## v0.10.0 — 2026-04-18
+
+**World-Class Overhaul shipped.** Part of the fleet-wide upgrade to tree+plugin+unix architecture.
+
+- 🌳 **Tree:** `domain:` field added to frontmatter (fund)
+- 🎮 **Plugin:** `capabilities:` block declares reads / writes / calls / cannot
+- 🐧 **Unix:** `unix_contract:` block declares data_format / schema_version / stdin_support / stdout_format / composable_with
+- 🛡️ Schema v0.3 validation required at install (via `future-proof/scripts/validate-skill.py`)
+- 🔗 Install converted to symlink pattern (kills drift between Desktop source and live install)
+- 🏷️ Tagged at `v-2026-04-18-world-class` for rollback
+
+See `memory/project_world_class_architecture.md` for the full model.
+
+---
+
+
 > **🔬 Pre-alpha notice:** All current versions are `<1.0` — system is in calibration phase. `v1.0.0` will be declared only after 50+ rumbles with measured outcome accuracy (per ROADMAP.md). Historical CHANGELOG entries below pre-date this rebrand; their original `v1.x` / `v3.x` labels are preserved as artifacts of the build timeline but the CURRENT system is `v0.5.0`.
 
 ---
