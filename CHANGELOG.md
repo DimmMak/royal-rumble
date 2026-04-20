@@ -1,5 +1,22 @@
 # CHANGELOG — Royal Rumble Hedge Fund System
 
+## v0.11.0 — 2026-04-20
+
+**Mandatory fundamentals-desk + technicals-desk integration.** Closes the staleness gap for all 13 legends.
+
+- 📊 **New Step 0.6:** after price-desk succeeds, parent session runs `fundamentals.py` + `technicals.py` in parallel before spawning the blind committee
+- 📈 **Structured numeric data** now flows into the subagent prompt — P/E, FCF, MAs, RSI, ADX, 52w range, volume vs 30d
+- ⚠️ **Soft gate** (not hard abort): if either desk errors, rumble continues with web-search fallback (S1/S2/S4) for the missing dimension; `fund_tech_mode` field logged to predictions.json
+- 🏷️ **New cite tags:** `[SRC: fundamentals-desk YYYY-MM-DD]` / `[SRC: technicals-desk YYYY-MM-DD]` — legends MUST use structured numbers when present instead of paraphrasing web prose
+- 🎯 **Legend duty assignments:** Klarman/Cathie/Buffett/Ackman/Marks use fundamentals-desk; Druckenmiller/Simons/Vol Desk/Trend Follower use technicals-desk
+- 🛡️ **Invariant preserved:** price-desk remains the ONLY hard gate (fund/tech are additive quality, not blockers)
+
+**Why:** Previously, legends got fundamentals from web-search summaries (S1) and technicals from web-search prose (S2/S4). These were approximations. With structured desk calls, Klarman gets exact TTM FCF, Druckenmiller gets exact RSI/MA — not "analysts say it's above its 200DMA." Bridgewater-quality data integrity, additively.
+
+**Backup taken:** `royal-rumble.bak.20260420-140439` (1-command rollback if needed)
+
+---
+
 ## v0.10.0 — 2026-04-18
 
 **World-Class Overhaul shipped.** Part of the fleet-wide upgrade to tree+plugin+unix architecture.

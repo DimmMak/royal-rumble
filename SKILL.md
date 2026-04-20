@@ -1,7 +1,7 @@
 ---
 name: royal-rumble
 domain: fund
-version: 0.10.0
+version: 0.11.0
 role: Investment Committee
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
@@ -183,6 +183,42 @@ python3 ~/.claude/skills/price-desk/scripts/price.py [TICKER]
 
 **The verified price is the anchor.** Web searches in STEP B of the subagent prompt still happen (for qualitative data, analyst targets, technical levels, macro, options data) — but the REFERENCE PRICE that all analysis hangs on comes from price-desk, not web search.
 
+### 0.6. LIVE FUNDAMENTALS + TECHNICALS VERIFICATION (MANDATORY — v0.11+) 📊📈
+
+**AFTER price-desk succeeds, call fundamentals-desk AND technicals-desk IN PARALLEL.** Web searches (S1-S5) return qualitative summaries; these desks return structured numeric data. Legends get exact numbers, not analyst paraphrases.
+
+**Execution (parent session, parallel Bash calls):**
+```bash
+python3 ~/.claude/skills/fundamentals-desk/scripts/fundamentals.py [TICKER]
+python3 ~/.claude/skills/technicals-desk/scripts/technicals.py [TICKER]
+```
+
+**Capture both JSON outputs.** Extract and pass to subagent:
+
+From fundamentals-desk:
+- `valuation.trailing_pe` / `valuation.forward_pe` / `valuation.peg_ratio`
+- `valuation.market_cap` / `valuation.enterprise_value`
+- `valuation.price_to_sales` / `valuation.price_to_book`
+- `earnings.eps_trailing` / `earnings.eps_forward` / `earnings.earnings_growth`
+- `revenue.total_revenue` / `revenue.revenue_growth_yoy`
+- `cashflow.free_cashflow` (+ any margins/debt fields present)
+- `pulled_at` — timestamp
+
+From technicals-desk:
+- `moving_averages.ma_50` / `ma_100` / `ma_200`
+- `moving_averages.above_200dma` / `above_50dma` / `golden_cross` / `death_cross`
+- `momentum.rsi_14` / `adx_14` / `atr_14`
+- `range_52w.high` / `low` / `pct_from_high` / `pct_from_low`
+- `volume.avg_30d` / `vs_30d_pct`
+- `pulled_at` — timestamp
+
+**Soft gate (NOT a hard abort — additive quality, not a blocker like price):**
+- If BOTH `status == "OK"` → pass structured data to subagent. Mark `"fund_tech_mode": "structured"` in predictions.json.
+- If EITHER returns `status == "ERROR"` → display a warning banner but CONTINUE the rumble. Subagent falls back to web-search (S1/S2/S4) for the missing dimension. Mark `"fund_tech_mode": "partial"` or `"web_fallback"` in predictions.json for audit trail.
+- NEVER abort the rumble for a desk error. Price is the only hard gate.
+
+**Why soft gate:** fundamentals/technicals are additive quality upgrades. Missing them degrades to v0.10 behavior (web search), not a broken rumble.
+
 ### 1. SPAWN BLIND COMMITTEE SUBAGENT 🚀
 
 Use the Agent tool with `subagent_type: "general-purpose"`. The prompt MUST NOT reference the user's hypothesis in any form.
@@ -208,6 +244,39 @@ CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
    Web searches may return conflicting prices — TRUST ONLY THIS ONE.
    If web search returns a price >2% different, flag it as stale,
    do NOT use it to recalculate anything.
+
+📊 VERIFIED FUNDAMENTALS (from fundamentals-desk, pulled [FUND_PULLED_AT]) — mode: [FUND_TECH_MODE]:
+   MARKET CAP:       $[MARKET_CAP]
+   ENTERPRISE VALUE: $[ENTERPRISE_VALUE]
+   TTM P/E:          [TRAILING_PE]    FORWARD P/E: [FORWARD_PE]    PEG: [PEG_RATIO]
+   P/S:              [PRICE_TO_SALES]    P/B: [PRICE_TO_BOOK]
+   EPS (TTM):        $[EPS_TRAILING]    EPS (FWD): $[EPS_FORWARD]
+   EARNINGS GROWTH:  [EARNINGS_GROWTH_PCT]%
+   REVENUE (TTM):    $[TOTAL_REVENUE]
+   REVENUE GROWTH:   [REVENUE_GROWTH_YOY_PCT]% YoY
+   FREE CASH FLOW:   $[FREE_CASHFLOW]
+
+   ⚠️ Cite as [SRC: fundamentals-desk YYYY-MM-DD]. Klarman, Cathie, Buffett,
+   Ackman, Marks MUST use these numbers for valuation math — do NOT
+   paraphrase from web search when structured numbers are present.
+
+📈 VERIFIED TECHNICALS (from technicals-desk, pulled [TECH_PULLED_AT]) — mode: [FUND_TECH_MODE]:
+   50-DAY MA:        $[MA_50]    100-DAY MA: $[MA_100]    200-DAY MA: $[MA_200]
+   PRICE vs 200DMA:  [ABOVE_200DMA]    vs 50DMA: [ABOVE_50DMA]
+   GOLDEN/DEATH:     golden=[GOLDEN_CROSS]  death=[DEATH_CROSS]
+   RSI(14):          [RSI_14]    ADX(14): [ADX_14]    ATR(14): [ATR_14]
+   52W HIGH:         $[RANGE_HIGH]  ([PCT_FROM_HIGH]% from high)
+   52W LOW:          $[RANGE_LOW]   ([PCT_FROM_LOW]% from low)
+   VOLUME vs 30D:    [VS_30D_PCT]%
+
+   ⚠️ Cite as [SRC: technicals-desk YYYY-MM-DD]. Druckenmiller, Simons,
+   Vol Desk, Trend Follower MUST use these numbers — do NOT estimate
+   MAs or RSI from prose summaries when structured numbers are present.
+
+   IF FUND_TECH_MODE = "web_fallback" or "partial": one or both desks
+   errored. The missing dimension's fields will be blank/null. Fall back
+   to web-search data (S1/S2/S4) for that dimension and tag as
+   [SRC: S1-S5] instead of [SRC: fundamentals-desk / technicals-desk].
 
 🛠️ TOOLS YOU WILL USE:
 - WebSearch — for S1 through S5 (run IN PARALLEL in one message)
