@@ -1,0 +1,239 @@
+{
+  "ticker": "NVDA",
+  "rumble_date": "2026-04-22",
+  "archive_path": "/Users/danny/Desktop/CLAUDE CODE/royal-rumble/notes/rumble-archive/2026-04-22-NVDA-post-phase1-FULL.md",
+  "measured_at_iso": "2026-04-22T13:37:09-04:00",
+  "phase": "post",
+  "totals": {
+    "unverified_count": 9,
+    "estimate_count": 13,
+    "src_citation_count": 74
+  },
+  "per_legend_unverified": {
+    "tom_lee": 2,
+    "cathie_wood": 1,
+    "druckenmiller": 0,
+    "dalio": 0,
+    "klarman": 0,
+    "simons": 3,
+    "soros": 1,
+    "vol_desk": 2,
+    "marks": 0,
+    "trend": 0,
+    "ackman": 0,
+    "rogers": 0,
+    "buffett": 0
+  },
+  "per_legend_estimate": {
+    "tom_lee": 0,
+    "cathie_wood": 0,
+    "druckenmiller": 0,
+    "dalio": 2,
+    "klarman": 3,
+    "simons": 1,
+    "soros": 0,
+    "vol_desk": 0,
+    "marks": 1,
+    "trend": 3,
+    "ackman": 0,
+    "rogers": 0,
+    "buffett": 3
+  },
+  "per_legend_src_citations": {
+    "tom_lee": 8,
+    "cathie_wood": 6,
+    "druckenmiller": 8,
+    "dalio": 3,
+    "klarman": 6,
+    "simons": 9,
+    "soros": 1,
+    "vol_desk": 8,
+    "marks": 6,
+    "trend": 10,
+    "ackman": 3,
+    "rogers": 3,
+    "buffett": 3
+  },
+  "completeness": {
+    "tom_lee": {
+      "filled": 3,
+      "total": 6,
+      "rate": 0.5,
+      "fields": {
+        "fed": "filled",
+        "m2": "empty",
+        "credit spread": "filled",
+        "yield curve": "filled",
+        "rrp": "empty",
+        "revision.velocity|analyst.revision": "empty"
+      }
+    },
+    "cathie_wood": {
+      "filled": 2,
+      "total": 7,
+      "rate": 0.2857142857142857,
+      "fields": {
+        "platform": "empty",
+        "convergence": "empty",
+        "tam": "filled",
+        "s-curve|phase": "filled",
+        "wright": "empty",
+        "revision.velocity|revision.ratio": "empty",
+        "5.?yr.growth|5.year growth": "empty"
+      }
+    },
+    "druckenmiller": {
+      "filled": 3,
+      "total": 6,
+      "rate": 0.5,
+      "fields": {
+        "earnings catalyst": "filled",
+        "macro alignment": "filled",
+        "price action|volume": "filled",
+        "rate cycle": "empty",
+        "entry asymmetry|asymmetry": "empty",
+        "pead|post.earnings": "empty"
+      }
+    },
+    "dalio": {
+      "filled": 3,
+      "total": 5,
+      "rate": 0.6,
+      "fields": {
+        "cycle": "filled",
+        "policy regime|policy": "filled",
+        "drawdown": "empty",
+        "correlation": "filled",
+        "hedge|sizing": "empty"
+      }
+    },
+    "klarman": {
+      "filled": 2,
+      "total": 7,
+      "rate": 0.2857142857142857,
+      "fields": {
+        "epv|earnings power": "filled",
+        "franchise": "filled",
+        "margin of safety": "empty",
+        "klarman buy|buy price": "empty",
+        "red flag|premium": "empty",
+        "quality.score|earnings.quality": "empty",
+        "beat.streak|eps.beat": "empty"
+      }
+    },
+    "simons": {
+      "filled": 5,
+      "total": 5,
+      "rate": 1.0,
+      "fields": {
+        "12-month|12m|momentum": "filled",
+        "rsi": "filled",
+        "analyst|revision": "filled",
+        "factor|volume": "filled",
+        "flow|institutional": "filled"
+      }
+    },
+    "soros": {
+      "filled": 1,
+      "total": 7,
+      "rate": 0.14285714285714285,
+      "fields": {
+        "narrative": "empty",
+        "boom|bust|phase": "empty",
+        "reflexivity|loop": "empty",
+        "consensus|analyst": "filled",
+        "media|saturation|short interest": "empty",
+        "dispersion|stddev": "empty",
+        "revision.ratio|revision.velocity": "empty"
+      }
+    },
+    "vol_desk": {
+      "filled": 6,
+      "total": 8,
+      "rate": 0.75,
+      "fields": {
+        "iv rank": "filled",
+        "iv.*rv": "filled",
+        "term structure": "filled",
+        "skew|risk reversal": "filled",
+        "max pain": "filled",
+        "put oi|put open interest": "empty",
+        "call oi|call open interest": "empty",
+        "dealer gamma": "filled"
+      }
+    },
+    "marks": {
+      "filled": 4,
+      "total": 5,
+      "rate": 0.8,
+      "fields": {
+        "consensus": "empty",
+        "contrarian|priced in": "filled",
+        "debt|balance sheet": "filled",
+        "lending": "filled",
+        "pendulum|psychology": "filled"
+      }
+    },
+    "trend": {
+      "filled": 5,
+      "total": 6,
+      "rate": 0.8333333333333334,
+      "fields": {
+        "200.day|200dma|200.dma": "filled",
+        "50.200|golden cross|death cross": "filled",
+        "breakout|higher high": "filled",
+        "adx": "filled",
+        "volume confirmation": "filled",
+        "pead.direction|post.earnings": "empty"
+      }
+    },
+    "ackman": {
+      "filled": 3,
+      "total": 7,
+      "rate": 0.42857142857142855,
+      "fields": {
+        "simplicity|market position": "empty",
+        "roic|roe": "filled",
+        "fcf|free cash flow": "filled",
+        "catalyst": "empty",
+        "value gap|intrinsic": "filled",
+        "double.beat|beat.streak": "empty",
+        "revision.velocity|revision.ratio": "empty"
+      }
+    },
+    "rogers": {
+      "filled": 3,
+      "total": 5,
+      "rate": 0.6,
+      "fields": {
+        "input cost|commodit": "filled",
+        "commodity cycle|cycle position": "filled",
+        "supply.*demand|tsmc": "empty",
+        "dollar|dxy|currency": "filled",
+        "em|china|geopolit": "empty"
+      }
+    },
+    "buffett": {
+      "filled": 1,
+      "total": 7,
+      "rate": 0.14285714285714285,
+      "fields": {
+        "circle of competence|circle": "empty",
+        "moat": "empty",
+        "owner earnings|fcf": "filled",
+        "roic|roe": "empty",
+        "price.*value|p/s": "empty",
+        "5.?yr.growth|5.year growth": "empty",
+        "consistency|quality.score": "empty"
+      }
+    }
+  },
+  "weighted_completeness_rate": 0.4882,
+  "subagent_tokens": 103,
+  "guard_info": {
+    "guard_flag_count": 0,
+    "guard_result": "CLEAN",
+    "combined_score": 0.175,
+    "verdict": "HOLD"
+  }
+}

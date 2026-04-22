@@ -48,19 +48,19 @@ LEGENDS = {
 # Field names are case-insensitive regex patterns that must appear with [SRC: ...]
 # tag in the legend's section to count as "filled"
 LEGEND_SCHEMAS = {
-    "tom_lee": ["fed", "m2", "credit spread", "yield curve", "rrp"],
-    "cathie_wood": ["platform", "convergence", "tam", "s-curve|phase", "wright"],
-    "druckenmiller": ["earnings catalyst", "macro alignment", "price action|volume", "rate cycle", "entry asymmetry|asymmetry"],
+    "tom_lee": ["fed", "m2", "credit spread", "yield curve", "rrp", "revision.velocity|analyst.revision"],
+    "cathie_wood": ["platform", "convergence", "tam", "s-curve|phase", "wright", "revision.velocity|revision.ratio", "5.?yr.growth|5.year growth"],
+    "druckenmiller": ["earnings catalyst", "macro alignment", "price action|volume", "rate cycle", "entry asymmetry|asymmetry", "pead|post.earnings"],
     "dalio": ["cycle", "policy regime|policy", "drawdown", "correlation", "hedge|sizing"],
-    "klarman": ["epv|earnings power", "franchise", "margin of safety", "klarman buy|buy price", "red flag|premium"],
+    "klarman": ["epv|earnings power", "franchise", "margin of safety", "klarman buy|buy price", "red flag|premium", "quality.score|earnings.quality", "beat.streak|eps.beat"],
     "simons": ["12-month|12m|momentum", "rsi", "analyst|revision", "factor|volume", "flow|institutional"],
-    "soros": ["narrative", "boom|bust|phase", "reflexivity|loop", "consensus|analyst", "media|saturation|short interest"],
+    "soros": ["narrative", "boom|bust|phase", "reflexivity|loop", "consensus|analyst", "media|saturation|short interest", "dispersion|stddev", "revision.ratio|revision.velocity"],
     "vol_desk": ["iv rank", "iv.*rv", "term structure", "skew|risk reversal", "max pain", "put oi|put open interest", "call oi|call open interest", "dealer gamma"],
     "marks": ["consensus", "contrarian|priced in", "debt|balance sheet", "lending", "pendulum|psychology"],
-    "trend": ["200.day|200dma|200.dma", "50.200|golden cross|death cross", "breakout|higher high", "adx", "volume confirmation"],
-    "ackman": ["simplicity|market position", "roic|roe", "fcf|free cash flow", "catalyst", "value gap|intrinsic"],
+    "trend": ["200.day|200dma|200.dma", "50.200|golden cross|death cross", "breakout|higher high", "adx", "volume confirmation", "pead.direction|post.earnings"],
+    "ackman": ["simplicity|market position", "roic|roe", "fcf|free cash flow", "catalyst", "value gap|intrinsic", "double.beat|beat.streak", "revision.velocity|revision.ratio"],
     "rogers": ["input cost|commodit", "commodity cycle|cycle position", "supply.*demand|tsmc", "dollar|dxy|currency", "em|china|geopolit"],
-    "buffett": ["circle of competence|circle", "moat", "owner earnings|fcf", "roic|roe", "price.*value|p/s"],
+    "buffett": ["circle of competence|circle", "moat", "owner earnings|fcf", "roic|roe", "price.*value|p/s", "5.?yr.growth|5.year growth", "consistency|quality.score"],
 }
 
 

@@ -1,7 +1,7 @@
 ---
 name: royal-rumble
 domain: fund
-version: 0.12.0
+version: 0.13.0
 role: Investment Committee
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
@@ -222,21 +222,25 @@ python3 ~/.claude/skills/price-desk/scripts/price.py [TICKER]
 
 **The verified price is the anchor.** Web searches in STEP B of the subagent prompt still happen (for qualitative data, analyst targets, technical levels, macro, options data) — but the REFERENCE PRICE that all analysis hangs on comes from price-desk, not web search.
 
-### 0.6. LIVE FUNDAMENTALS + TECHNICALS + OPTIONS + MACRO VERIFICATION (MANDATORY — v0.12+) 📊📈🎯🌐
+### 0.6. LIVE FUNDAMENTALS + TECHNICALS + OPTIONS + MACRO + EARNINGS VERIFICATION (MANDATORY — v0.13+) 📊📈🎯🌐📋
 
-**AFTER price-desk succeeds, call fundamentals-desk, technicals-desk, options-desk, AND macro-desk IN PARALLEL (4 desks, one parallel Bash block).** Web searches (S1-S5) return qualitative summaries; these desks return structured numeric data. Legends get exact numbers, not analyst paraphrases.
+**AFTER price-desk succeeds, call fundamentals-desk, technicals-desk, options-desk, macro-desk, AND earnings-desk IN PARALLEL (5 desks, one parallel Bash block).** Web searches (S1-S5) return qualitative summaries; these desks return structured numeric data. Legends get exact numbers, not analyst paraphrases.
 
-**Execution (parent session, parallel Bash calls — v0.12+ adds options + macro):**
+**Execution (parent session, parallel Bash calls — v0.13+ adds earnings):**
 ```bash
 python3 ~/.claude/skills/fundamentals-desk/scripts/fundamentals.py [TICKER]
 python3 ~/.claude/skills/technicals-desk/scripts/technicals.py [TICKER]
 python3 ~/.claude/skills/options-desk/scripts/options.py [TICKER]
 python3 ~/.claude/skills/macro-desk/scripts/macro.py --brief
+python3 ~/.claude/skills/earnings-desk/scripts/earnings.py [TICKER]
 ```
 
 **v0.12+ additions close UNVERIFIED gaps:**
 - **options-desk** → Vol Desk pillar (was 25% completeness, now ≥85%): ATM IV, RV, IV rank approx, term structure, skew, max pain, put/call OI + ratios, unusual activity
 - **macro-desk** → Tom Lee / Dalio / Rogers / Marks (was ~50% avg, now ≥85%): rates, yield curve shape, VIX regime, credit proxy (HYG/LQD), DXY + commodities
+
+**v0.13+ addition closes the qualitative-legend gap:**
+- **earnings-desk** → Klarman / Ackman / Buffett / Cathie / Soros (were 20-60%, target 60-80%): 4-qtr EPS beat/miss history, revision velocity, analyst dispersion + count, 5-yr growth est, quality score, PEAD direction + strength, big-bath risk. Bonus uplift to Tom Lee / Druckenmiller / Trend.
 
 **Capture both JSON outputs.** Extract and pass to subagent:
 
@@ -276,6 +280,19 @@ From macro-desk (v0.12+):
 - `unavailable_without_fred.*` — explicit gap list (M2, RRP, actual OAS)
 - `pulled_at` — timestamp
 - Note: Fed funds proxied by 13W T-Bill; spreads are ETF-ratio proxy (documented)
+
+From earnings-desk (v0.13+):
+- `next_earnings.date` / `days_out` / `eps_estimate` / `revenue_estimate`
+- `earnings_history[]` — last 4 qtrs: `eps_actual` / `eps_estimate` / `eps_surprise_pct` / `revenue_actual` / `beat_flag`
+- `streaks.eps_beat_streak` / `rev_beat_streak` / `double_beat_streak`
+- `revisions.eps_next_q_30d_change_pct` / `90d_change_pct` / `revision_ratio_30d` / `revision_velocity`
+- `analyst_consensus.analyst_count` / `eps_dispersion_pct` / `recommendation` / `recommendation_score` / `recommendation_change_30d`
+- `long_term_profile.eps_5yr_growth_estimate_pct` / `revenue_5yr_growth_estimate_pct` / `earnings_growth_consistency`
+- `quality_flags.earnings_quality_score` / `big_bath_risk`
+- `pead_signal.pead_direction` / `pead_strength` / `last_beat_stock_reaction_pct`
+- `transcripts.available` (Phase 5, false until AlphaVantage wired)
+- `pulled_at` — timestamp
+- Note: `revenue_5yr` is 1-yr proxy (documented warning); `guidance_raise_streak` requires transcripts (Phase 5)
 
 **Soft gate (NOT a hard abort — additive quality, not a blocker like price):**
 - If BOTH `status == "OK"` → pass structured data to subagent. Mark `"fund_tech_mode": "structured"` in predictions.json.
@@ -408,6 +425,30 @@ CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
    DXY — do NOT mark them [UNVERIFIED]. For M2, RRP, actual OAS basis
    points: MAY use [UNVERIFIED] or web-search [SRC: S3] — gap is
    structural until FRED integration ships (v0.13+).
+
+📋 VERIFIED EARNINGS DATA (from earnings-desk, pulled [EARNINGS_PULLED_AT]):
+   NEXT EARNINGS:        [NEXT_EARNINGS_DATE]  ([DAYS_OUT] days out)
+   NEXT EPS EST:         $[NEXT_EPS_EST]  (high $[NEXT_EPS_HI] / low $[NEXT_EPS_LO])
+   LAST QTR SURPRISE:    [LAST_SURPRISE_PCT]%  ([LAST_BEAT_FLAG])
+   EPS BEAT STREAK:      [EPS_BEAT_STREAK] consecutive quarters
+   DOUBLE-BEAT STREAK:   [DOUBLE_BEAT_STREAK] (EPS + rev both beat)
+   REVISIONS 30D:        up=[UP_30D] · down=[DOWN_30D] · ratio=[REV_RATIO_30D]:1 · velocity=[REVISION_VELOCITY]
+   REVISIONS DELTAS:     7d=[REV_7D]% · 30d=[REV_30D]% · 60d=[REV_60D]% · 90d=[REV_90D]%
+   ANALYST CONSENSUS:    count=[ANALYST_COUNT]  dispersion=[DISPERSION_PCT]%  stddev=[STDDEV]
+   RECOMMENDATION:       [RECOMMENDATION]  (score [REC_SCORE]/5)  30d: [REC_CHANGE_30D]
+   5YR GROWTH EST:       EPS [EPS_5YR_GROWTH]%  ·  Rev [REV_5YR_GROWTH]%  (rev is 1yr proxy)
+   EARNINGS CONSISTENCY: [CONSISTENCY]  (HIGH/MED/LOW classifier)
+   QUALITY SCORE:        [QUALITY_SCORE]  (5-component weighted)
+   BIG-BATH RISK:        [BIG_BATH_RISK]  (abnormal miss + prior beats)
+   PEAD SIGNAL:          direction=[PEAD_DIRECTION]  strength=[PEAD_STRENGTH]  last_reaction=[LAST_REACTION_PCT]%
+   TRANSCRIPTS:          available=[TRANSCRIPTS_AVAIL]  (Phase 5 — false until AlphaVantage wired)
+
+   ⚠️ Cite as [SRC: earnings-desk YYYY-MM-DD]. Klarman / Ackman / Buffett /
+   Cathie Wood / Soros MUST use these numbers for claims about earnings
+   track record, beat streaks, analyst revisions, 5-yr growth, quality
+   flags, or PEAD — do NOT paraphrase from web search when structured
+   numbers are present. Bonus feed to Tom Lee (revision_velocity,
+   rec_change), Druckenmiller (pead_signal), and Trend (pead_direction).
 
 🛠️ TOOLS YOU WILL USE:
 - WebSearch — for S1 through S5 (run IN PARALLEL in one message)
