@@ -465,6 +465,211 @@
         "wrong_if": null,
         "locked_at": null
       }
+    },
+    {
+      "ticker": "NVDA",
+      "date": "2026-04-22",
+      "price": 200.81,
+      "combined_score": 0.075,
+      "short_term_score": 0.042,
+      "long_term_score": 0.125,
+      "verdict": "HOLD",
+      "position_size": "Starter",
+      "voting_stances": {
+        "druckenmiller": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "STRONG BULL",
+          "value": 1.0
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "STRONG BEAR",
+          "value": -1.0
+        },
+        "simons": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "soros": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
+      },
+      "advisory_stances": {
+        "marks": {
+          "stance": "BEAR"
+        },
+        "trend": {
+          "stance": "BULL"
+        },
+        "buffett": {
+          "stance": "NEUTRAL"
+        },
+        "ackman": {
+          "stance": "BULL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
+      },
+      "flip_conditions": {
+        "druckenmiller": "Pullback to $184 on volume flips BULL; close below $182.40 on volume flips BEAR",
+        "tom_lee": "HY OAS widens >150bps from current tights OR Fed signals hike restart at May FOMC",
+        "cathie_wood": "Hyperscaler capex guide cut >20% QoQ OR custom silicon takes >30% training share",
+        "dalio": "HY OAS widens past 500bps OR Fed pauses cuts citing sticky inflation",
+        "klarman": "Price retraces to $50-70 zone OR 3+ years sustained 50%+ FCF growth without multiple expansion",
+        "simons": "RSI resets to 55-65 without breaking 50DMA flips BULL; breaks 50DMA on volume flips BEAR",
+        "soros": "Analyst mean shifts toward 1.8+ (downgrades start) confirms BEAR; fresh hyperscaler capex upside flips NEUTRAL",
+        "vol_desk": "IV rank >40 flips strategy to selling premium; further IV collapse deepens long-vol case"
+      },
+      "key_levels": {
+        "major_resistance": 212.17,
+        "first_support": 184.4,
+        "two_hundred_day_ma": 182.4,
+        "klarman_buy_price": 60.0,
+        "stop_loss": 182.4
+      },
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
+      "checks_completed": {},
+      "mode": "blind",
+      "guard_result": "2_FLAGS",
+      "guard_flag_count": 2,
+      "user_hypothesis": {
+        "direction": "skip",
+        "conviction": "skip",
+        "why": null,
+        "wrong_if": null,
+        "locked_at": null
+      },
+      "fund_tech_mode": "structured"
+    },
+    {
+      "ticker": "NVDA",
+      "date": "2026-04-22",
+      "price": 201.27,
+      "combined_score": 0.175,
+      "short_term_score": 0.125,
+      "long_term_score": 0.25,
+      "verdict": "HOLD",
+      "position_size": "Starter",
+      "voting_stances": {
+        "druckenmiller": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "STRONG BULL",
+          "value": 1.0
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "simons": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "soros": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
+      },
+      "advisory_stances": {
+        "marks": {
+          "stance": "BEAR"
+        },
+        "trend": {
+          "stance": "BULL"
+        },
+        "buffett": {
+          "stance": "NEUTRAL"
+        },
+        "ackman": {
+          "stance": "NEUTRAL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
+      },
+      "flip_conditions": {
+        "druckenmiller": "Pullback to $184 on 1.5x+ volume (BULL) OR close below $184 on volume (BEAR)",
+        "tom_lee": "IG OAS >120 bps OR Fed hike restart",
+        "cathie_wood": "Revenue growth <25% YoY 2Q",
+        "dalio": "Spreads >120 bps OR hyperscaler capex cut",
+        "klarman": "Price <$112 OR FCF revises up 40%+",
+        "simons": "RSI <60 holding 50DMA",
+        "soros": "Hyperscaler capex flat 2Q",
+        "vol_desk": "IV backwardation OR IV >30"
+      },
+      "key_levels": {
+        "major_resistance": 212.17,
+        "first_support": 184.41,
+        "two_hundred_day_ma": 182.4,
+        "klarman_buy_price": 112.0,
+        "stop_loss": 182.4
+      },
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
+      "checks_completed": {},
+      "mode": "blind",
+      "guard_result": "CLEAN",
+      "guard_flag_count": 0,
+      "user_hypothesis": {
+        "direction": "skip",
+        "conviction": "skip",
+        "why": null,
+        "wrong_if": null,
+        "locked_at": null,
+        "hypothesis_mode": "skipped"
+      },
+      "fund_tech_mode": "structured",
+      "phase_version": "v0.12.0",
+      "delta_vs_prior": {
+        "prior_entry_index": 6,
+        "combined_score_delta": 0.1,
+        "long_term_score_delta": 0.125,
+        "guard_flags_delta": -2,
+        "verdict_change": "HOLD \u2192 HOLD (long-term score crossed BUY threshold)"
+      }
     }
   ]
 }
