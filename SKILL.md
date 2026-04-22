@@ -441,7 +441,9 @@ CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
    QUALITY SCORE:        [QUALITY_SCORE]  (5-component weighted)
    BIG-BATH RISK:        [BIG_BATH_RISK]  (abnormal miss + prior beats)
    PEAD SIGNAL:          direction=[PEAD_DIRECTION]  strength=[PEAD_STRENGTH]  last_reaction=[LAST_REACTION_PCT]%
-   TRANSCRIPTS:          available=[TRANSCRIPTS_AVAIL]  (Phase 5 — false until AlphaVantage wired)
+   TRANSCRIPTS:          available=[TRANSCRIPTS_AVAIL]  last_call=[TRANSCRIPT_DATE]
+     tone=[TRANSCRIPT_TONE]  guidance=[GUIDANCE_LANG]  qa_dodging=[QA_DODGE_COUNT]
+     keywords_hit: [KEYWORDS_HIT]  (Phase 5 — AlphaVantage wired v1.1.0)
 
    ⚠️ Cite as [SRC: earnings-desk YYYY-MM-DD]. Klarman / Ackman / Buffett /
    Cathie Wood / Soros MUST use these numbers for claims about earnings
@@ -449,6 +451,13 @@ CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
    flags, or PEAD — do NOT paraphrase from web search when structured
    numbers are present. Bonus feed to Tom Lee (revision_velocity,
    rec_change), Druckenmiller (pead_signal), and Trend (pead_direction).
+
+   ⚠️ If TRANSCRIPTS_AVAIL=true: Cathie (tone, AI keywords), Ackman
+   (guidance_language, qa_dodging), Buffett (tone), Soros (keywords,
+   narrative signals) may cite transcript fields as
+   [SRC: earnings-desk/transcripts YYYY-MM-DD]. Do NOT fabricate
+   transcript content — if a field is null (e.g., guidance_language=None
+   because management didn't use explicit raise/lower language), say so.
 
 🛠️ TOOLS YOU WILL USE:
 - WebSearch — for S1 through S5 (run IN PARALLEL in one message)
