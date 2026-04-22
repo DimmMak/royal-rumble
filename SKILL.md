@@ -109,10 +109,17 @@ Run all 5 simultaneously. Do NOT run additional searches unless a critical data 
 
 ## STAGE 1 — THE RUMBLE (Blind Committee Architecture, v0.7+)
 
-**Trigger:** `.rumble [TICKER]` or `.rumble [TICKER] [context]` or `.rumble [TICKER] --skip` (bypasses hypothesis step entirely)
+**Trigger:** `.rumble [TICKER]` or `.rumble [TICKER] [context]` or `.rumble [TICKER] --skip` or `.rumble [TICKER] --brief` or `.rumble [TICKER] --quick`
 
 **Skip flags (any of these at the end of the command skips Step 0 directly — no prompt asked):**
 - `--skip` / `--nohype` / `--blind` / `skip`
+
+**Output flags (v0.12+ Phase 2):**
+- `--brief` — subagent skips full 13-legend prose; produces ONLY: 5 data-desk block + scorecard table + Judge verdict + structured footer. ~50% token reduction.
+- `--quick` — subagent runs only 3 legends (Druckenmiller + Klarman + Simons) + Judge synthesis. ~85% token reduction. Use for fast sanity checks, not ship-decisions.
+- `--full` (default) — complete 13-legend analysis, current behavior.
+
+Flags can combine: `.rumble NVDA --skip --brief` = no hypothesis + brief output.
 
 **Core principle:** The 13 legends + Judge run in an ISOLATED SUBAGENT that cannot see the user's hypothesis. Hypothesis lives only in the parent session. Comparison happens AFTER the blind verdict returns. This fixes the v0.6 bias bug by physical isolation, not discipline.
 
@@ -151,6 +158,38 @@ Reply with your hypothesis, or type "skip" / "skip all" to rumble without pre-re
 - Do NOT offer your own view — this is THEIR call
 - If user says "skip" (or equivalent), proceed with no hypothesis logged
 - Once submitted, hypothesis is locked until the comparison block at Step 3
+
+### 0.4. POSITION CONTEXT CHECK (v0.12+ Phase 5 — `.book` integration) 💼
+
+**BEFORE price-desk, check if ticker is an open position in `.book`.** This turns a generic "entry-analysis" rumble into a "hold-analysis" rumble when the user already owns the ticker.
+
+**Execution (parent session):**
+```bash
+python3 ~/.claude/skills/book/scripts/book.py list | grep -i [TICKER] || echo "not_held"
+```
+
+OR read `~/Desktop/CLAUDE\ CODE/book/data/positions.json` directly and check for `positions[TICKER]`.
+
+**If ticker is held:** pass this block to subagent in a new `📁 USER'S CURRENT POSITION` section:
+
+```
+📁 USER'S CURRENT POSITION (from .book):
+   SHARES:       [N]
+   AVG COST:     $[X.XX]
+   COST BASIS:   $[Total]
+   OPENED:       [YYYY-MM-DD]
+   RUMBLE_ID:    [original rumble link if tracked]
+   STOP LOSS:    $[X.XX] (if set)
+   TAKE PROFIT:  $[X.XX] (if set)
+
+   ⚠️ User owns this ticker. This rumble is a HOLD-ANALYSIS, not entry.
+   Judge MUST explicitly address: (a) hold / (b) add to position /
+   (c) trim / (d) exit. Price movement from avg cost: [+/- N.NN%].
+```
+
+**If not held:** proceed without position context (current behavior).
+
+**Skip rule:** if `.book` skill unavailable or positions.json missing, skip silently — this is additive quality, not a blocker.
 
 ### 0.5. LIVE PRICE VERIFICATION (MANDATORY — v0.9.3+) 📊
 
@@ -244,6 +283,37 @@ From macro-desk (v0.12+):
 - NEVER abort the rumble for a desk error. Price is the only hard gate.
 
 **Why soft gate:** fundamentals/technicals are additive quality upgrades. Missing them degrades to v0.10 behavior (web search), not a broken rumble.
+
+### 0.7. `.react` PREFERENCE WEIGHTING CHECK (v0.12+ Phase 5 — conditional on ≥20 votes)
+
+**IF `.react` tally has ≥20 real votes:** parent reads `~/.claude/skills/react/logs/react.jsonl`, computes per-technique approval rates, and adds a subtle preference block to subagent:
+
+```
+🎯 USER PREFERENCE DATA (from .react tally, N=[X] votes):
+   Techniques user approves: [top-3 with >85% approval]
+   Techniques user downvotes: [bottom-3 with <30% approval]
+
+   Use this as a STYLE nudge only — do NOT let preference override
+   framework discipline. Klarman still says "expensive" even if user
+   downvotes bear-arguments.
+```
+
+**IF `.react` has <20 votes:** skip entirely — insufficient data to bias output. Current tally has 4 votes (2026-04-22) → skip active until 20-vote threshold.
+
+Fires only when EARNED. Per `principle_earn_your_features` + v0.12 Phase 5.
+
+### 0.8. SKIP-FLAG UX CLARIFICATION (v0.12+ Phase 5)
+
+If user re-issues `.rumble [TICKER]` after Step 0 hypothesis prompt without answering (no `--skip`, no hypothesis), parent displays:
+
+```
+⚠️ I'll treat this re-issue as implicit skip. Reply:
+   - `skip` to confirm (no hypothesis logged)
+   - `hyp BULL MED [reason]` to submit retroactively before committee runs
+   - `hyp none` to explicitly decline (logs user_hypothesis.mode = "declined" not "skipped")
+```
+
+Waits ONE more turn for clarification. Then proceeds. This closes the 2026-04-22 judgment-call ambiguity where `.rumble nvda` re-issued after hypothesis prompt was silently treated as skip.
 
 ### 1. SPAWN BLIND COMMITTEE SUBAGENT 🚀
 
@@ -381,6 +451,55 @@ STEP F — Run the Judge. Execute ALL steps in RUMBLE-ENGINE.md Judge section, i
 
 STEP G — Produce the full OUTPUT FORMAT block per RUMBLE-ENGINE.md (verdict table, conviction, sizing, conflict map, bull/bear case, key risk, key levels, entry zones, contrarian anchor, championship ruling).
 
+STEP F.5 — SELF-AUDIT BLOCK (MANDATORY — v0.12+ Phase 3 Compliance)
+
+Before the Judge's championship ruling, produce a transparent self-audit block listing every UNVERIFIED / [ESTIMATE] field used in the analysis. Format:
+
+```
+━━━ 🔬 DATA SELF-AUDIT ━━━
+STRUCTURED SOURCES (trusted): [count] citations
+  ✅ price-desk · fundamentals-desk · technicals-desk · options-desk · macro-desk pulls live
+
+WEB-SEARCH CITATIONS [SRC: S1-S5]: [count]
+
+UNVERIFIED fields (gap surface):
+  [legend] · [field] — data gap note
+  [legend] · [field] — data gap note
+  (e.g., "Rogers · DXY level — not in macro-desk mode='brief', rely on web")
+
+[ESTIMATE] fields (tagged inferences, NOT fabrications):
+  [legend] · [field] · [reason for estimate]
+
+Fabrication Guard scan: CLEAN / N flags — [one-line summary]
+
+IF critical-field UNVERIFIED: flag and HALT (do not produce verdict).
+Critical fields: current price, TTM P/E, TTM FCF, 200DMA, RSI, ATM IV.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Why self-audit precedes Judge:** user sees what's trusted vs inferred BEFORE the verdict · prevents black-box precision claims · directly supports `principle_compliance_tracking` + `feedback_verify_before_quoting` Guard 5.
+
+STEP G.5 — CONTEXT-ANSWER SECTION (MANDATORY when CONTEXT contains a question — v0.12+ Phase 2)
+
+If CONTEXT contains a specific question (e.g., "why is NVDA flat this week", "should I hold or sell", "what's the near-term risk"), produce a dedicated **🎯 DIRECT ANSWER TO USER'S QUESTION** section BEFORE the structured footer. Structure:
+
+```
+━━━ 🎯 DIRECT ANSWER TO USER'S QUESTION ━━━
+Question: "[paste CONTEXT verbatim]"
+
+[2-4 sentences synthesizing across the legend analyses that MOST directly answer the question. Cite the 2-3 legends whose pillar most addresses this question. Use exact numbers from desks.]
+
+Short-term take:  [1 sentence]
+Longer-term take: [1 sentence]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+```
+
+**Rules:**
+- Fire if CONTEXT contains a "?" OR any interrogative phrase ("why", "what", "should I", "is it", "when")
+- Skip if CONTEXT is "None" or is a declarative statement
+- Never replace the full legend analysis — this is an ADDITIONAL section, not a substitute
+- Cite specific numbers from desk pulls (price, IV, max pain, etc.) — not generic prose
+
 Return the COMPLETE output — announce header + 13 legend analyses + scorecard + full Judge verdict — verbatim to the parent session. Do NOT add preamble, do NOT ask clarifying questions, do NOT editorialize. Just run the rumble and return it.
 
 STEP H — STRUCTURED FOOTER (mandatory). After the championship ruling, append a code-fenced JSON block EXACTLY matching this shape so the parent can parse it mechanically. This is the contract — non-negotiable format:
@@ -455,7 +574,27 @@ When the subagent returns, display its full output verbatim to the user. This is
 
 ### 3. YOUR CALL vs THE JUDGE 🎯 (parent session)
 
-If the user submitted a hypothesis in Step 0, append this comparison block AFTER the child's championship ruling (before the close message):
+**v0.12+ Phase 4 — Retroactive hypothesis nudge:** If the user SKIPPED Step 0 (hypothesis = skip), after the child's championship ruling, display this nudge ONCE:
+
+```
+💡 You skipped pre-registration. The calibration loop misses when no
+   hypothesis was submitted. Still worth capturing retroactively for
+   accuracy scoring:
+
+   What did YOU think BEFORE reading this? (Reply format)
+     `reg BULL MED the chip is mid-cycle`
+     `reg BEAR HIGH too expensive, no margin`
+     `reg NEUTRAL LOW not sure`
+     `reg none`  ← honest "I truly had no prior"
+
+   Logged as `user_hypothesis.locked_at` = post-verdict timestamp
+   + `user_hypothesis.mode` = "retroactive". Scored separately from
+   pre-registered hypotheses (less weight in calibration but not zero).
+```
+
+This closes the Phase 4 calibration loop for skipped rumbles without forcing pre-registration. Honest data > missing data.
+
+If the user submitted a hypothesis in Step 0 (pre-registration mode), append this comparison block AFTER the child's championship ruling (before the close message):
 
 ```
 ━━━ YOUR CALL vs THE JUDGE ━━━
@@ -482,6 +621,25 @@ Logged at [timestamp] to predictions.json. Scored at 30d / 90d check-ins.
 - STRONG: opposite directions (user BULL vs Judge SELL)
 
 If user skipped Step 0, skip this block entirely.
+
+### 3.5. APPEND RUMBLE LOG (parent session, v0.12+ Phase 2)
+
+Write a markdown record to `notes/rumble-log.md` so there's a human-readable trail of every rumble. Format:
+
+```markdown
+## [YYYY-MM-DD] — [TICKER] [--flags if used]
+**Price:** $XXX.XX · **Verdict:** HOLD · **Score:** +0.XXX · **Size:** Starter
+
+**Stances:** Druck NEUTRAL · Lee BULL · Cathie STRONG BULL · Dalio NEUTRAL · Klarman STRONG BEAR · Simons NEUTRAL · Soros BEAR · Vol NEUTRAL
+
+**Guard:** N flags · **Mode:** blind · **Context:** [context or "none"]
+
+**One-line summary:** [paste Judge's championship ruling first sentence verbatim]
+
+---
+```
+
+This is a PARENT-SIDE step that runs AFTER the subagent returns and BEFORE the predictions.json log in Step 4. Rumble archive at `notes/rumble-archive/[YYYY-MM-DD]-[TICKER]-[mode].md` holds the FULL output (for retroactive measurement); rumble-log.md holds the summary-line index.
 
 ### 4. LOG (parent session)
 
@@ -563,6 +721,33 @@ Log prediction to data/predictions.json — append a new entry to the "rumbles" 
 }
 ```
 **CRITICAL:** This must be logged on EVERY rumble. No exceptions. This is the data that feeds the future accuracy tracker. A rumble without a prediction log is wasted data. If user skipped pre-registration, all user_hypothesis fields = "skip" / null.
+
+### 4.5. ACCURACY-FEEDBACK LOOP (v0.12+ Phase 4 — scheduled sweep)
+
+After predictions.json is appended, check for OVERDUE prior-rumble check-ins:
+
+```python
+# Parent session pseudo-logic (future: .schedule skill fires this weekly)
+for rumble in predictions.rumbles:
+    for check_window in ["7d", "14d", "21d", "30d", "60d", "90d"]:
+        if rumble_age >= window AND window not in rumble.checks_completed:
+            surface_to_user(
+                f"📊 OVERDUE: {rumble.ticker} {check_window} check is due. "
+                f"Run: .price {rumble.ticker} → compare vs price at rumble ${rumble.price}. "
+                f"Current verdict was {rumble.verdict}. Score now?"
+            )
+```
+
+This closes the "predictions rot" gap observed 2026-04-22 (6 predictions logged, 0 checkins). Until `schedule` skill integration ships, parent surfaces any overdue checks inline after each new rumble logs. Manual for now; cron for v0.13+.
+
+### 4.6. CHALLENGE-STAGE DRY-RUN NOTE (v0.12+ Phase 4)
+
+`.challenge [legend] [argument]` flow (Stage 2) is SPEC-COMPLETE but not exercised in recent rumbles (2026-04-22 batch had zero challenges). Action: next real challenge should be verified for:
+- Stance-flip mechanics (MAINTAINED / PARTIALLY REVISED / CONCEDED)
+- Judge re-scoring (conviction level change if stance flipped)
+- notes/rumble-log.md append with debate result
+
+Flagged in `notes/improvements-2026-04-22.md` for next-rumble verification.
 
 ### 5. CLOSE
 
@@ -1071,7 +1256,15 @@ Revisit quarterly per the roadmap — or when invalidation trigger fires.
    - **Deliveries vs Registrations vs Sales** — in auto analysis, these are different numbers. Don't blend them.
    - **Organic growth vs M&A** — any growth claim should distinguish.
 
-8. **Fabrication Guard is active in Judge PRE-STEP AND Stage 2 Defend** — all Stage 1 legend analyses AND Stage 2 challenge defend responses get scanned for unsourced specifics (see RUMBLE-ENGINE.md PRE-STEP for full pattern library). Flagged claims surface in the verdict. Current mode: WARN (flags but publishes). Block mode activates after ~10 calibration rumbles.
+8. **Fabrication Guard is active in Judge PRE-STEP AND Stage 2 Defend (v0.12+ mode: HYBRID)** — all Stage 1 legend analyses AND Stage 2 challenge defend responses get scanned for unsourced specifics (see RUMBLE-ENGINE.md PRE-STEP for full pattern library).
+
+   **v0.12+ HYBRID mode (Phase 3 Compliance):**
+   - **BLOCK on critical fields** — current price, TTM P/E, TTM FCF, 200DMA, RSI, ATM IV. If any of these is UNVERIFIED or fabricated, Judge ABORTS with explicit message. Downstream trade-decision skills receive no verdict.
+   - **WARN on non-critical fields** — other UNVERIFIED/ESTIMATE claims flag in verdict but publish (same as pre-v0.12 behavior).
+
+   Rationale: critical fields drive entry/exit decisions and risk sizing. Fabrication there = real money at risk. Other fields (M2, short interest, OBV, etc.) are directional — warn-mode prevents rumble stalls on hard-to-source data while critical-field discipline prevents trade-decision-quality failures.
+
+   Block-mode activation earned by 2026-04-22 fabrication-audit (7 estimates in `.rumble` improvement report tagged as [ESTIMATE] but presented as measurement-adjacent — exactly the pattern Guard 5 was pinned to catch).
 
 9. **DATA FRESHNESS** — Every rumble runs 5 fresh searches. If resuming from a prior session and the data snapshot is >7 days old, mark STALE. If >30 days, mark EXPIRED and force re-run searches before trusting the output. No silent stale data.
 

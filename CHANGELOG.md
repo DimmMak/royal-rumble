@@ -1,8 +1,48 @@
 # CHANGELOG — Royal Rumble Hedge Fund System
 
-## v0.12.0 — 2026-04-22
+## v0.12.0 — 2026-04-22 (Phases 1-5, full precision overhaul)
 
-**Phase 1 precision upgrade: options-desk + macro-desk integration.** Closes Vol Desk UNVERIFIED gap (25% → target 85%+) and macro-legend UNVERIFIED gaps (Tom Lee/Dalio/Rogers/Marks).
+**Complete precision project.** All 5 phases from the 2026-04-22 improvement report integrated:
+
+### Phase 1 — Data Layer
+- 🎯 **New skill: options-desk** — yfinance options chain → IV/RV/IV-rank/OI/max pain/skew/term structure/unusual activity
+- 🌐 **New skill: macro-desk** — yfinance macro tickers → rates/yield curve/VIX regime/credit proxy/DXY/commodities
+- 📊 **Step 0.6 extended** — 4 desks (fund + tech + options + macro) in parallel Bash block
+- 🏷️ **New cite tags:** `[SRC: options-desk YYYY-MM-DD]` / `[SRC: macro-desk YYYY-MM-DD]`
+- 📏 **Measurement baseline:** `scripts/measure_precision.py` + NVDA baseline JSON (16 UNVERIFIED, 47.2% completeness)
+
+### Phase 2 — Output Precision
+- 🎯 **STEP G.5 context-answer section** — when CONTEXT contains a "?", subagent MUST produce direct answer before structured footer
+- 📝 **Step 3.5 rumble log append** — parent writes summary line to `notes/rumble-log.md` after each rumble
+- 🎚️ **Output flags** — `--brief` (scorecard + Judge only) / `--quick` (3 legends + Judge) / `--full` (default)
+
+### Phase 3 — Compliance Layer
+- 🛡️ **Fabrication Guard HYBRID mode** — BLOCK on critical fields (price, TTM P/E, FCF, 200DMA, RSI, ATM IV) · WARN on others
+- 🔬 **STEP F.5 self-audit block** — subagent lists own UNVERIFIED/ESTIMATE fields before Judge · transparent gap surface
+- ✅ **Measurement-honesty applied** — no fabricated effort numbers in reports (tonight's 7-fabrication autopsy earned this)
+
+### Phase 4 — Feedback Loop
+- 💡 **Retroactive hypothesis nudge** — when user skips Step 0, post-verdict offers capture option with `mode: "retroactive"` logging
+- 📊 **Step 4.5 accuracy-feedback sweep** — surfaces overdue check-ins (7d/14d/30d) from past rumbles inline (cron deferred to v0.13)
+- 🥊 **Step 4.6 challenge dry-run note** — flags `.challenge` as spec-complete-but-untested
+
+### Phase 5 — Integration Layer
+- 💼 **Step 0.4 position context** — parent reads `.book` positions.json before rumble · hold-analysis mode when ticker owned
+- 🎯 **Step 0.7 `.react` preference weighting** — conditional on ≥20 votes (current: 4, skip active)
+- ⚠️ **Step 0.8 skip-flag UX clarification** — no more silent judgment-call skips · one-turn explicit disambiguation
+
+### Integrity preservation
+- 13-legend architecture · blind-committee sealing · Cite-or-Abstain · structured footer JSON · Judge 12-step · price-desk hard-abort · pillar discipline — **all preserved** per `feedback_handoff_format` locked-decisions discipline.
+
+### Baseline (pre-Phase 1, NVDA 2026-04-22)
+- 16 UNVERIFIED tags · 10 [ESTIMATE] tags · 45 [SRC: ...] citations · 47.2% weighted completeness
+- Vol Desk: 25% · Tom Lee: 60% · Dalio: 40% · Rogers: 60% · Marks: 60%
+
+### Target (post-Phase 1-5, re-rumble NVDA)
+- ≤5 UNVERIFIED · ≥85% weighted completeness · critical-field-BLOCK verified · context-answer present · self-audit visible
+- Measurement: `scripts/measure_precision.py [archive] --phase post` for honest delta
+
+## v0.11.0 — 2026-04-20
 
 - 🎯 **New skill: options-desk** — yfinance options chain structured as IV/RV/IV-rank/OI/max pain/skew/term structure/unusual activity
 - 🌐 **New skill: macro-desk** — yfinance macro tickers structured as rates/yield curve/VIX regime/credit proxy/DXY/commodities
