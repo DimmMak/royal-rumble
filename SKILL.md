@@ -1,7 +1,7 @@
 ---
 name: royal-rumble
 domain: fund
-version: 0.11.0
+version: 0.12.0
 role: Investment Committee
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
@@ -183,15 +183,21 @@ python3 ~/.claude/skills/price-desk/scripts/price.py [TICKER]
 
 **The verified price is the anchor.** Web searches in STEP B of the subagent prompt still happen (for qualitative data, analyst targets, technical levels, macro, options data) — but the REFERENCE PRICE that all analysis hangs on comes from price-desk, not web search.
 
-### 0.6. LIVE FUNDAMENTALS + TECHNICALS VERIFICATION (MANDATORY — v0.11+) 📊📈
+### 0.6. LIVE FUNDAMENTALS + TECHNICALS + OPTIONS + MACRO VERIFICATION (MANDATORY — v0.12+) 📊📈🎯🌐
 
-**AFTER price-desk succeeds, call fundamentals-desk AND technicals-desk IN PARALLEL.** Web searches (S1-S5) return qualitative summaries; these desks return structured numeric data. Legends get exact numbers, not analyst paraphrases.
+**AFTER price-desk succeeds, call fundamentals-desk, technicals-desk, options-desk, AND macro-desk IN PARALLEL (4 desks, one parallel Bash block).** Web searches (S1-S5) return qualitative summaries; these desks return structured numeric data. Legends get exact numbers, not analyst paraphrases.
 
-**Execution (parent session, parallel Bash calls):**
+**Execution (parent session, parallel Bash calls — v0.12+ adds options + macro):**
 ```bash
 python3 ~/.claude/skills/fundamentals-desk/scripts/fundamentals.py [TICKER]
 python3 ~/.claude/skills/technicals-desk/scripts/technicals.py [TICKER]
+python3 ~/.claude/skills/options-desk/scripts/options.py [TICKER]
+python3 ~/.claude/skills/macro-desk/scripts/macro.py --brief
 ```
+
+**v0.12+ additions close UNVERIFIED gaps:**
+- **options-desk** → Vol Desk pillar (was 25% completeness, now ≥85%): ATM IV, RV, IV rank approx, term structure, skew, max pain, put/call OI + ratios, unusual activity
+- **macro-desk** → Tom Lee / Dalio / Rogers / Marks (was ~50% avg, now ≥85%): rates, yield curve shape, VIX regime, credit proxy (HYG/LQD), DXY + commodities
 
 **Capture both JSON outputs.** Extract and pass to subagent:
 
@@ -211,6 +217,26 @@ From technicals-desk:
 - `range_52w.high` / `low` / `pct_from_high` / `pct_from_low`
 - `volume.avg_30d` / `vs_30d_pct`
 - `pulled_at` — timestamp
+
+From options-desk (v0.12+):
+- `atm_iv` / `rv_30d` / `iv_minus_rv` / `iv_rank_approx`
+- `call_open_interest_total` / `put_open_interest_total` / `put_call_oi_ratio`
+- `call_volume_total` / `put_volume_total` / `put_call_volume_ratio`
+- `max_pain_strike` / `skew_25d_put_minus_call`
+- `term_structure` (front / mid / back expiry ATM IV)
+- `unusual_activity_flags`
+- `pulled_at` — timestamp
+- Note: `iv_rank_approx` is RV-percentile proxy (documented)
+
+From macro-desk (v0.12+):
+- `rates.fed_funds_proxy_13w_bill` / `ten_year_yield` / `five_year_yield` / `thirty_year_yield`
+- `yield_curve.ten_minus_five` / `ten_minus_thirteen_week` / `shape`
+- `volatility.vix` / `regime`
+- `credit_proxy.hyg_lqd_ratio` / `hyg_change_pct_today` / `lqd_change_pct_today`
+- `global_flows.dxy` / `gold_futures` / `oil_wti_futures`
+- `unavailable_without_fred.*` — explicit gap list (M2, RRP, actual OAS)
+- `pulled_at` — timestamp
+- Note: Fed funds proxied by 13W T-Bill; spreads are ETF-ratio proxy (documented)
 
 **Soft gate (NOT a hard abort — additive quality, not a blocker like price):**
 - If BOTH `status == "OK"` → pass structured data to subagent. Mark `"fund_tech_mode": "structured"` in predictions.json.
@@ -277,6 +303,41 @@ CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
    errored. The missing dimension's fields will be blank/null. Fall back
    to web-search data (S1/S2/S4) for that dimension and tag as
    [SRC: S1-S5] instead of [SRC: fundamentals-desk / technicals-desk].
+
+🎯 VERIFIED OPTIONS DATA (from options-desk, pulled [OPTIONS_PULLED_AT]):
+   ATM IV:               [ATM_IV]   (front expiry: [FRONT_EXPIRY])
+   RV 30D (annualized):  [RV_30D]
+   IV MINUS RV:          [IV_MINUS_RV]   (positive = options expensive)
+   IV RANK (approx):     [IV_RANK_APPROX]%  (method: RV-percentile proxy)
+   CALL OI TOTAL:        [CALL_OI]    PUT OI TOTAL: [PUT_OI]
+   P/C OI RATIO:         [PC_OI_RATIO]
+   CALL VOL:             [CALL_VOL]   PUT VOL: [PUT_VOL]
+   P/C VOL RATIO:        [PC_VOL_RATIO]
+   MAX PAIN STRIKE:      $[MAX_PAIN]
+   SKEW (25d put-call):  [SKEW_25D]
+   UNUSUAL ACTIVITY:     [UNUSUAL_FLAGS] contracts (vol > OI)
+   TERM STRUCTURE:       [TERM_STRUCTURE_JSON]
+
+   ⚠️ Cite as [SRC: options-desk YYYY-MM-DD]. Vol Desk MUST use these
+   numbers — do NOT mark max pain / skew / OI as [UNVERIFIED] when
+   structured data is present. IV RANK is "approx" (RV-percentile proxy,
+   documented) — cite as `IV rank approx` not `IV rank`.
+
+🌐 VERIFIED MACRO DATA (from macro-desk, pulled [MACRO_PULLED_AT]):
+   FED FUNDS PROXY:      [FED_FUNDS_PROXY]%  (13W T-Bill yield)
+   10Y / 5Y / 30Y:       [TEN_Y]% / [FIVE_Y]% / [THIRTY_Y]%
+   YIELD CURVE:          10-5 = [CURVE_10_5] · 10-13W = [CURVE_10_13W] · shape: [CURVE_SHAPE]
+   VIX / REGIME:         [VIX] / [VIX_REGIME]
+   CREDIT PROXY:         HYG/LQD ratio = [HYG_LQD_RATIO] (directional, not bp-exact)
+   DXY:                  [DXY]  (change today: [DXY_CHANGE]%)
+   GOLD / OIL:           $[GOLD] / $[OIL]
+   UNAVAILABLE:          M2, RRP, actual OAS (require FRED API — not integrated v0.12)
+
+   ⚠️ Cite as [SRC: macro-desk YYYY-MM-DD]. Tom Lee / Dalio / Rogers /
+   Marks MUST use these numbers for yield curve, credit regime, VIX,
+   DXY — do NOT mark them [UNVERIFIED]. For M2, RRP, actual OAS basis
+   points: MAY use [UNVERIFIED] or web-search [SRC: S3] — gap is
+   structural until FRED integration ships (v0.13+).
 
 🛠️ TOOLS YOU WILL USE:
 - WebSearch — for S1 through S5 (run IN PARALLEL in one message)

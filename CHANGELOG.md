@@ -1,5 +1,19 @@
 # CHANGELOG — Royal Rumble Hedge Fund System
 
+## v0.12.0 — 2026-04-22
+
+**Phase 1 precision upgrade: options-desk + macro-desk integration.** Closes Vol Desk UNVERIFIED gap (25% → target 85%+) and macro-legend UNVERIFIED gaps (Tom Lee/Dalio/Rogers/Marks).
+
+- 🎯 **New skill: options-desk** — yfinance options chain structured as IV/RV/IV-rank/OI/max pain/skew/term structure/unusual activity
+- 🌐 **New skill: macro-desk** — yfinance macro tickers structured as rates/yield curve/VIX regime/credit proxy/DXY/commodities
+- 📊 **Step 0.6 extended** — now calls fund + tech + options + macro IN PARALLEL (4 desks, one Bash block)
+- 🏷️ **New cite tags:** `[SRC: options-desk YYYY-MM-DD]` / `[SRC: macro-desk YYYY-MM-DD]` — Vol Desk / macro legends MUST use structured numbers when present
+- 🎯 **Duty assignments v0.12:** Vol Desk → options-desk · Tom Lee/Dalio/Rogers/Marks → macro-desk
+- 🛡️ **Honest limitations documented:** IV Rank is RV-percentile proxy (not true IV Rank) · Fed Funds proxied by 13W T-Bill · HY/IG via ETF ratio · M2/RRP/actual OAS still UNVERIFIED without FRED API (v0.13 target)
+- 📏 **Measurement baseline captured:** `scripts/measure_precision.py` + NVDA baseline JSON at `data/measurements/NVDA_2026-04-22_pre.json` (16 UNVERIFIED, 10 ESTIMATE, 45 SRC, 47.2% weighted completeness)
+
+**Why:** Previously, Vol Desk analyzed NVDA with 8 UNVERIFIED fields (max pain, IV rank, skew, OI, term structure, dealer gamma, unusual activity, RV). Tom Lee / Dalio / Rogers had 4-6 UNVERIFIED macro fields. v0.12 closes these structurally. Remaining UNVERIFIED (M2, RRP, actual OAS bps) require FRED API — documented gap, v0.13 target. Measurement script exists to track improvement deterministically (no fabrication risk).
+
 ## v0.11.0 — 2026-04-20
 
 **Mandatory fundamentals-desk + technicals-desk integration.** Closes the staleness gap for all 13 legends.
