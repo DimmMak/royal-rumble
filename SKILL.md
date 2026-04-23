@@ -1,7 +1,7 @@
 ---
 name: royal-rumble
 domain: fund
-version: 0.13.0
+version: 0.14.0
 role: Investment Committee
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
@@ -222,17 +222,18 @@ python3 ~/.claude/skills/price-desk/scripts/price.py [TICKER]
 
 **The verified price is the anchor.** Web searches in STEP B of the subagent prompt still happen (for qualitative data, analyst targets, technical levels, macro, options data) — but the REFERENCE PRICE that all analysis hangs on comes from price-desk, not web search.
 
-### 0.6. LIVE FUNDAMENTALS + TECHNICALS + OPTIONS + MACRO + EARNINGS VERIFICATION (MANDATORY — v0.13+) 📊📈🎯🌐📋
+### 0.6. LIVE FUNDAMENTALS + TECHNICALS + OPTIONS + MACRO + EARNINGS + FILINGS VERIFICATION (MANDATORY — v0.14+) 📊📈🎯🌐📋📂
 
-**AFTER price-desk succeeds, call fundamentals-desk, technicals-desk, options-desk, macro-desk, AND earnings-desk IN PARALLEL (5 desks, one parallel Bash block).** Web searches (S1-S5) return qualitative summaries; these desks return structured numeric data. Legends get exact numbers, not analyst paraphrases.
+**AFTER price-desk succeeds, call fundamentals-desk, technicals-desk, options-desk, macro-desk, earnings-desk, AND filings-desk IN PARALLEL (6 desks, one parallel Bash block).** Web searches (S1-S5) return qualitative summaries; these desks return structured numeric data. Legends get exact numbers, not analyst paraphrases.
 
-**Execution (parent session, parallel Bash calls — v0.13+ adds earnings):**
+**Execution (parent session, parallel Bash calls — v0.14+ adds filings):**
 ```bash
 python3 ~/.claude/skills/fundamentals-desk/scripts/fundamentals.py [TICKER]
 python3 ~/.claude/skills/technicals-desk/scripts/technicals.py [TICKER]
 python3 ~/.claude/skills/options-desk/scripts/options.py [TICKER]
 python3 ~/.claude/skills/macro-desk/scripts/macro.py --brief
 python3 ~/.claude/skills/earnings-desk/scripts/earnings.py [TICKER]
+python3 ~/.claude/skills/filings-desk/scripts/filings.py [TICKER]
 ```
 
 **v0.12+ additions close UNVERIFIED gaps:**
@@ -241,6 +242,9 @@ python3 ~/.claude/skills/earnings-desk/scripts/earnings.py [TICKER]
 
 **v0.13+ addition closes the qualitative-legend gap:**
 - **earnings-desk** → Klarman / Ackman / Buffett / Cathie / Soros (were 20-60%, target 60-80%): 4-qtr EPS beat/miss history, revision velocity, analyst dispersion + count, 5-yr growth est, quality score, PEAD direction + strength, big-bath risk. Bonus uplift to Tom Lee / Druckenmiller / Trend.
+
+**v0.14+ addition closes the SEC-filings gap:**
+- **filings-desk** → Klarman / Ackman / Marks / Buffett (target ≥5pp completeness uplift vs v0.13 baseline): insider transactions (Form 4 last 90d), institutional holdings (13F-HR top-5 + concentration), MD&A subsections (overview / results / liquidity / risk_factors) + derived signals (`going_concern_flag`, `risk_factor_count`, `new_risks_vs_prior_filing`, `liquidity_concern_keyword_hits`).
 
 **Capture both JSON outputs.** Extract and pass to subagent:
 
@@ -293,6 +297,21 @@ From earnings-desk (v0.13+):
 - `transcripts.available` (Phase 5, false until AlphaVantage wired)
 - `pulled_at` — timestamp
 - Note: `revenue_5yr` is 1-yr proxy (documented warning); `guidance_raise_streak` requires transcripts (Phase 5)
+
+From filings-desk (v0.14+):
+- `cik` — issuer's SEC CIK
+- `insider_transactions.insider_net_buying_90d_usd` / `insider_txn_count_90d` / `exec_cluster_buy_flag` (3+ execs buying within 14d)
+- `insider_transactions.transactions[]` — per-txn: filer / role / action / shares / price / total_value / date
+- `institutional_holdings.top_5_holders[]` — name / shares_held / market_value_usd
+- `institutional_holdings.top_holder_concentration_pct` / `as_of_quarter_end`
+- `md_and_a.overview.text` (bounded), `md_and_a.results_of_operations.text` (bounded)
+- `md_and_a.liquidity_and_capital_resources.text` (bounded), `md_and_a.risk_factors.text` (bounded)
+- `md_and_a.risk_factor_count` / `new_risks_vs_prior_filing` / `liquidity_concern_keyword_hits` / `going_concern_flag`
+- `md_and_a.guidance_language` / `qa_dodging_count` / `keywords_hit`
+- `md_and_a.source_form` (10-Q | 10-K) / `source_filing_date` / `source_url`
+- `md_and_a.extraction_quality` (HIGH | MED | LOW | ERROR)
+- `pulled_at` — timestamp
+- Note: 13F has 45-day quarterly lag (SEC-imposed). 13F watchlist is curated to 15 institutions (mega asset managers + 5 activists + Berkshire + macro/credit/quant/growth) — tickers held only by smaller institutions yield empty top_5_holders rather than fabricated coverage. Bank 10-Qs (JPM/BAC/Citi) currently degrade to MED/LOW MD&A quality (known limitation).
 
 **Soft gate (NOT a hard abort — additive quality, not a blocker like price):**
 - If BOTH `status == "OK"` → pass structured data to subagent. Mark `"fund_tech_mode": "structured"` in predictions.json.
@@ -458,6 +477,61 @@ CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
    [SRC: earnings-desk/transcripts YYYY-MM-DD]. Do NOT fabricate
    transcript content — if a field is null (e.g., guidance_language=None
    because management didn't use explicit raise/lower language), say so.
+
+📋 VERIFIED SEC FILINGS DATA (from filings-desk, pulled [FILINGS_PULLED_AT]):
+   ISSUER CIK:           [CIK]
+   STATUS / SOURCE:      [FILINGS_STATUS]  (filings_extraction_quality=[MDA_QUALITY])
+
+   📄 INSIDER ACTIVITY (Form 4, last 90d):
+     NET BUYING USD:     [INSIDER_NET_BUYING_90D_USD]   (positive = net buy)
+     TXN COUNT:          [INSIDER_TXN_COUNT_90D]
+     EXEC CLUSTER FLAG:  [EXEC_CLUSTER_BUY_FLAG]   (true = ≥3 distinct execs buying within 14d)
+     LAST FILING DATE:   [INSIDER_LAST_FILING_DATE]
+     TOP 5 RECENT TXNS:  [INSIDER_TOP_5_TXNS]   (filer · role · action · shares · price · date)
+
+   📊 INSTITUTIONAL HOLDINGS (13F-HR, as of [13F_QUARTER_END]):
+     TOP 5 HOLDERS:      [TOP_5_HOLDERS]   (name · market_value_usd · shares)
+     TOP HOLDER CONCENTRATION:  [TOP_HOLDER_CONC_PCT]%   (sum of top-5 vs all observed)
+     INSTITUTIONS OBSERVED:    [INSTITUTIONS_OBSERVED]   (out of 15 in watchlist)
+     KNOWN ACTIVIST PRESENCE:  [ACTIVIST_PRESENCE]   (Pershing / Third Point / Greenlight / Trian / Elliott)
+     BERKSHIRE PRESENCE:       [BERKSHIRE_PRESENCE]   (yes/no — Buffett pillar trigger)
+
+   📜 MANAGEMENT DISCUSSION & ANALYSIS (from latest [MDA_SOURCE_FORM] filed [MDA_FILING_DATE]):
+     RISK FACTOR COUNT:        [RISK_FACTOR_COUNT]
+     NEW RISKS VS PRIOR:       [NEW_RISKS_VS_PRIOR]   (true = factor count rose vs prior filing)
+     GOING CONCERN FLAG:       [GOING_CONCERN_FLAG]   (true = "substantial doubt" present)
+     LIQUIDITY CONCERN HITS:   [LIQUIDITY_CONCERN_HITS]   (count of going-concern / covenant / restructure phrases)
+     GUIDANCE LANGUAGE:        [MDA_GUIDANCE_LANGUAGE]   (RAISED / LOWERED / MAINTAINED / WITHDREW / null)
+     KEYWORDS HIT:             [MDA_KEYWORDS_HIT]   (curated vocab matches: moat / strong demand / headwinds / etc.)
+     SOURCE URL:               [MDA_SOURCE_URL]
+
+   ⚠️ Cite as [SRC: filings-desk YYYY-MM-DD]. The following legends MUST cite
+   filings-desk fields when forming a verdict (omission counts as a fabrication
+   for measure_precision.py purposes):
+
+     • KLARMAN MUST cite (1) at least one MD&A risk factor + (2) institutional
+       concentration figure. Klarman's pillar is "what could blow up" — the
+       risk-factors section is management's own admitted vulnerability list.
+
+     • ACKMAN MUST cite (1) the insider exec_cluster_buy_flag (true OR false)
+       OR a specific recent insider transaction + (2) at least one named
+       activist or hedge fund from the top_5_holders. Insider clusters and
+       13F activist entries are Ackman's bread and butter.
+
+     • MARKS MUST cite (1) MD&A liquidity_and_capital_resources commentary
+       + (2) the going_concern_flag (and liquidity_concern_keyword_hits if >0).
+       Marks's pillar is "where are we in the credit cycle for THIS name."
+
+     • BUFFETT MUST cite (1) MD&A overview language about durable advantage
+       OR a top-3 risk factor that threatens the moat + (2) the keywords_hit
+       list (esp. "moat" / "competitive advantage" / "durable" matches).
+
+   ⚠️ If FILINGS_STATUS = ERROR (CIK lookup failed, all docs unreachable):
+   the 4 legends above MAY abstain on the filings-derived sub-claims and
+   note "[filings-desk unavailable for this ticker — see warnings]". Do NOT
+   fabricate. PARTIAL status (slot-level nulls — e.g. ETF with no MD&A,
+   small-cap with no curated 13F coverage) → cite available slots; mark
+   missing ones [UNVERIFIED — filings-desk null].
 
 🛠️ TOOLS YOU WILL USE:
 - WebSearch — for S1 through S5 (run IN PARALLEL in one message)
