@@ -1,5 +1,29 @@
 # CHANGELOG — Royal Rumble Hedge Fund System
 
+## v0.15.0 — 2026-04-23 (`.insiders` integration)
+
+**Closes the Congress-blind-spot gap.** `filings-desk` already covers SEC Form 4 (executive side); `.insiders` adds the STOCK Act political side + conviction scoring across both sides.
+
+### Added
+- 🏛️ **Step 0.6 extended to 7 desks** — `python3 ~/.claude/skills/insiders/scripts/insiders.py ticker [TICKER] --raw --json` joins the parallel Bash block.
+- 📋 **`📋 VERIFIED INSIDERS DATA` block** injected into subagent prompt parallel to the `filings-desk` block. Contains politician side, executive side, max conviction score, and verified-factor count.
+- 🎯 **Legend citation rules:** Ackman MUST cite `INSIDERS_MAX_CONVICTION` threshold; Klarman MUST cite both cluster flags; Soros MUST cite political-vs-executive directional divergence. Omissions count as fabrications per `measure_precision.py`.
+- ⚠️ **UNVERIFIED provenance respect** — legends MUST note when conviction score leans on midpoint-default factors (3/6 UNVERIFIED in v0.1: portfolio%, earnings-timing, counter-narrative).
+
+### Locked decisions (per `.insiders` handoff §2)
+- `.insiders` does NOT re-implement Form 4 — it subprocess-wraps `filings-desk`. Single source of truth preserved.
+- Conviction weights are LOCKED at v1.0.0 (20/15/25/15/15/10). Tuning requires a CHANGELOG bump on the `.insiders` side.
+- Third-party scrapers (Quiver, Capitol Trades) are FALLBACK only; official feeds (house.gov, Senate EFD, SEC EDGAR) are PRIMARY.
+
+### Known v0.1 limitations
+- Congress side empty-with-reason if host lacks PDF extractor (`brew install poppler` or `pip install pypdf` to enable).
+- Senate EFD stubbed (JS-rendered portal, v0.2 integration).
+- 3/6 conviction factors UNVERIFIED (midpoint defaults with explicit provenance labels).
+
+### Commit
+- `.insiders` repo: https://github.com/DimmMak/insiders (private)
+- Local symlink: `~/.claude/skills/insiders/` → `~/Desktop/CLAUDE CODE/insiders/`
+
 ## v0.12.0 — 2026-04-22 (Phases 1-5, full precision overhaul)
 
 **Complete precision project.** All 5 phases from the 2026-04-22 improvement report integrated:

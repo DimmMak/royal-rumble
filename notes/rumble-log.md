@@ -49,3 +49,21 @@ Championship Ruling: Disciplined quarter position via June call spreads; add on 
 **Delta vs #6:** combined +0.100 · long-term +0.125 (crossed BUY) · Guard -2 (CLEAN) · Klarman softened STRONG BEAR → BEAR · Soros softened BEAR → NEUTRAL (both due to structured data framing properly rather than catastrophizing)
 
 ---
+
+## 2026-04-23 — TSLA
+Context: TA focus — earnings reported 2026-04-22 (days_out=0), death cross TRUE, IV rank 100
+Hypothesis: BULL / HIGH (user)
+Stances (voting):
+  - druckenmiller: SELL (-1.0)
+  - tom_lee: NEUTRAL-LEAN-BEAR (-0.3)
+  - cathie_wood: STRONG BUY (+2.0)  ← lone bull
+  - dalio: HOLD-LEAN-UNDER (-0.3)
+  - klarman: STRONG SELL (-2.0)
+  - simons: SELL + SHORT-VOL (-1.5)
+  - soros: SELL (-1.0)
+  - vol_desk: SELL VOL + short bias (-1.5)
+Advisory: marks=HOLD lean SELL, trend=SELL, buffett=PASS, ackman=PASS, rogers=PASS
+Verdict: SELL @ combined -0.50 (short -0.65, long -0.35) · Position: Pass / Starter SHORT
+Judge flags: earnings_day_flag · death_cross_flag · iv_rank_extreme_flag
+Divergence: STRONG (user BULL HIGH vs Judge SELL)
+Guard: CLEAN (0 flags)
