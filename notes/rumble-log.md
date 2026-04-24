@@ -67,3 +67,17 @@ Verdict: SELL @ combined -0.50 (short -0.65, long -0.35) · Position: Pass / Sta
 Judge flags: earnings_day_flag · death_cross_flag · iv_rank_extreme_flag
 Divergence: STRONG (user BULL HIGH vs Judge SELL)
 Guard: CLEAN (0 flags)
+
+## 2026-04-23 — NVDA --skip --brief (v0.16.0 STEP 0.5 verification)
+**Price:** $199.64 · **Verdict:** BUY · **Score:** +0.325 (ST +0.375 · LT +0.250) · **Size:** Half · **Phase:** v0.16.0
+
+**Stances:** Druck BULL · Lee BULL · Cathie STRONG BULL · Dalio NEUTRAL · Klarman BEAR · Simons BULL · Soros NEUTRAL · Vol NEUTRAL
+
+**Guard:** CLEAN (0 flags) · **Mode:** blind (no hypothesis) · **Context:** "STEP 0.5 believability-adjustment verification run"
+
+**Believability adjustment:** SKIPPED — 8 scored rumbles in latest legends record, all voting legends <10 scored predictions → multipliers = 1.0 uniformly; weights pass through unchanged.
+
+**One-line:** "BUY Half — catalyst in 27d (May-20 earnings), trend intact, revisions 7:0, PEG 0.72; Klarman EPV bear is the real risk so Half-size keeps you in if Cathie/Druck are right and survivable if Klarman is."
+
+**Purpose:** first real rumble on v0.16.0 engine; verifies Dalio believability-weighted voting renders correctly end-to-end. Bonus: subagent voluntarily emitted `"believability_adjustment"` field in structured footer (not in strict JSON schema — consider formalizing in v0.17).
+

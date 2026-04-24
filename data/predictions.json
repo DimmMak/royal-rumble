@@ -813,6 +813,124 @@
         "earnings-desk"
       ],
       "rumble_version": "v1.2-synth"
+    },
+    {
+      "ticker": "NVDA",
+      "date": "2026-04-23",
+      "price": 199.64,
+      "combined_score": 0.325,
+      "short_term_score": 0.375,
+      "long_term_score": 0.25,
+      "verdict": "BUY",
+      "position_size": "Half",
+      "context": "STEP 0.5 verification run \u2014 Dalio believability-weighted voting (v0.16.0); brief mode; no user hypothesis",
+      "mode": "blind",
+      "user_hypothesis": {
+        "direction": "skip",
+        "conviction": "skip",
+        "why": null,
+        "wrong_if": null,
+        "locked_at": null,
+        "mode": "skipped"
+      },
+      "divergence": null,
+      "locked_at": "2026-04-24T00:54:33.362875+00:00",
+      "voting_stances": {
+        "druckenmiller": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "STRONG BULL",
+          "value": 1.0
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "simons": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "soros": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
+      },
+      "advisory_stances": {
+        "marks": {
+          "stance": "NEUTRAL"
+        },
+        "trend": {
+          "stance": "STRONG BULL"
+        },
+        "buffett": {
+          "stance": "BULL"
+        },
+        "ackman": {
+          "stance": "BULL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
+      },
+      "flip_conditions": {
+        "druckenmiller": "May-20 print misses or stock loses 200DMA $182.60",
+        "tom_lee": "HYG/LQD below 0.70 or VIX breaks 25",
+        "cathie_wood": "Hyperscaler capex guidance cut on next print",
+        "dalio": "Credit spreads widen HYG -3%/wk or curve re-inverts",
+        "klarman": "FCF doubles in 12mo or stock falls 40%+",
+        "simons": "OBV rolls over or 5+ consecutive down days",
+        "soros": "First analyst downgrade cluster or media saturation peak",
+        "vol_desk": "IV drops below RV (cheap vol regime flip)"
+      },
+      "key_levels": {
+        "major_resistance": 212.17,
+        "first_support": 192.5,
+        "two_hundred_day_ma": 182.6,
+        "klarman_buy_price": 40.0,
+        "stop_loss": 182.0
+      },
+      "flags": [
+        "believability_adjustment_skipped",
+        "below_10_prediction_threshold"
+      ],
+      "believability_adjustment": "SKIPPED \u2014 latest legends record 2026-04-23T02:57:21Z has 8 scored_rumbles; all 8 voting legends below 10-prediction threshold; multipliers = 1.0 uniformly; weights pass through unchanged",
+      "guard_result": "CLEAN",
+      "guard_flag_count": 0,
+      "fund_tech_mode": "structured",
+      "desks_used": [
+        "price-desk",
+        "fundamentals-desk",
+        "technicals-desk",
+        "options-desk",
+        "macro-desk",
+        "earnings-desk",
+        "filings-desk",
+        "insiders"
+      ],
+      "rumble_version": "v0.16.0",
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
+      "checks_completed": {}
     }
   ]
 }

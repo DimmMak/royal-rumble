@@ -623,7 +623,8 @@ STEP E — Produce the RUMBLE SCORECARD (summary table of all 13 legends with Wt
 
 STEP F — Run the Judge. Execute ALL steps in RUMBLE-ENGINE.md Judge section, in order:
   - PRE-STEP: Fabrication Guard (scan all 13 analyses for inventions)
-  - STEP 0: Sector-adjusted weights (with floor)
+  - STEP 0: Sector-adjusted weights (hold working_weight values)
+  - STEP 0.5: Believability-weighted adjustment (Dalio) — read `accuracy-tracker/data/accuracy-scores.jsonl`; multiplier = 0.5 + hit_rate for legends with ≥10 scored predictions, else 1.0; then renormalize + enforce 50% floor
   - STEP 1: Handle abstentions
   - STEP 2: Fixed 100-point rubric per legend
   - STEP 3: Convert stances to numbers

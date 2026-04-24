@@ -1,5 +1,31 @@
 # CHANGELOG — Royal Rumble Hedge Fund System
 
+## v0.16.0 — 2026-04-23 (Hit-rate-weighted legend voting — Dalio believability)
+
+**Closes the static-weights gap.** Legend vote weights were hardcoded (Druck 20%, Tom Lee 15%, Cathie 15%, Dalio 15%, Klarman 10%, Simons 10%, Soros 10%, Vol Desk 5%) and never adjusted by actual prediction accuracy — even though `accuracy-tracker.score_legends()` has been writing per-legend hit rates to `accuracy-scores.jsonl`. This wires the feed into rumble's weight math so legends compound their own track record.
+
+### Added
+- ⚖️ **STEP 0.5 — Believability-Weighted Adjustment** — new Judge step between sector-adjustments and renormalize+floor. Reads latest `type=="legends"` record from `accuracy-tracker/data/accuracy-scores.jsonl`; applies multiplier `0.5 + (hit_rate × 1.0)` bounded `[0.5, 1.5]` per voting legend.
+- 📏 **10-prediction minimum sample-size gate** — legends below 10 scored predictions fall back to multiplier 1.0 (base weight). Matches `accuracy-tracker.SKILL.md` calibration milestone ("10 rumbles: first trend visible"). Below 10, multiplier-based weighting is noise.
+- 📋 **`BELIEVABILITY ADJUSTMENT:` line** added to Judge OUTPUT FORMAT — lists per-legend multipliers (or skip reason) parallel to existing `SECTOR ADJUSTMENTS:` and `MINIMUM WEIGHT FLOOR:` lines.
+- 🔗 **SKILL.md STEP F bullet** — future-Claude now sees STEP 0.5 in the orchestrator's step list alongside existing Judge steps.
+
+### Locked decisions (per handoff §2)
+- **Voting legends ONLY** — advisory legends untouched; graduation from advisory to voting is a separate human decision (preserved from `RUMBLE-ENGINE.md` graduation-rule convention).
+- **Multiplier model, not replacement** — new effective_weight = base × sector-adj × believability, then renormalize + floor. Additive, not destructive.
+- **Believability formula: `0.5 + hit_rate`** — 50% hit rate → 1.0× (no change); 100% → 1.5×; 0% → 0.5×. Prevents single-legend dominance; respects the existing 50% floor.
+- **Minimum sample = 10** — below this, multiplier = 1.0.
+- **Order: base × sector-adj × believability → renormalize → floor.**
+- **Multiplier source: latest `type=="legends"` record in `accuracy-scores.jsonl`** — rumble does NOT recompute hit rates. Single source of truth.
+- **Read fresh per rumble — no caching.**
+
+### Graceful degradation
+- IF `accuracy-scores.jsonl` missing or no legends record: STEP 0.5 skipped entirely, renormalize+floor run directly on sector-adjusted weights. Judge output notes `BELIEVABILITY ADJUSTMENT: skipped — <reason>`.
+- Current state (as of 2026-04-23): 8 scored rumbles in predictions.json; max legend has 8 scored predictions (Cathie). All 8 voting legends fall back to multiplier 1.0 until ≥10 scored accumulates. Machinery is installed and dormant — activates automatically as data matures.
+
+### Integrity preservation
+- 13-legend architecture · blind-committee sealing · Cite-or-Abstain · Fabrication Guard · structured footer JSON · Judge 12-step · pillar discipline · 50% weight floor · sector-adjustment matrix — **all preserved**. STEP 0.5 is purely additive per `feedback_handoff_format` locked-decisions discipline.
+
 ## v0.15.0 — 2026-04-23 (`.insiders` integration)
 
 **Closes the Congress-blind-spot gap.** `filings-desk` already covers SEC Form 4 (executive side); `.insiders` adds the STOCK Act political side + conviction scoring across both sides.

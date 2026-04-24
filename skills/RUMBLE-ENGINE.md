@@ -880,10 +880,37 @@ IF commodity-exposed (>20% cost structure from raw materials):
 IF low-float / meme-risk (short interest >15% OR high retail ownership):
   Soros +2%, Simons -1%, Vol Desk -1%
 
-After adjustments: RENORMALIZE voting weights to sum to 100%.
-ENFORCE minimum weight floor.
-Document any adjustments in the output.
+After sector adjustments: HOLD the working_weight values — STEP 0.5 applies
+believability multipliers BEFORE the final renormalize + floor.
+Document any sector adjustments in the output.
 ```
+
+---
+
+## STEP 0.5 — BELIEVABILITY-WEIGHTED ADJUSTMENT (Dalio)
+
+**Dalio's "believability-weighted decision making" applied to legend weights.** Legends with a track record of being right get more vote weight; legends with low hit rates get less. Machinery stays dormant until each legend has ≥10 scored predictions — below that sample size, multipliers = 1.0 and weights pass through untouched.
+
+AFTER sector adjustments, BEFORE renormalize + floor:
+
+1. Read latest `type=="legends"` record from
+   `accuracy-tracker/data/accuracy-scores.jsonl`.
+2. For each voting legend (8 total):
+   - hit_rate = hits / (hits + misses)  (excludes neutrals)
+   - scored = hits + misses
+   - IF scored < 10: multiplier = 1.0 (insufficient data — base weight)
+   - ELSE: multiplier = 0.5 + (hit_rate × 1.0)  (bounded [0.5, 1.5])
+3. Apply: working_weight = working_weight × multiplier
+4. Continue to renormalize-then-floor as before:
+   - RENORMALIZE voting weights to sum to 100%.
+   - ENFORCE minimum weight floor (no legend below 50% of base).
+
+IF `accuracy-scores.jsonl` missing or no `type=="legends"` record: skip STEP 0.5 entirely and renormalize+floor directly on sector-adjusted weights.
+Note in Judge output: "Believability adjustment SKIPPED — no per-legend accuracy data yet."
+
+**Scope:** Voting legends ONLY (8). Advisory legends are untouched — graduation from advisory to voting is a separate human decision (see VOTING vs ADVISORY LEGENDS section).
+
+**Source of truth:** `accuracy-scores.jsonl` is produced by `accuracy-tracker.score_legends()`. Do NOT recompute hit rates inside rumble — single source of truth.
 
 ---
 
@@ -1074,6 +1101,7 @@ The SINGLE most important risk that could invalidate the entire thesis regardles
 TICKER: [TICKER]
 SECTOR ADJUSTMENTS: [list any weight adjustments applied, or "none — base weights used"]
 MINIMUM WEIGHT FLOOR: [any legends hit the 50% floor? list them, or "none"]
+BELIEVABILITY ADJUSTMENT: [per-legend multipliers from STEP 0.5 — e.g. "tom_lee 1.21×, klarman 0.79×, others 1.0× (below 10-prediction threshold)", OR "skipped — <reason>"]
 
 VOTING LEGENDS (determine the score):
 | Legend | Weight | Stance | Rubric | Verdict |
