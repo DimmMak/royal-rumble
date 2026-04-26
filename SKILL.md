@@ -906,10 +906,34 @@ Log prediction to data/predictions.json — append a new entry to the "rumbles" 
     "why": "[one-line reasoning or null]",
     "wrong_if": "[optional falsification condition or null]",
     "locked_at": "[ISO timestamp when user submitted]"
+  },
+  "insiders_aligned": {
+    "verdict": "[true | false | null]",
+    "computed_at": "[ISO timestamp]",
+    "judge_direction": "[BUY | SELL | HOLD]",
+    "insiders_top_action": "[BUY | SELL | TAX_WITHHOLDING | OPTION_EXERCISE | null]",
+    "insiders_max_conviction": 0.0,
+    "alignment_basis": "[strong_align | weak_align | divergence | no_signal | unavailable]",
+    "notes": "[one-line rationale]"
   }
 }
 ```
 **CRITICAL:** This must be logged on EVERY rumble. No exceptions. This is the data that feeds the future accuracy tracker. A rumble without a prediction log is wasted data. If user skipped pre-registration, all user_hypothesis fields = "skip" / null.
+
+**`insiders_aligned` computation rule (parent session, after Judge verdict):**
+
+| Judge verdict | `.insiders` top trade action | `max_conviction` | `verdict` | `alignment_basis` |
+|---|---|---|---|---|
+| STRONG BUY / BUY | BUY | ≥ 7.0 | `true` | `strong_align` |
+| STRONG BUY / BUY | BUY | 5.0–6.9 | `true` | `weak_align` |
+| STRONG BUY / BUY | SELL or TAX_WITHHOLDING | any | `false` | `divergence` |
+| STRONG SELL / SELL | SELL | ≥ 7.0 | `true` | `strong_align` |
+| STRONG SELL / SELL | SELL | 5.0–6.9 | `true` | `weak_align` |
+| STRONG SELL / SELL | BUY | any | `false` | `divergence` |
+| HOLD | any | any | `null` | `no_signal` |
+| any | (no insider data — `.insiders` ERROR / empty) | — | `null` | `unavailable` |
+
+This field is the load-bearing input for `.accuracy-tracker`'s future "do insider-aligned rumbles outperform divergent ones?" measurement. Compute it once per rumble; never mutate after write.
 
 ### 4.5. ACCURACY-FEEDBACK LOOP (v0.12+ Phase 4 — scheduled sweep)
 
