@@ -8,10 +8,20 @@ description: >
   Tom Lee owns liquidity. Druckenmiller owns timing. Klarman owns value. Simons owns quant.
   The Judge synthesizes a weighted championship verdict with conviction level and position sizing.
   Stage 2: challenge any legend — they defend their stance or concede. Verdict updates live.
+  ALWAYS fire this skill when the user invokes any of: `.rumble TICKER`, `.rumble`,
+  `.compare`, `.strategy`, `.challenge`, `.checkin`, `.portfolio`, `.watchlist`,
+  OR uses natural-language phrasings like: "what does {legend} think about {ticker}",
+  "what would Druckenmiller / Klarman / Buffett / Cathie / Tom Lee / Simons / Soros /
+  Ackman / Dalio / Marks / Burry / Rogers / Trend say about X", "run the committee
+  on X", "investment committee analysis of X", "rumble TICKER", "13 legends on X",
+  "deep-dive analysis of X", "weighted investor verdict for X", "should I buy/sell X
+  per the committee", "Royal Rumble X", "what's the Judge verdict on X", "stage 2
+  challenge {legend}".
   NOT for: P0-P3 attention ranking or briefings (use .chief).
   NOT for: risk × reward tiering of arbitrary items (use .tier).
   NOT for: Howard Marks memo writeups of a verdict (use .journalist).
   NOT for: hit-rate scoring of past predictions (use .accuracy).
+  NOT for: trade execution / order placement (humans only — analysis system).
   Commands: .rumble | .compare | .strategy | .challenge | .checkin | .portfolio | .watchlist | .log | .help
 capabilities:
   reads:
@@ -479,7 +489,7 @@ CURRENT YEAR: [TODAY_YYYY]            ← use in search queries verbatim
 
 📋 VERIFIED EARNINGS DATA (from earnings-desk, pulled [EARNINGS_PULLED_AT]):
    NEXT EARNINGS:        [NEXT_EARNINGS_DATE]  ([DAYS_OUT] days out)
-   NEXT EPS EST:         $[NEXT_EPS_EST]  (high $[NEXT_EPS_HI] / low $[NEXT_EPS_LO])
+   NEXT EPS EST:         $[NEXT_EPS_EST]
    LAST QTR SURPRISE:    [LAST_SURPRISE_PCT]%  ([LAST_BEAT_FLAG])
    EPS BEAT STREAK:      [EPS_BEAT_STREAK] consecutive quarters
    DOUBLE-BEAT STREAK:   [DOUBLE_BEAT_STREAK] (EPS + rev both beat)
