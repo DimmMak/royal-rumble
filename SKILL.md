@@ -1,7 +1,7 @@
 ---
 name: royal-rumble
 domain: fund
-version: 0.14.0
+version: 0.15.0
 role: Investment Committee
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
@@ -333,12 +333,24 @@ From insiders (v0.15+):
 - `pulled_at` — timestamp
 - Note: Congress side empty with explicit reason if no PDF extractor is installed on host (`brew install poppler` or `pip install pypdf` to enable). Senate EFD stubbed in v0.1 (JS-rendered portal, integration pending v0.2). `top_trade` is never null — always populated or entire ticker row absent.
 
-**Soft gate (NOT a hard abort — additive quality, not a blocker like price):**
-- If BOTH `status == "OK"` → pass structured data to subagent. Mark `"fund_tech_mode": "structured"` in predictions.json.
-- If EITHER returns `status == "ERROR"` → display a warning banner but CONTINUE the rumble. Subagent falls back to web-search (S1/S2/S4) for the missing dimension. Mark `"fund_tech_mode": "partial"` or `"web_fallback"` in predictions.json for audit trail.
-- NEVER abort the rumble for a desk error. Price is the only hard gate.
+**Hard gate (v0.15+ — matches `cannot:` invariants in frontmatter; changed from v0.14 soft gate per forensic CRIT #2):**
+- If ALL desks return `status == "OK"` → pass structured data to subagent. Mark `"fund_tech_mode": "structured"` in predictions.json.
+- If ANY desk returns `status == "ERROR"` → **ABORT the rumble.** Display:
+  ```
+  ⚠️ Desk error — rumble aborted to preserve citation invariant.
+  Failed desk: [DESK_NAME]
+  Error: [ERROR_MESSAGE]
+  Invariant violated: cannot cite [DIMENSION] without desk pull (frontmatter line 34-37)
 
-**Why soft gate:** fundamentals/technicals are additive quality upgrades. Missing them degrades to v0.10 behavior (web search), not a broken rumble.
+  Recovery options:
+    1. Retry the desk in 60s (most failures are transient yfinance rate limits)
+    2. Run with --no-cite-[DIMENSION] (subagent forbidden from emitting numeric
+       claims for that dimension; qualitative analysis only — flag in audit trail)
+    3. Abort and re-run later
+  ```
+  Wait for explicit user direction. Never silently fall back to web search for cited fundamentals / technicals / options / macro / earnings / filings / insider data — the `cannot:` declaration in frontmatter forbids it.
+
+**Why hard gate (was soft, until 2026-04-28):** the prior soft-gate authorized web-search fallback when desks errored. This contradicted the `cannot:` invariants and re-introduced the exact stale-data citations the desk system was built to prevent. Web-search prices in 2026 returned 2-week-stale numbers in measurable cases. Hard-abort is the structural fix; `--no-cite-[DIMENSION]` is the explicit-degradation escape valve. Price is no longer the only hard gate — every cited dimension is.
 
 ### 0.7. `.react` PREFERENCE WEIGHTING CHECK (v0.12+ Phase 5 — conditional on ≥20 votes)
 
