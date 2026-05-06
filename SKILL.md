@@ -1,7 +1,8 @@
 ---
-name: royal-rumble
+name: committee
+aliases: [royal-rumble, rumble]
 domain: fund
-version: 0.15.0
+version: 0.16.0
 role: Investment Committee
 description: >
   13 legendary investors (8 voting + 5 advisory) — each a domain expert — analyze any stock from their specific pillar.
