@@ -81,3 +81,16 @@ Guard: CLEAN (0 flags)
 
 **Purpose:** first real rumble on v0.16.0 engine; verifies Dalio believability-weighted voting renders correctly end-to-end. Bonus: subagent voluntarily emitted `"believability_adjustment"` field in structured footer (not in strict JSON schema — consider formalizing in v0.17).
 
+
+## 2026-05-09 — MSFT
+**Price:** $415.12 · **Verdict:** HOLD · **Score:** -0.10 (short -0.21 / long +0.06) · **Size:** Starter
+
+**Stances:** Druck BEAR · Lee BULL · Cathie BULL · Dalio NEUTRAL · Klarman BEAR · Simons BEAR · Soros BEAR · Vol NEUTRAL
+
+**Guard:** CLEAN (0 flags) · **Mode:** blind · **Context:** none
+
+**One-line summary:** MSFT is a wonderful business at the wrong price on the wrong tape, with tactical short-term legends calling the moment correctly: death cross active, asymmetry under 3:1, FCF growth negative, sentiment complacent.
+
+**User hypothesis:** BULL HIGH — cloud revenue continually growing and embedded in too many corporations already, stickiness · DIVERGENCE: STRONG (user BULL HIGH vs Judge HOLD/short-SELL)
+
+---

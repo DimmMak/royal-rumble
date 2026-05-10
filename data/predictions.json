@@ -931,6 +931,116 @@
         "90d"
       ],
       "checks_completed": {}
+    },
+    {
+      "ticker": "MSFT",
+      "date": "2026-05-09",
+      "price": 415.12,
+      "combined_score": -0.1,
+      "short_term_score": -0.21,
+      "long_term_score": 0.06,
+      "verdict": "HOLD",
+      "position_size": "Starter",
+      "voting_stances": {
+        "druckenmiller": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "tom_lee": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "cathie_wood": {
+          "stance": "BULL",
+          "value": 0.5
+        },
+        "dalio": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        },
+        "klarman": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "simons": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "soros": {
+          "stance": "BEAR",
+          "value": -0.5
+        },
+        "vol_desk": {
+          "stance": "NEUTRAL",
+          "value": 0.0
+        }
+      },
+      "advisory_stances": {
+        "marks": {
+          "stance": "BEAR"
+        },
+        "trend": {
+          "stance": "BEAR"
+        },
+        "buffett": {
+          "stance": "NEUTRAL"
+        },
+        "ackman": {
+          "stance": "NEUTRAL"
+        },
+        "rogers": {
+          "stance": "NEUTRAL"
+        }
+      },
+      "flip_conditions": {
+        "druckenmiller": "Reclaims $422.12 100DMA on volume >1.5x 30D avg",
+        "tom_lee": "HYG/LQD breaks below 0.71 OR Fed signals hike resumption",
+        "cathie_wood": "Azure growth single-digits next 2Q OR Copilot attach plateau <25%",
+        "dalio": "HYG/LQD < 0.70 OR violent yield curve un-inversion",
+        "klarman": "Price below $217 (Klarman zone) OR FCF re-accelerates >$50B annualized",
+        "simons": "50DMA crosses back above 100DMA OR RSI >65 on rising volume",
+        "soros": "Capitulation flush at $356 (52W low retest)",
+        "vol_desk": "IV rank above 60% OR 25d put-call skew steepens > +0.10"
+      },
+      "key_levels": {
+        "major_resistance": 464.37,
+        "first_support": 398.15,
+        "two_hundred_day_ma": 464.37,
+        "klarman_buy_price": 217.0,
+        "stop_loss": 391.34
+      },
+      "checks_due": [
+        "7d",
+        "14d",
+        "21d",
+        "30d",
+        "60d",
+        "90d"
+      ],
+      "checks_completed": {},
+      "mode": "blind",
+      "guard_result": "CLEAN",
+      "guard_flag_count": 0,
+      "user_hypothesis": {
+        "direction": "BULL",
+        "conviction": "HIGH",
+        "why": "cloud revenue continually growing and embedded in too many corporations already, stickiness",
+        "wrong_if": null,
+        "locked_at": "2026-05-09T23:05:53.625444+00:00"
+      },
+      "insiders_aligned": {
+        "verdict": null,
+        "computed_at": "2026-05-09T23:05:53.625915+00:00",
+        "judge_direction": "HOLD",
+        "insiders_top_action": "TAX_WITHHOLDING",
+        "insiders_max_conviction": 0.0,
+        "alignment_basis": "no_signal",
+        "notes": "Judge verdict HOLD; insiders show only tax-withholding (routine), no buy/sell cluster signal"
+      },
+      "degraded_mode_flags": [
+        "--no-cite-earnings",
+        "--no-cite-filings"
+      ]
     }
   ]
 }
